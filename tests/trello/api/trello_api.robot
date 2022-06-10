@@ -1,7 +1,7 @@
 *** Settings ***
 
-Resource     ../../core/keywords/key.robot
-Resource     ../../core/variables/var.robot
+Resource     ../../common/keywords/key.robot
+Resource     ../../common/variables/var.robot
 
 *** Test Cases ***
 Example Test
