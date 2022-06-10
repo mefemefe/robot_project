@@ -1,8 +1,14 @@
 *** Settings ***
 
-Resource     ../../common/keywords/key.robot
-Resource     ../../common/variables/var.robot
+Library    RequestsLibrary
 
 *** Test Cases ***
 Example Test
-    Log something    ${var}
+    ${response}=    GET  https://www.google.com
+    Log    ${response}
+
+Create A Card
+    Log    TODO
+
+Delete A Card
+    Log    TODO
