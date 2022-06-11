@@ -1,14 +1,10 @@
 *** Settings ***
 
 Library    RequestsLibrary
+Resource    keywords/trello_api_keywords.robot
 
 *** Test Cases ***
-Example Test
-    ${response}=    GET  https://www.google.com
-    Log    ${response}
-
 Create A Card
-    Log    TODO
-
-Delete A Card
-    Log    TODO
+    Create Trello Session
+    Create A Card    62917e1a8f60474c0f22da86    RFCard2
+    Delete A Card    ${CARD_ID}
