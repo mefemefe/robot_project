@@ -4,7 +4,7 @@ Resource         trello_api.robot
 
 *** Keywords ***
 Create A Card
-    [Documentation]    Creates a new card in the given list using the given name, then sets the CARD_ID & CARD_NAME test variables.
+    [Documentation]    Creates a new card in the given list using the given name.
     [Arguments]    ${idList}    ${name}
     &{json}=    Create Dictionary    idList=${idList}     name=${name}    key=%{TRELLO_APIKEY}    token=%{TRELLO_TOKEN}        
     ${response}=    POST On Session    alias=TestSession    url=cards/    json=&{json}
