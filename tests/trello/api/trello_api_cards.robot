@@ -1,6 +1,7 @@
 *** Settings ***
-Library     RequestsLibrary
-Resource    keywords/trello_api_keywords.robot
+Documentation    Example Test with Trello API Cards
+Library          RequestsLibrary
+Resource         keywords/cards.robot
 
 *** Test Cases ***
 Create A Card

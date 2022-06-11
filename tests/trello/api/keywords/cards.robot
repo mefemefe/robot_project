@@ -1,17 +1,8 @@
 *** Settings ***
-Documentation    Keywords for using the Trello API
-Library          RequestsLibrary
-Resource         ../../../common/api/keywords/api_keywords.robot
+Documentation    Keywords for using card with the Trello API
+Resource         trello_api.robot
 
 *** Keywords ***
-Create Trello Session
-    Create Session    TestSession    https://api.trello.com/1/    disable_warnings=1
-
-Default Key Token Payload
-    [Documentation]    A default dictionary for Trello requests that don't need a payload
-    &{dictionary}=    Create Dictionary    key=%{TRELLO_APIKEY}    token=%{TRELLO_TOKEN}
-    RETURN    &{dictionary}
-
 Create A Card
     [Documentation]    Creates a new card in the given list using the given name, then sets the CARD_ID & CARD_NAME test variables.
     [Arguments]    ${idList}    ${name}
