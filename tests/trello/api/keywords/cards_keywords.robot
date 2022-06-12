@@ -1,12 +1,18 @@
 *** Settings ***
 Documentation    Keywords for using card with the Trello API
+Library          Collections
 Resource         trello_api_keywords.robot
+
 
 *** Keywords ***
 Create A Card
     [Documentation]    Creates a new card in the given list using the given name.
-    [Arguments]    ${idList}    ${name}
-    &{json}=    Create Dictionary    idList=${idList}     name=${name}    key=${DEFAULT_KEY}    token=${DEFAULT_TOKEN}        
+    ...                optional_args: name, desc, pos, idCardSource, idLabels, due
+    ...                keys and values should be separated, eg:    name    desired_name
+    [Arguments]    ${idList}    @{optional_args}
+    &{json}=    Default Key Token Payload
+    Set To Dictionary    ${json}    idList=${idList}
+    Set To Dictionary    ${json}    @{optional_args}    
     ${response}=    POST On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${CARD_PATH}    json=&{json}
     Request Should Be Successful    ${response}
     RETURN    ${response}
