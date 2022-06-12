@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation    Keywords for using card with the Trello API
-Resource         trello_api.robot
+Resource         trello_api_keywords.robot
 
 *** Keywords ***
 Create A Card

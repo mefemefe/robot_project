@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation    Keywords for using the Trello API
 Library          RequestsLibrary
-Resource         ../../../common/api/keywords/api.robot
+Resource         ../../../common/api/keywords/api_keywords.robot
 Resource         ../variables/trello_api_variables.robot
 
 *** Keywords ***
