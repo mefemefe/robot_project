@@ -1,0 +1,310 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Welcome5",
+    "definitions": {
+        "Welcome5": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "attachments": {
+                    "type": "array",
+                    "items": {}
+                },
+                "stickers": {
+                    "type": "array",
+                    "items": {}
+                },
+                "id": {
+                    "type": "string"
+                },
+                "badges": {
+                    "$ref": "#/definitions/Badges"
+                },
+                "closed": {
+                    "type": "boolean"
+                },
+                "dueComplete": {
+                    "type": "boolean"
+                },
+                "dateLastActivity": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "desc": {
+                    "type": "string"
+                },
+                "descData": {
+                    "$ref": "#/definitions/DescData"
+                },
+                "due": {
+                    "type": "null"
+                },
+                "dueReminder": {
+                    "type": "null"
+                },
+                "email": {
+                    "type": "null"
+                },
+                "idBoard": {
+                    "type": "string"
+                },
+                "idChecklists": {
+                    "type": "array",
+                    "items": {}
+                },
+                "idList": {
+                    "type": "string"
+                },
+                "idMembers": {
+                    "type": "array",
+                    "items": {}
+                },
+                "idMembersVoted": {
+                    "type": "array",
+                    "items": {}
+                },
+                "idShort": {
+                    "type": "integer"
+                },
+                "idAttachmentCover": {
+                    "type": "null"
+                },
+                "labels": {
+                    "type": "array",
+                    "items": {}
+                },
+                "idLabels": {
+                    "type": "array",
+                    "items": {}
+                },
+                "manualCoverAttachment": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "pos": {
+                    "type": "integer"
+                },
+                "shortLink": {
+                    "type": "string"
+                },
+                "shortUrl": {
+                    "type": "string",
+                    "format": "uri",
+                    "qt-uri-protocols": [
+                        "https"
+                    ]
+                },
+                "start": {
+                    "type": "null"
+                },
+                "subscribed": {
+                    "type": "boolean"
+                },
+                "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "qt-uri-protocols": [
+                        "https"
+                    ]
+                },
+                "cover": {
+                    "$ref": "#/definitions/Cover"
+                },
+                "isTemplate": {
+                    "type": "boolean"
+                },
+                "cardRole": {
+                    "type": "null"
+                },
+                "limits": {
+                    "$ref": "#/definitions/Limits"
+                }
+            },
+            "required": [
+                "badges",
+                "cardRole",
+                "closed",
+                "cover",
+                "dateLastActivity",
+                "desc",
+                "descData",
+                "due",
+                "dueComplete",
+                "dueReminder",
+                "email",
+                "id",
+                "idAttachmentCover",
+                "idBoard",
+                "idChecklists",
+                "idLabels",
+                "idList",
+                "idMembers",
+                "idMembersVoted",
+                "idShort",
+                "isTemplate",
+                "labels",
+                "manualCoverAttachment",
+                "name",
+                "pos",
+                "shortLink",
+                "shortUrl",
+                "start",
+                "subscribed",
+                "url"
+            ],
+            "title": "Welcome5"
+        },
+        "Badges": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "attachmentsByType": {
+                    "$ref": "#/definitions/AttachmentsByType"
+                },
+                "location": {
+                    "type": "boolean"
+                },
+                "votes": {
+                    "type": "integer"
+                },
+                "viewingMemberVoted": {
+                    "type": "boolean"
+                },
+                "subscribed": {
+                    "type": "boolean"
+                },
+                "fogbugz": {
+                    "type": "string"
+                },
+                "checkItems": {
+                    "type": "integer"
+                },
+                "checkItemsChecked": {
+                    "type": "integer"
+                },
+                "checkItemsEarliestDue": {
+                    "type": "null"
+                },
+                "comments": {
+                    "type": "integer"
+                },
+                "attachments": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "boolean"
+                },
+                "due": {
+                    "type": "null"
+                },
+                "dueComplete": {
+                    "type": "boolean"
+                },
+                "start": {
+                    "type": "null"
+                }
+            },
+            "required": [
+                "attachments",
+                "attachmentsByType",
+                "checkItems",
+                "checkItemsChecked",
+                "checkItemsEarliestDue",
+                "comments",
+                "description",
+                "due",
+                "dueComplete",
+                "fogbugz",
+                "location",
+                "start",
+                "subscribed",
+                "viewingMemberVoted",
+                "votes"
+            ],
+            "title": "Badges"
+        },
+        "AttachmentsByType": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "trello": {
+                    "$ref": "#/definitions/Trello"
+                }
+            },
+            "required": [
+                "trello"
+            ],
+            "title": "AttachmentsByType"
+        },
+        "Trello": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "board": {
+                    "type": "integer"
+                },
+                "card": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "board",
+                "card"
+            ],
+            "title": "Trello"
+        },
+        "Cover": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "idAttachment": {
+                    "type": "null"
+                },
+                "color": {
+                    "type": "null"
+                },
+                "idUploadedBackground": {
+                    "type": "null"
+                },
+                "size": {
+                    "type": "string"
+                },
+                "brightness": {
+                    "type": "string"
+                },
+                "idPlugin": {
+                    "type": "null"
+                }
+            },
+            "required": [
+                "brightness",
+                "color",
+                "idAttachment",
+                "idPlugin",
+                "idUploadedBackground",
+                "size"
+            ],
+            "title": "Cover"
+        },
+        "DescData": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "emoji": {
+                    "$ref": "#/definitions/Limits"
+                }
+            },
+            "required": [
+                "emoji"
+            ],
+            "title": "DescData"
+        },
+        "Limits": {
+            "type": "object",
+            "additionalProperties": false,
+            "title": "Limits"
+        }
+    }
+}

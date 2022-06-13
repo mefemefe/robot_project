@@ -1,0 +1,71 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "type": "array",
+    "items": {
+        "$ref": "#/definitions/Welcome3Element"
+    },
+    "definitions": {
+        "Welcome3Element": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "bytes": {
+                    "type": "integer"
+                },
+                "date": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "edgeColor": {
+                    "type": "string"
+                },
+                "idMember": {
+                    "type": "string"
+                },
+                "isUpload": {
+                    "type": "boolean"
+                },
+                "mimeType": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "previews": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Preview"
+                    }
+                },
+                "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "qt-uri-protocols": [
+                        "https"
+                    ],
+                    "qt-uri-extensions": [
+                        ".jpg"
+                    ]
+                },
+                "pos": {
+                    "type": "integer"
+                },
+                "fileName": {
+                    "type": "string"
+                }
+            },
+            "required": [
+               
+            ],
+            "title": "Welcome3Element"
+        },
+        "Preview": {
+            "type": "object",
+            "additionalProperties": true,
+            "title": "Preview"
+        }
+    }
+}

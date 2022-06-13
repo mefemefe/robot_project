@@ -1,0 +1,63 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Welcome6",
+    "definitions": {
+        "Welcome6": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "bytes": {
+                    "type": ["number","null"]
+                },
+                "date": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "edgeColor": {
+                    "type": ["string", "null"]
+                },
+                "idMember": {
+                    "type": "string"
+                },
+                "isUpload": {
+                    "type": "boolean"
+                },
+                "mimeType": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "previews": {
+                    "type": "array",
+                    "items": {}
+                },
+                "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "qt-uri-protocols": [
+                        "http"
+                    ]
+                },
+                "pos": {
+                    "type": "integer"
+                },
+                "fileName": {
+                    "type": ["string","null"]
+                },
+                "limits": {
+                    "$ref": "#/definitions/Limits"
+                }
+            },
+            "title": "Welcome6"
+        },
+        "Limits": {
+            "type": "object",
+            "additionalProperties": true,
+            "title": "Limits"
+        }
+    }
+}

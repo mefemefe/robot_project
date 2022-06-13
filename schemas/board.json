@@ -1,0 +1,224 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Welcome9",
+    "definitions": {
+        "Welcome9": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "desc": {
+                    "type": "string"
+                },
+                "descData": { 
+                },
+                "closed": {
+                    "type": "boolean"
+                },
+                "idOrganization": {
+                    "type": "string"
+                },
+                "idEnterprise": {
+                },
+                "pinned": {
+                    "type": "boolean"
+                },
+                "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "qt-uri-protocols": [
+                        "https"
+                    ]
+                },
+                "shortUrl": {
+                    "type": "string",
+                    "format": "uri",
+                    "qt-uri-protocols": [
+                        "https"
+                    ]
+                },
+                "prefs": {
+                    "$ref": "#/definitions/Prefs"
+                },
+                "labelNames": {
+                    "$ref": "#/definitions/LabelNames"
+                }
+            },
+            "required": [
+                "closed",
+                "desc",
+                "descData",
+                "id",
+                "idEnterprise",
+                "idOrganization",
+                "labelNames",
+                "name",
+                "pinned",
+                "prefs",
+                "shortUrl",
+                "url"
+            ],
+            "title": "Welcome9"
+        },
+        "LabelNames": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "green": {
+                    "type": "string"
+                },
+                "yellow": {
+                    "type": "string"
+                },
+                "orange": {
+                    "type": "string"
+                },
+                "red": {
+                    "type": "string"
+                },
+                "purple": {
+                    "type": "string"
+                },
+                "blue": {
+                    "type": "string"
+                },
+                "sky": {
+                    "type": "string"
+                },
+                "lime": {
+                    "type": "string"
+                },
+                "pink": {
+                    "type": "string"
+                },
+                "black": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "black",
+                "blue",
+                "green",
+                "lime",
+                "orange",
+                "pink",
+                "purple",
+                "red",
+                "sky",
+                "yellow"
+            ],
+            "title": "LabelNames"
+        },
+        "Prefs": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "permissionLevel": {
+                    "type": "string"
+                },
+                "hideVotes": {
+                    "type": "boolean"
+                },
+                "voting": {
+                    "type": "string"
+                },
+                "comments": {
+                    "type": "string"
+                },
+                "invitations": {
+                    "type": "string"
+                },
+                "selfJoin": {
+                    "type": "boolean"
+                },
+                "cardCovers": {
+                    "type": "boolean"
+                },
+                "isTemplate": {
+                    "type": "boolean"
+                },
+                "cardAging": {
+                    "type": "string"
+                },
+                "calendarFeedEnabled": {
+                    "type": "boolean"
+                },
+                "hiddenPluginBoardButtons": {
+                    "type": "array",
+                    "items": {}
+                },
+                "background": {
+                    "type": "string"
+                },
+                "backgroundColor": {
+                    "type": "string"
+                },
+                "backgroundImage": {
+                    "type": "null"
+                },
+                "backgroundImageScaled": {
+                    "type": "null"
+                },
+                "backgroundTile": {
+                    "type": "boolean"
+                },
+                "backgroundBrightness": {
+                    "type": "string"
+                },
+                "backgroundBottomColor": {
+                    "type": "string"
+                },
+                "backgroundTopColor": {
+                    "type": "string"
+                },
+                "canBePublic": {
+                    "type": "boolean"
+                },
+                "canBeEnterprise": {
+                    "type": "boolean"
+                },
+                "canBeOrg": {
+                    "type": "boolean"
+                },
+                "canBePrivate": {
+                    "type": "boolean"
+                },
+                "canInvite": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "background",
+                "backgroundBottomColor",
+                "backgroundBrightness",
+                "backgroundColor",
+                "backgroundImage",
+                "backgroundImageScaled",
+                "backgroundTile",
+                "backgroundTopColor",
+                "calendarFeedEnabled",
+                "canBeEnterprise",
+                "canBeOrg",
+                "canBePrivate",
+                "canBePublic",
+                "canInvite",
+                "cardAging",
+                "cardCovers",
+                "comments",
+                "hiddenPluginBoardButtons",
+                "hideVotes",
+                "invitations",
+                "isTemplate",
+                "permissionLevel",
+                "selfJoin",
+                "voting"
+            ],
+            "title": "Prefs"
+        }
+    }
+}
