@@ -19,31 +19,31 @@ Create Trello Session
 Create An Element
     [Documentation]      Creates a new element using the Trello API
     ...                  Elements: card, board, label
-    [Arguments]          ${element}    @{args}
+    [Arguments]          ${element}    @{args}    ${status_code}=200
     &{json}=             Create Dictionary
     Set To Dictionary    ${json}    @{args}
-    ${response}=         POST On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${PATHS}[${element}]    json=&{json}
+    ${response}=         POST On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${PATHS}[${element}]    json=&{json}    expected_status=${status_code}
     RETURN               ${response}
 
 Get An Element
     [Documentation]    Gets an element with the given id using the trello API
     ...                Elements: card, board, label
-    [Arguments]        ${element}    ${id}
-    ${response}=       GET On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${PATHS}[${element}]${id}
+    [Arguments]        ${element}    ${id}    ${status_code}=200
+    ${response}=       GET On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${PATHS}[${element}]${id}    expected_status=${status_code}
     RETURN             ${response}
 
 Delete An Element
     [Documentation]    Deletes the element with the given id
     ...                Elements: card, board, label
-    [Arguments]        ${element}    ${id}
-    ${response}=       DELETE On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${PATHS}[${element}]${id}
+    [Arguments]        ${element}    ${id}    ${status_code}=200
+    ${response}=       DELETE On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${PATHS}[${element}]${id}    expected_status=${status_code}
     RETURN             ${response}
 
 Update An Element
     [Documentation]      Updates the element with the given id
     ...                  Eelements: card, board, label
-    [Arguments]          ${element}    ${id}    @{args}
+    [Arguments]          ${element}    ${id}    @{args}    ${status_code}=200
     &{json}=             Create Dictionary
     Set To Dictionary    ${json}    @{args}
-    ${response}=         PUT On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${PATHS}[${element}]${id}    json=&{json}
+    ${response}=         PUT On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${PATHS}[${element}]${id}    json=&{json}    expected_status=${status_code}
     RETURN               ${response}
