@@ -1,0 +1,434 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Welcome10",
+    "definitions": {
+        "Welcome10": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "idMemberCreator": {
+                    "type": "string"
+                },
+                "data": {
+                    "$ref": "#/definitions/Data"
+                },
+                "appCreator": {
+                    "$ref": "#/definitions/AppCreator"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "date": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "limits": {
+                    "$ref": "#/definitions/Limits"
+                },
+                "display": {
+                    "$ref": "#/definitions/Display"
+                },
+                "entities": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Entity"
+                    }
+                },
+                "memberCreator": {
+                    "$ref": "#/definitions/Welcome10MemberCreator"
+                }
+            },
+            "required": [
+                "appCreator",
+                "data",
+                "date",
+                "display",
+                "entities",
+                "id",
+                "idMemberCreator",
+                "limits",
+                "memberCreator",
+                "type"
+            ],
+            "title": "Welcome10"
+        },
+        "AppCreator": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "AppCreator"
+        },
+        "Data": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "text": {
+                    "type": "string"
+                },
+                "textData": {
+                    "$ref": "#/definitions/TextData"
+                },
+                "card": {
+                    "$ref": "#/definitions/Ard"
+                },
+                "board": {
+                    "$ref": "#/definitions/Ard"
+                },
+                "list": {
+                    "$ref": "#/definitions/List"
+                }
+            },
+            "required": [
+                "board",
+                "card",
+                "list",
+                "text",
+                "textData"
+            ],
+            "title": "Data"
+        },
+        "Ard": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "shortLink": {
+                    "type": "string"
+                },
+                "idShort": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "shortLink"
+            ],
+            "title": "Ard"
+        },
+        "List": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "List"
+        },
+        "TextData": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "emoji": {
+                    "$ref": "#/definitions/NonPublic"
+                }
+            },
+            "required": [
+                "emoji"
+            ],
+            "title": "TextData"
+        },
+        "NonPublic": {
+            "type": "object",
+            "additionalProperties": false,
+            "title": "NonPublic"
+        },
+        "Display": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "translationKey": {
+                    "type": "string"
+                },
+                "entities": {
+                    "$ref": "#/definitions/Entities"
+                }
+            },
+            "required": [
+                "entities",
+                "translationKey"
+            ],
+            "title": "Display"
+        },
+        "Entities": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "contextOn": {
+                    "$ref": "#/definitions/ContextOn"
+                },
+                "card": {
+                    "$ref": "#/definitions/Card"
+                },
+                "comment": {
+                    "$ref": "#/definitions/Comment"
+                },
+                "memberCreator": {
+                    "$ref": "#/definitions/EntitiesMemberCreator"
+                }
+            },
+            "required": [
+                "card",
+                "comment",
+                "contextOn",
+                "memberCreator"
+            ],
+            "title": "Entities"
+        },
+        "Card": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "hideIfContext": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "shortLink": {
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "hideIfContext",
+                "id",
+                "shortLink",
+                "text",
+                "type"
+            ],
+            "title": "Card"
+        },
+        "Comment": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "text",
+                "type"
+            ],
+            "title": "Comment"
+        },
+        "ContextOn": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "translationKey": {
+                    "type": "string"
+                },
+                "hideIfContext": {
+                    "type": "boolean"
+                },
+                "idContext": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "hideIfContext",
+                "idContext",
+                "translationKey",
+                "type"
+            ],
+            "title": "ContextOn"
+        },
+        "EntitiesMemberCreator": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "text",
+                "type",
+                "username"
+            ],
+            "title": "EntitiesMemberCreator"
+        },
+        "Entity": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                },
+                "hideIfContext": {
+                    "type": "boolean"
+                },
+                "idContext": {
+                    "type": "string"
+                },
+                "shortLink": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "text",
+                "type"
+            ],
+            "title": "Entity"
+        },
+        "Limits": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "reactions": {
+                    "$ref": "#/definitions/Reactions"
+                }
+            },
+            "required": [
+                "reactions"
+            ],
+            "title": "Limits"
+        },
+        "Reactions": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "perAction": {
+                    "$ref": "#/definitions/PerAction"
+                },
+                "uniquePerAction": {
+                    "$ref": "#/definitions/PerAction"
+                }
+            },
+            "required": [
+                "perAction",
+                "uniquePerAction"
+            ],
+            "title": "Reactions"
+        },
+        "PerAction": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "status": {
+                    "type": "string"
+                },
+                "disableAt": {
+                    "type": "integer"
+                },
+                "warnAt": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "disableAt",
+                "status",
+                "warnAt"
+            ],
+            "title": "PerAction"
+        },
+        "Welcome10MemberCreator": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "activityBlocked": {
+                    "type": "boolean"
+                },
+                "avatarHash": {
+                    "type": "string"
+                },
+                "avatarUrl": {
+                    "type": "string",
+                    "format": "uri",
+                    "qt-uri-protocols": [
+                        "https"
+                    ]
+                },
+                "fullName": {
+                    "type": "string"
+                },
+                "idMemberReferrer": {
+                    "type": "null"
+                },
+                "initials": {
+                    "type": "string"
+                },
+                "nonPublic": {
+                    "$ref": "#/definitions/NonPublic"
+                },
+                "nonPublicAvailable": {
+                    "type": "boolean"
+                },
+                "username": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "activityBlocked",
+                "avatarHash",
+                "avatarUrl",
+                "fullName",
+                "id",
+                "idMemberReferrer",
+                "initials",
+                "nonPublic",
+                "nonPublicAvailable",
+                "username"
+            ],
+            "title": "Welcome10MemberCreator"
+        }
+    }
+}
