@@ -36,3 +36,9 @@ Update A Card
     [Arguments]        ${id}    @{optional_args}
     ${response}=       Update An Element    card    ${id}    @{optional_args}
     RETURN             ${response}
+
+Archive A Card
+    [Documentation]    Modifies the card status to closed.
+    [Arguments]        ${id}
+    ${response}=       Update A Card    ${id}    closed    true
+    RETURN             ${response}
