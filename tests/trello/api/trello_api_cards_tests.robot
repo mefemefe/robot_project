@@ -9,9 +9,9 @@ Verify A Card Is Created
     Create Trello Session
     ${response}=       Create A Card    name    RFCard2
     ${CARD_ID}=        Get Information From Response    ${response}    id
-    ${response}=       Get A Card       ${CARD_ID}
+    ${response}=       Update A Card        ${CARD_ID}    name    RFCard7
     ${CARD_NAME}=      Get Information From Response    ${response}    name
-    Should Be Equal    ${CARD_NAME}     RFCard2
+    Should Be Equal    ${CARD_NAME}     RFCard7
     [Teardown]         Delete A Card      ${CARD_ID}
 
 Verify A Card Is Created 2
@@ -23,4 +23,4 @@ Verify A Card Is Created 2
     Get The Card
     Get name From Response
     Should Be Equal    ${response_name}    RFCard3
-    [Teardown]         Delete The Card
+    Delete The Card

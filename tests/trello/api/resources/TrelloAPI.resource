@@ -1,23 +1,49 @@
 *** Settings ***
 Documentation    Keywords and Variables for using the Trello API
 Library          RequestsLibrary
-Resource         ../../../common/api/resources/CommonAPI.resource
+Library          Collections
+Resource         tests/common/api/resources/CommonAPI.resource
 
 *** Variables ***
 ${DEFAULT_KEY}         %{TRELLO_APIKEY}
 ${DEFAULT_TOKEN}       %{TRELLO_TOKEN}
 ${BASE_URL}            https://api.trello.com/1/
-&{HEADERS}             Accept=application/json    Content-Type=application/json    Authorization=OAuth oauth_consumer_key=${DEFAULT_KEY}, oauth_token=${DEFAULT_TOKEN}
-${DEFAULT_BOARD_ID}    62917e1a8f60474c0f22da85
-${DEFAULT_LIST_ID}     62917e1a8f60474c0f22da86
+&{HEADERS}             Accept=application/json    Content-Type=application/json    Authorization=OAuth oauth_consumer_key="${DEFAULT_KEY}", oauth_token="${DEFAULT_TOKEN}"
 ${DEFAULT_SESSION_ALIAS}    TestSession
-${CARD_PATH}           cards/
+&{PATHS}               card=cards/    board=boards/    label=labels/
 
 *** Keywords ***
 Create Trello Session
-    Create Session    ${DEFAULT_SESSION_ALIAS}    ${BASE_URL}    disable_warnings=1
+    Create Session    ${DEFAULT_SESSION_ALIAS}    ${BASE_URL}    disable_warnings=1    headers=&{HEADERS}
 
-Default Key Token Payload
-    [Documentation]    A default dictionary for Trello requests that don't need a payload
-    &{dictionary}=    Create Dictionary    key=${DEFAULT_KEY}    token=${DEFAULT_TOKEN}
-    RETURN    &{dictionary}
+Create An Element
+    [Documentation]      Creates a new element using the Trello API
+    ...                  Elements: card, board, label
+    [Arguments]          ${element}    @{args}
+    &{json}=             Create Dictionary
+    Set To Dictionary    ${json}    @{args}
+    ${response}=         POST On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${PATHS}[${element}]    json=&{json}
+    RETURN               ${response}
+
+Get An Element
+    [Documentation]    Gets an element with the given id using the trello API
+    ...                Elements: card, board, label
+    [Arguments]        ${element}    ${id}
+    ${response}=       GET On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${PATHS}[${element}]${id}
+    RETURN             ${response}
+
+Delete An Element
+    [Documentation]    Deletes the element with the given id
+    ...                Elements: card, board, label
+    [Arguments]        ${element}    ${id}
+    ${response}=       DELETE On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${PATHS}[${element}]${id}
+    RETURN             ${response}
+
+Update An Element
+    [Documentation]      Updates the element with the given id
+    ...                  Eelements: card, board, label
+    [Arguments]          ${element}    ${id}    @{args}
+    &{json}=             Create Dictionary
+    Set To Dictionary    ${json}    @{args}
+    ${response}=         PUT On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${PATHS}[${element}]${id}    json=&{json}
+    RETURN               ${response}
