@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation    Example Test with Trello API Cards
 Library          RequestsLibrary
-Resource         resources/CardResource.robot
+Resource         resources/Card.resource
 
 *** Test Cases ***
 Verify A Card Is Created

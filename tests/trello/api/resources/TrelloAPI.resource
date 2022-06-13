@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation    Keywords and Variables for using the Trello API
 Library          RequestsLibrary
-Resource         ../../../common/api/resources/CommonApiResource.robot
+Resource         ../../../common/api/resources/CommonAPI.resource
 
 *** Variables ***
 ${DEFAULT_KEY}         %{TRELLO_APIKEY}
@@ -11,7 +11,7 @@ ${BASE_URL}            https://api.trello.com/1/
 ${DEFAULT_BOARD_ID}    62917e1a8f60474c0f22da85
 ${DEFAULT_LIST_ID}     62917e1a8f60474c0f22da86
 ${DEFAULT_SESSION_ALIAS}    TestSession
-${CARD_PATH}    cards/
+${CARD_PATH}           cards/
 
 *** Keywords ***
 Create Trello Session

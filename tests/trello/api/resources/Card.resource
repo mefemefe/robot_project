@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation    Keywords for using card with the Trello API
 Library          Collections
-Resource         TrelloApiResource.robot
+Resource         TrelloAPI.resource
 
 *** Keywords ***
 Create A Card
@@ -10,8 +10,7 @@ Create A Card
     ...                keys and values should be separated, eg:    name    desired_name
     [Arguments]    ${idList}    @{optional_args}
     &{json}=    Default Key Token Payload
-    Set To Dictionary    ${json}    idList=${idList}
-    Set To Dictionary    ${json}    @{optional_args}    
+    Set To Dictionary    ${json}    @{optional_args}    idList=${idList}   
     ${response}=    POST On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${CARD_PATH}    json=&{json}
     Request Should Be Successful    ${response}
     RETURN    ${response}
