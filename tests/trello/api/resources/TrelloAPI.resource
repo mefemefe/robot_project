@@ -29,14 +29,14 @@ Get An Element
     [Documentation]    Gets an element with the given id using the trello API
     ...                Elements: card, board, label
     [Arguments]        ${element}    ${id}
-    ${response}=       GET On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${PATHS}[${element}]${id}
+    ${response}=       GET On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${PATHS}[${element}]${id}    expected_status=any
     RETURN             ${response}
 
 Delete An Element
     [Documentation]    Deletes the element with the given id
     ...                Elements: card, board, label
     [Arguments]        ${element}    ${id}
-    ${response}=       DELETE On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${PATHS}[${element}]${id}
+    ${response}=       DELETE On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${PATHS}[${element}]${id}    expected_status=any
     RETURN             ${response}
 
 Update An Element
