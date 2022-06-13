@@ -1,13 +1,13 @@
 *** Settings ***
-Documentation    Example Test with Trello API Cards
+Documentation     Example Test with Trello API Cards
 Library           RequestsLibrary
 Resource          resources/Card.resource
 Suite Setup       Create Trello Session
 Suite Teardown    Delete All Sessions
 
 *** Test Cases ***
-Verify A Card Is Created
-    [Tags]             smoke    card.create
+Verify A Card Can Be Created
+    [Tags]             api    smoke    card.create
     ${response}=       Create A Card    name    RFCard2
     ${CARD_ID}=        Get Information From Response    ${response}    id
     ${response}=       Get A Card       ${CARD_ID}
@@ -16,7 +16,7 @@ Verify A Card Is Created
     [Teardown]         Delete A Card      ${CARD_ID}
 
 Verify A Card Can Be Closed
-    [Tags]             regression    card.close
+    [Tags]             api    regression    card.close
     ${response}=       Create A Card
     ${CARD_ID}=        Get Information From Response    ${response}    id
     Archive A Card     ${CARD_ID}
@@ -25,10 +25,10 @@ Verify A Card Can Be Closed
     Should Be True     ${CARD_CLOSED}
     [Teardown]         Delete A Card    ${CARD_ID}
 
-Verify A Card Is Deleted
-    [Tags]             smoke    card.delete
+Verify A Card Can Be Deleted
+    [Tags]             api    smoke    card.delete
     ${response}=       Create A Card
     ${CARD_ID}=        Get Information From Response    ${response}    id
     Delete A Card      ${CARD_ID}
-    Get A Card         ${CARD_ID}
-    [Teardown]         Delete A Card    ${CARD_ID}
+    Get A Card         ${CARD_ID}    status_code=404
+    
