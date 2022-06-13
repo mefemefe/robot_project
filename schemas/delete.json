@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Welcome3",
+    "definitions": {
+        "Welcome3": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "limits": {
+                    "$ref": "#/definitions/Limits"
+                }
+            },
+            "required": [
+                "limits"
+            ],
+            "title": "Welcome3"
+        },
+        "Limits": {
+            "type": "object",
+            "additionalProperties": false,
+            "title": "Limits"
+        }
+    }
+}

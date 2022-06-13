@@ -1,0 +1,51 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "type": "array",
+    "items": {
+        "$ref": "#/definitions/Welcome3Element"
+    },
+    "definitions": {
+        "Welcome3Element": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "idBoard": {
+                    "$ref": "#/definitions/IDBoard"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "color": {
+                    "$ref": "#/definitions/Color"
+                }
+            },
+            "required": [
+                "color",
+                "id",
+                "idBoard",
+                "name"
+            ],
+            "title": "Welcome3Element"
+        },
+        "Color": {
+            "type": "string",
+            "enum": [
+                "purple",
+                "green",
+                "yellow",
+                "blue",
+                "orange",
+                "red",
+                "sky"
+            ],
+            "title": "Color"
+        },
+        "IDBoard": {
+            "type": "string",
+            "title": "IDBoard"
+        }
+    }
+}
