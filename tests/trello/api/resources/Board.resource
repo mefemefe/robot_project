@@ -1,6 +1,5 @@
 ** Settings ***
 Documentation    Keywords for using board with the Trello API
-Library          Collections
 Resource         TrelloAPI.resource
 
 *** Variables ***
