@@ -39,8 +39,7 @@ To run this project, you will need to have the following environment variables
 ```
 
 - **Set up the Environment Variables** described in the "Environment Variables"  section of this readme.
-```
-```
+
 - Run tests using **'robot' + the path** to your .robot file, or folder containing .robot files
 
 ```bash
