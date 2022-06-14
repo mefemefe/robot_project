@@ -2,8 +2,6 @@
 Documentation    Keywords for using board with the Trello API
 Resource         TrelloAPI.resource
 
-*** Variables ***
-${DEFAULT_BOARD_ID}    627c0cb01e98336259fa1ae2
 
 *** Keywords ***
 Create A Board
@@ -22,8 +20,8 @@ Get A Board
 
 Delete A Board
     [Documentation]    Deletes the board with the given ID
-    [Arguments]        ${id}
-    ${response}=       Delete An Element    board    ${id}
+    [Arguments]        ${id}    ${status_code}=200
+    ${response}=       Delete An Element    board    ${id}    status_code=${status_code}
     RETURN             ${response}
 
 Update A Board
