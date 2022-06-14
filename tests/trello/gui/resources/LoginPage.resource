@@ -10,7 +10,6 @@ ${USER_INPUT}                  css:input#user
 ${PASS_INPUT}                  css:input#password
 ${LOGIN_BUTTON_TRELLO}         css:input#login
 ${LOGIN_BUTTON_ATLASSIAN}      css:button#login-submit
-${YOUR_WORKSPACES}             css:h3.boards-page-section-header-name
 
 *** Keywords ***
 Enter Username

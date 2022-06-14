@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation    Example Trello Login Test
-Resource         resources/Login.resource
+Resource         resources/LoginPage.resource
+Resource         resources/BoardsPage.resource
 
 *** Test Cases ***
 Login With A Valid User and Password
@@ -12,7 +13,5 @@ Login With A Valid User and Password
     Wait Until Location Contains     atlassian.com
     Enter Password                   ${DEFAULT_PASSWORD}
     Click Login Button
-    Wait Until Location Contains     boards
-    Wait Until Element Is Visible    ${YOUR_WORKSPACES}
-    Element Text Should Be           ${YOUR_WORKSPACES}    YOUR WORKSPACES
+    Verify Current Page Is Boards Page
     [Teardown]    Close Browser
