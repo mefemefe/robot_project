@@ -45,7 +45,7 @@ To run this project, you will need to have the following environment variables
 ```bash
   robot <path>
 ```
-- Or using **--include** to run by tags (can also include a path or use '.' to run all)
+- Or using **--include** to run by tags (also include a path, it can be specific or use '.' to search in all subfolders)
 
 ```bash
   robot --include smoke .
