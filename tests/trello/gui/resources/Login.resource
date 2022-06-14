@@ -10,18 +10,19 @@ ${USER_INPUT}                  css:input#user
 ${PASS_INPUT}                  css:input#password
 ${LOGIN_BUTTON_TRELLO}         css:input#login
 ${LOGIN_BUTTON_ATLASSIAN}      css:button#login-submit
+${YOUR_WORKSPACES}             css:h3.boards-page-section-header-name
 
 *** Keywords ***
 Enter Username
     [Documentation]    Take a username as argument and
     ...                enters it in the user_input
-    [Arguments]    ${username}=${DEFAULT_USER}
+    [Arguments]    ${username}
     Input Text    ${USER_INPUT}    ${username}
 
 Enter Password
     [Documentation]    Take a password as argument and
     ...                enters it in the password_input
-    [Arguments]    ${password}=${DEFAULT_PASSWORD}
+    [Arguments]    ${password}
     Input Password    ${PASS_INPUT}    ${password}
 
 Click Login Button
