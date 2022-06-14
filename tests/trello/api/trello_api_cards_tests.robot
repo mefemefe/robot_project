@@ -1,6 +1,5 @@
 *** Settings ***
 Documentation     Example Test with Trello API Cards
-Library           RequestsLibrary
 Resource          resources/Card.resource
 Suite Setup       Create Trello Session
 Suite Teardown    Delete All Sessions

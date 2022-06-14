@@ -1,6 +1,5 @@
 *** Settings ***
 Documentation    Keywords for using card with the Trello API
-Library          Collections
 Resource         TrelloAPI.resource
 
 *** Variables ***

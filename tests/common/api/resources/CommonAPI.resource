@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation    Keywords for general API usage.
-Library    JSONSchemaLibrary    schemas/
+Library          RequestsLibrary
+Library          JSONSchemaLibrary    schemas/
 
 *** Keywords ***
 Get Information From Response
