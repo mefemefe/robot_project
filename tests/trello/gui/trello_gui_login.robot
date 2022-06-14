@@ -4,13 +4,12 @@ Resource         resources/Login.resource
 
 *** Test Cases ***
 Login With A Valid User and Password
-    [Tags]                smoke    gui    login
-    Open Browser          browser=${BROWSER}
-    Go To Trello's Login Page
+    [Tags]    smoke    gui    login
+    Open Browser                    ${LOGIN_URL}    ${BROWSER}
     Enter Username
     Click Login Button
-    Wait Until Location Contains    atlassian
+    Wait Until Location Contains    atlassian.com
     Enter Password
-    Click Atlassian Login Button
-    Wait Until Location Is    https://trello.com/pablotest4/boards
-    [Teardown]            Close Browser
+    Click Login Button
+    Wait Until Location Is          ${DEFAULT_USER_HOME}
+    [Teardown]    Close Browser
