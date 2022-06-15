@@ -9,10 +9,8 @@ Create A Board
     ...                name the board will have 
     ...                optional_args:  desc, defaultLists, etc.
     ...                keys and values should be separated, eg:    name    desired_name
-    [Arguments]        ${name}    @{optional_args}
-    Append To List        ${optional_args}    name
-    Append To List        ${optional_args}    ${name}    
-    ${response}=       Create An Element    board    @{optional_args}    
+    [Arguments]        ${name}    @{optional_args} 
+    ${response}=       Create An Element    board    @{optional_args}    name    ${name}      
     RETURN             ${response}
 
 Get A Board
