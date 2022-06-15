@@ -8,7 +8,7 @@ Create A Card
     ...                required_args: listId
     ...                optional_args: name, desc, pos, idCardSource, idLabels, due
     ...                keys and values should be separated, eg:    name    desired_name
-    [Arguments]        @{optional_args}    ${idList}=${DEFAULT_LIST_ID}    ${status_code}=200
+    [Arguments]        @{optional_args}    ${idList}=${TEST_SUITE_LIST_ID}    ${status_code}=200
     ${response}=       Create An Element    card    @{optional_args}    idList    ${idList}    status_code=${status_code}
     RETURN             ${response}
 

@@ -54,9 +54,9 @@ Verify A Card Can Be Updated
 *** Keywords ***
 Setup Board And List
     ${BOARD}=    Create A Board    TestBoard
-    Set Suite Variable    \${BOARD_ID}    ${BOARD.json()}[id]
-    ${LISTS}=    GET On Session    url=https://api.trello.com/1/boards/${BOARD_ID}/lists    alias=${DEFAULT_SESSION_ALIAS}
-    Set Suite Variable    \${LIST_ID}    ${LISTS.json()}[0][id]
+    Set Suite Variable    \${TEST_SUITE_BOARD_ID}    ${BOARD.json()}[id]
+    ${LISTS}=    GET On Session    url=https://api.trello.com/1/boards/${TEST_SUITE_BOARD_ID}/lists    alias=${DEFAULT_SESSION_ALIAS}
+    Set Suite Variable    \${TEST_SUITE_LIST_ID}    ${LISTS.json()}[0][id]
 
 Teardown Board
-    Delete A Board    ${BOARD_ID}
+    Delete A Board    ${TEST_SUITE_BOARD_ID}
