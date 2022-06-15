@@ -10,7 +10,7 @@ Login With A Valid User and Password
     Enter Username                   ${DEFAULT_USER}
     Wait Until Element Is Not Visible    ${PASS_INPUT}
     Click Login Button
-    Wait Until Location Contains     atlassian.com
+    Wait Until Location Is Atlassian's Login
     Enter Password                   ${DEFAULT_PASSWORD}
     Click Login Button
     Verify Current Page Is Boards Page
