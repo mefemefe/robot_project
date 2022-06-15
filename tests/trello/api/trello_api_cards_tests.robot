@@ -55,7 +55,7 @@ Verify A Card Can Be Updated
 Setup Board And List
     ${BOARD}=    Create A Board    TestBoard
     Set Suite Variable    \${TEST_SUITE_BOARD_ID}    ${BOARD.json()}[id]
-    ${LISTS}=    GET On Session    url=https://api.trello.com/1/boards/${TEST_SUITE_BOARD_ID}/lists    alias=${DEFAULT_SESSION_ALIAS}
+    ${LISTS}=    Get Lists On A Board    ${TEST_SUITE_BOARD_ID}
     Set Suite Variable    \${TEST_SUITE_LIST_ID}    ${LISTS.json()}[0][id]
 
 Teardown Board

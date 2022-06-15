@@ -32,3 +32,9 @@ Update A Board
     [Arguments]        ${id}    @{optional_args}
     ${response}=       Update An Element    board    ${id}    @{optional_args}
     RETURN             ${response}
+
+Get Lists On A Board
+    [Documentation]    Get all the lists in a board
+    [Arguments]        ${id}    ${status_code}=200
+    ${response}        Get An Element    lists_on_board    ${id}
+    RETURN             ${response}
