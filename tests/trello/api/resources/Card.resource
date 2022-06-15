@@ -2,10 +2,6 @@
 Documentation    Keywords for using card with the Trello API
 Resource         TrelloAPI.resource
 
-*** Variables ***
-${DEFAULT_BOARD_ID}    62917e1a8f60474c0f22da85
-${DEFAULT_LIST_ID}     62917e1a8f60474c0f22da86
-
 *** Keywords ***
 Create A Card
     [Documentation]    Creates a new card in the given list.

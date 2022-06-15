@@ -1,8 +1,13 @@
 *** Settings ***
 Documentation     Example Test with Trello API Cards
 Resource          resources/Card.resource
-Suite Setup       Create Trello Session
-Suite Teardown    Delete All Sessions
+Resource          resources/Board.resource
+Suite Setup       Run Keywords
+...               Create Trello Session
+...               Setup Board And List
+Suite Teardown    Run Keywords
+...               Teardown Board
+...               Delete All Sessions
 
 *** Test Cases ***
 Verify A Card Can Be Created
@@ -45,3 +50,13 @@ Verify A Card Can Be Updated
     Should Be Equal    ${CARD_NAME}    RFCard5
     Should Be Equal    ${CARD_DESC}    Description
     [Teardown]         Delete A Card    ${CARD_ID}
+
+*** Keywords ***
+Setup Board And List
+    ${BOARD}=    Create A Board    TestBoard
+    Set Suite Variable    \${BOARD_ID}    ${BOARD.json()}[id]
+    ${LISTS}=    GET On Session    url=https://api.trello.com/1/boards/${BOARD_ID}/lists    alias=${DEFAULT_SESSION_ALIAS}
+    Set Suite Variable    \${LIST_ID}    ${LISTS.json()}[0][id]
+
+Teardown Board
+    Delete A Board    ${BOARD_ID}
