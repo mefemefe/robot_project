@@ -1,6 +1,5 @@
 *** Settings ***
 Documentation    Keywords and Variables for using the Trello API
-Library          RequestsLibrary
 Library          Collections
 Resource         tests/common/api/resources/CommonAPI.resource
 
