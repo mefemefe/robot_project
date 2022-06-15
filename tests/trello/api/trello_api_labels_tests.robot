@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation    Example Test with Trello API Cards
 Library          RequestsLibrary
-Resource         /tests/trello/api/resources/Label.resource
+Resource         ../tests/trello/api/resources/Label.resource
 
 
 
