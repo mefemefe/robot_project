@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation    Keywords and Variables for using the Trello API
 Library          Collections
+Library          String
 Resource         tests/common/api/resources/CommonAPI.resource
 
 *** Variables ***
@@ -9,7 +10,7 @@ ${DEFAULT_TOKEN}       %{TRELLO_TOKEN}
 ${BASE_URL}            https://api.trello.com/1/
 &{HEADERS}             Accept=application/json    Content-Type=application/json    Authorization=OAuth oauth_consumer_key="${DEFAULT_KEY}", oauth_token="${DEFAULT_TOKEN}"
 ${DEFAULT_SESSION_ALIAS}    TestSession
-&{PATHS}               card=cards/    board=boards/    label=labels/
+&{PATHS}               card=cards/{}    board=boards/{}    label=labels/{}    lists_on_board=boards/{}/lists/
 
 *** Keywords ***
 Create Trello Session
@@ -21,21 +22,24 @@ Create An Element
     [Arguments]          ${element}    @{args}    ${status_code}=200
     &{json}=             Create Dictionary
     Set To Dictionary    ${json}    @{args}
-    ${response}=         POST On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${PATHS}[${element}]    json=&{json}    expected_status=${status_code}
+    ${url}=              Format String      ${PATHS}[${element}]    ${EMPTY}
+    ${response}=         POST On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${url}    json=&{json}    expected_status=${status_code}
     RETURN               ${response}
 
 Get An Element
     [Documentation]    Gets an element with the given id using the trello API
     ...                Elements: card, board, label
     [Arguments]        ${element}    ${id}    ${status_code}=200
-    ${response}=       GET On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${PATHS}[${element}]${id}    expected_status=${status_code}
+    ${url}=            Format String      ${PATHS}[${element}]    ${id}
+    ${response}=       GET On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${url}    expected_status=${status_code}
     RETURN             ${response}
 
 Delete An Element
     [Documentation]    Deletes the element with the given id
     ...                Elements: card, board, label
     [Arguments]        ${element}    ${id}    ${status_code}=200
-    ${response}=       DELETE On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${PATHS}[${element}]${id}    expected_status=${status_code}
+    ${url}=            Format String      ${PATHS}[${element}]    ${id}
+    ${response}=       DELETE On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${url}    expected_status=${status_code}
     RETURN             ${response}
 
 Update An Element
@@ -44,5 +48,6 @@ Update An Element
     [Arguments]          ${element}    ${id}    @{args}    ${status_code}=200
     &{json}=             Create Dictionary
     Set To Dictionary    ${json}    @{args}
-    ${response}=         PUT On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${PATHS}[${element}]${id}    json=&{json}    expected_status=${status_code}
+    ${url}=              Format String      ${PATHS}[${element}]    ${id}
+    ${response}=         PUT On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${url}    json=&{json}    expected_status=${status_code}
     RETURN               ${response}
