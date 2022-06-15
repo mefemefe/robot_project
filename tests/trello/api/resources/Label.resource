@@ -1,11 +1,6 @@
 *** Settings ***
 Documentation    Keywords for using card with the Trello API
-Resource         ../tests/trello/api/resources/TrelloAPI.resource
-
-
-
-*** Variables ***
-${DEFAULT_BOARD_ID}    629160b34fb79620003ba4b8
+Resource         TrelloAPI.resource
 
 
 
@@ -15,7 +10,7 @@ Create A Label
     ...                required_args: idBoard
     ...                optional_args: name, color
     ...                keys and values should be separated, eg:    name    desired_name
-    [Arguments]        @{optional_args}    ${idBoard}=${DEFAULT_BOARD_ID}
+    [Arguments]        @{optional_args}    ${idBoard}=${TEST_SUITE_BOARD_ID}
     ${response}=       Create An Element    label     idBoard    ${idBoard}    @{optional_args}
     RETURN             ${response}
 
