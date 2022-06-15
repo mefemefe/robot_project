@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+ automation:
+  build:
+   context: .
+  environment:
+  - TRELLO_APIKEY
+  - TRELLO_TOKEN
+  - PYTHONPATH
+  - FILTER
+  volumes:
+  - ./reports:/reports
