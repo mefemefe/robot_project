@@ -28,8 +28,8 @@ Delete A Label
 
 Get A Label
     [Documentation]    Gets the label with the given ID
-    [Arguments]        ${id}
-    ${response}=       Get An Element    label    ${id}
+    [Arguments]        ${id}    ${status_code}=200
+    ${response}=       Get An Element    label    ${id}    status_code=${status_code}
     RETURN             ${response}
 
 Update A Label
@@ -46,8 +46,5 @@ Verify if Label is deleted
     ${response}=       Get An Element    label    ${id}     status_code=404
     RETURN             ${response}
 
-Get labels from board
-    [Documentation]    Get all labels from the default board
-    ${response}=    Get on session    ${DEFAULT_SESSION_ALIAS}    url=https://api.trello.com/1/boards/${DEFAULT_BOARD_ID}/labels?key=${DEFAULT_KEY}&token=${DEFAULT_TOKEN}
-     RETURN             ${response}
+
 
