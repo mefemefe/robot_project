@@ -24,7 +24,7 @@ UPDATE a list
     Validate Response Schema       ${new_response}    list
     Should Be Equal    ${new_response.json()}[name]     NewName 
 
-Archive A list
+ARCHIVE A list
     [Tags]             smoke    api    list.archive
     ${response}=       Create A List    NewList     
     Archive A List       ${response.json()}[id]
