@@ -21,8 +21,8 @@ Create A Label
 
 Delete A Label
     [Documentation]    Deletes the label with the given ID
-    [Arguments]        ${id}
-    ${response}=       Delete An Element    label    ${id}
+    [Arguments]        ${id}    ${status_code}=200
+    ${response}=       Delete An Element    label    ${id}    status_code=${status_code}
     RETURN             ${response}
 
 Get A Label
