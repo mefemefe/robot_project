@@ -5,10 +5,13 @@ Resource         TrelloAPI.resource
 
 *** Keywords ***
 Create A Board
-    [Documentation]    Creates a new Board 
-    ...                optional_args: name, desc, etc.
+    [Documentation]    Creates a new Board
+    ...                name the board will have 
+    ...                optional_args:  desc, defaultLists, etc.
     ...                keys and values should be separated, eg:    name    desired_name
-    [Arguments]        @{optional_args}    
+    [Arguments]        ${name}    @{optional_args}
+    Append To List        ${optional_args}    name
+    Append To List        ${optional_args}    ${name}    
     ${response}=       Create An Element    board    @{optional_args}    
     RETURN             ${response}
 
