@@ -26,7 +26,6 @@
       "name",
       "closed",
       "idBoard",
-      "pos",
-      "limits"
+      "pos"
     ]
   } 
