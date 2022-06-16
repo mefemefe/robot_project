@@ -16,7 +16,7 @@ CREATE a list
     Validate Response Schema       ${response}    list 
 
 UPDATE a list
-    [Tags]             smoke    api    list.update
+    [Tags]             regression    api    list.update
     ${response}=       Create A List    NewList
     Validate Response Schema       ${response}    list
     Update A List       ${response.json()}[id]    name    NewName
@@ -25,7 +25,7 @@ UPDATE a list
     Should Be Equal    ${new_response.json()}[name]     NewName 
 
 ARCHIVE A list
-    [Tags]             smoke    api    list.archive
+    [Tags]             regression    api    list.archive
     ${response}=       Create A List    NewList     
     Archive A List       ${response.json()}[id]
     ${new_response}=       Get A List    ${response.json()}[id]
