@@ -2,11 +2,12 @@
 Documentation    Keywords and Variables for using the Trello API
 Library          Collections
 Library          String
-Resource         common/api/resources/CommonAPI.resource
+Variables        tests/common/variables/env_manager.py    TRELLO_APIKEY    TRELLO_TOKEN
+Resource         tests/common/api/resources/CommonAPI.resource
 
 *** Variables ***
-${DEFAULT_KEY}         %{TRELLO_APIKEY}
-${DEFAULT_TOKEN}       %{TRELLO_TOKEN}
+${DEFAULT_KEY}         ${TRELLO_APIKEY}
+${DEFAULT_TOKEN}       ${TRELLO_TOKEN}
 ${BASE_URL}            https://api.trello.com/1/
 &{HEADERS}             Accept=application/json    Content-Type=application/json    Authorization=OAuth oauth_consumer_key="${DEFAULT_KEY}", oauth_token="${DEFAULT_TOKEN}"
 ${DEFAULT_SESSION_ALIAS}    TestSession
