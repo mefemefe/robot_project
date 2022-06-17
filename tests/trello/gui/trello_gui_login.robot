@@ -6,7 +6,8 @@ Resource         resources/BoardsPage.resource
 *** Test Cases ***
 Login With A Valid User and Password
     [Tags]    smoke    gui    login
-    Open Browser                     ${LOGIN_URL}    ${BROWSER}
+    Log     %{PYTHONPATH}
+    Open Browser                     ${LOGIN_URL}    ${BROWSER}    remote_url=http://127.0.0.1:4444
     Enter Username                   ${DEFAULT_USER}
     Wait Until Element Is Not Visible    ${PASS_INPUT}
     Click Login Button
