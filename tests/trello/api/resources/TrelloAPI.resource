@@ -2,7 +2,7 @@
 Documentation    Keywords and Variables for using the Trello API
 Library          Collections
 Library          String
-Resource         tests/common/api/resources/CommonAPI.resource
+Resource         common/api/resources/CommonAPI.resource
 
 *** Variables ***
 ${DEFAULT_KEY}         %{TRELLO_APIKEY}
@@ -10,7 +10,7 @@ ${DEFAULT_TOKEN}       %{TRELLO_TOKEN}
 ${BASE_URL}            https://api.trello.com/1/
 &{HEADERS}             Accept=application/json    Content-Type=application/json    Authorization=OAuth oauth_consumer_key="${DEFAULT_KEY}", oauth_token="${DEFAULT_TOKEN}"
 ${DEFAULT_SESSION_ALIAS}    TestSession
-&{PATHS}               card=cards/{}    board=boards/{}    label=labels/{}    lists_on_board=boards/{}/lists/
+&{PATHS}               card=cards/{}    board=boards/{}    label=labels/{}    list=lists/{}    lists_on_board=boards/{}/lists/    archive_list=lists/{}/closed
 
 *** Keywords ***
 Create Trello Session

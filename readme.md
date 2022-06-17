@@ -15,6 +15,11 @@ To run this project, you will need to have the following environment variables
 `TRELLO_USER`
 `TRELLO_PASSWORD`
 
+For Docker
+`PYTHONPATH=/automation/tests`
+`FILTER=<tag_pattern>`
+
+It is recommended to have a .env file with these environment variables so that docker-compose can read them directly.
 
 
 ### Requires
@@ -52,6 +57,24 @@ To run this project, you will need to have the following environment variables
 
 ```bash
   robot --include smoke .
+```
+
+### Using make
+Create a virtual environment
+```bash
+  make env
+```
+Install requirements
+```bash
+  make install
+```
+Run tests on a docker container with a tag defined on a FILTER environment variable
+```bash
+  make test
+```
+Run tests on a docker container with a tag
+```bash
+  make tag FILTER=<tag_pattern>
 ```
 ## Authors
 
