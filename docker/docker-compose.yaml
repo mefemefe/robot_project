@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  automation:
+    build:
+      context: ../.
+    container_name: automation
+    environment:
+      - TRELLO_APIKEY
+      - TRELLO_TOKEN
+      - TRELLO_USER
+      - TRELLO_PASSWORD
+      - PYTHONPATH
+      - FILTER
+    volumes:
+      - ../reports:/reports

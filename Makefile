@@ -4,20 +4,44 @@ env:
 install:
 	python -m pip install -r requirements.txt
 
-test:
-	docker-compose up --build
+gui_ch:
+	docker-compose -f docker/docker-compose.chrome.yaml up --build
 
-down:
-	docker-compose down
+gui_ed:
+	docker-compose -f docker/docker-compose.edge.yaml up --build
+
+gui_ff:
+	docker-compose -f docker/docker-compose.firefox.yaml up --build
+
+down_ch:
+	docker-compose -f docker/docker-compose.chrome.yaml down
+
+down_ed:
+	docker-compose -f docker/docker-compose.edge.yaml down
+
+down_ff:
+	docker-compose -f docker/docker-compose.firefox.yaml down
+
+down_api:
+	docker-compose -f docker/docker-compose.yaml down
 
 report:
 	docker cp automation:/reports .
 
-tag:
-	export FILTER=$(FILTER) && make test
+tag_ch:
+	export FILTER=$(FILTER) && make test_ch
 
-test_api:
-	docker-compose up --build && docker cp automation:/reports . && docker-compose down
+tag_ed:
+	export FILTER=$(FILTER) && make test_ed
+
+tag_ff:
+	export FILTER=$(FILTER) && make test_ff
+
+api:
+	docker-compose -f docker/docker-compose.yaml up --build && docker cp automation:/reports . && docker-compose -f docker/docker-compose.yaml down
+
+api_tag:
+	export FILTER=$(FILTER) && make api
 
 clean:
 	rm -r reports

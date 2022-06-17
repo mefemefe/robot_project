@@ -2,7 +2,7 @@
 Documentation    Keywords and Variables for using the Trello API
 Library          Collections
 Library          String
-Resource         common/api/resources/CommonAPI.resource
+Resource         tests/common/api/resources/CommonAPI.resource
 
 *** Variables ***
 ${DEFAULT_KEY}         %{TRELLO_APIKEY}

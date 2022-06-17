@@ -4,7 +4,7 @@ Include
 pyvenv.cfg
 *.html
 *.xml
-.env
 .venv
 .vscode
 reports
+*.exe

@@ -70,7 +70,10 @@ Install requirements
 ```
 Run tests on a docker container with a tag defined on a FILTER environment variable
 ```bash
-  make test
+  make api     <only api tests>
+  make gui_ch  <gui tests on chrome>
+  make gui_ed  <gui tests on edge>
+  make gui_ff  <gui tests on firefox>
 ```
 Run tests on a docker container with a tag
 ```bash
