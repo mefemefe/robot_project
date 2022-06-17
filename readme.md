@@ -12,7 +12,7 @@ To run this project, you will need to have the following environment variables
 `TRELLO_TOKEN`
 [(get them here)](https://trello.com/app-key)
 
-`TRELLO_USER`
+`TRELLO_EMAIL`
 `TRELLO_PASSWORD`
 
 For Docker

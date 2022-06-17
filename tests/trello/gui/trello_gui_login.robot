@@ -7,7 +7,7 @@ Resource         resources/BoardsPage.resource
 Login With A Valid User and Password
     [Tags]    smoke    gui    login
     Open Browser                     ${LOGIN_URL}    ${BROWSER}
-    Enter Username                   ${DEFAULT_USER}
+    Enter Username                   ${DEFAULT_EMAIL}
     Wait Until Element Is Not Visible    ${PASS_INPUT}
     Click Login Button
     Wait Until Location Is Atlassian's Login
