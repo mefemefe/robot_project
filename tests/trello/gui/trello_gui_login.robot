@@ -6,7 +6,7 @@ Resource         resources/BoardsPage.resource
 *** Test Cases ***
 Login With A Valid User and Password
     [Tags]    smoke    gui    login
-    Open Browser                     ${LOGIN_URL}    ${BROWSER}
+    Open Browser                     ${LOGIN_URL}    ${BROWSER}    remote_url=http://selenium-hub:4444
     Enter Username                   ${DEFAULT_EMAIL}
     Wait Until Element Is Not Visible    ${PASS_INPUT}
     Click Login Button

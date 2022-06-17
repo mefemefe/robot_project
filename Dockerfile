@@ -1,10 +1,8 @@
 FROM python:slim-buster
 
-WORKDIR /automation
+WORKDIR .
 
-COPY requirements.txt requirements.txt
+COPY ../ .
 RUN pip install -r requirements.txt
 
-COPY . .
-
-ENTRYPOINT robot --outputDir /reports --include $FILTER .
+ENTRYPOINT robot --outputDir /reports --include $FILTER -v BROWSER:$BROWSER tests

@@ -1,0 +1,13 @@
+version: "3"
+services:
+  automation:
+    build:
+      context: ../
+    container_name: automation
+    networks:
+    - default
+    volumes:
+    - ../reports:/reports
+    environment:
+    - PYTHONPATH=/
+    env_file: ../.env
