@@ -19,4 +19,5 @@ Verify Current Page Is Boards Page
 Click Board
     [Arguments]    ${board_name}
     ${locator}=    Format String    ${BOARD_BUTTON}    ${board_name}
+    Wait Until Element Is Visible    ${locator}
     Click Element    ${locator}
