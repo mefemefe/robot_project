@@ -4,7 +4,7 @@ Resource         TrelloGUI.resource
 
 *** Variables ***
 ${LOGIN_PATH}          login
-${LOGIN_URL}           ${BASE_URL}${LOGIN_PATH}
+${LOGIN_URL}           ${GUI_BASE_URL}${LOGIN_PATH}
 ### Locators ###
 ${USER_INPUT}                  css:input#user
 ${PASS_INPUT}                  css:input#password
