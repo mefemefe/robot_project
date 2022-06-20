@@ -6,12 +6,12 @@ Resource         resources/BoardsPage.resource
 *** Test Cases ***
 Login With A Valid User and Password
     [Tags]    smoke    gui    login
-    Open Browser                     ${LOGIN_URL}    ${BROWSER}    remote_url=http://selenium-hub:4444
-    Enter Username                   ${DEFAULT_EMAIL}
+    Open Browser From Environment        ${LOGIN_URL}
+    Enter Username                       ${DEFAULT_EMAIL}
     Wait Until Element Is Not Visible    ${PASS_INPUT}
     Click Login Button
     Wait Until Location Is Atlassian's Login
-    Enter Password                   ${DEFAULT_PASSWORD}
+    Enter Password                       ${DEFAULT_PASSWORD}
     Click Login Button
     Verify Current Page Is Boards Page
     [Teardown]    Close Browser
