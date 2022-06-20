@@ -7,11 +7,14 @@ install:
 gui:
 	export BROWSER=$(BROWSER) && \
 	export FILTER=$(FILTER) && \
-	docker-compose -f docker/$(BROWSER).yaml up --build -d && \
+	docker-compose -f docker/hub.yaml up -d && \
+	docker-compose -f docker/$(BROWSER).yaml up -d && \
 	docker-compose -f docker/test.yaml up --build && \
+	docker-compose -f docker/test.yaml stop && \
+	docker-compose -f docker/hub.yaml stop && \
 	docker-compose -f docker/$(BROWSER).yaml down && \
-	docker-compose -f docker/test.yaml down && \
-	docker rmi -f $$(docker image ls -a | grep -v "selenium/hub" | grep -v "selenium/node-firefox" | grep -v "selenium/node-edge" | grep -v "selenium/node-chrome" | awk 'NR>1 {print $3}')
+	docker rm -f $$(docker ps -a -q)
+# TODO : docker prune?
 
 api:
 	export FILTER=$(FILTER) && \
