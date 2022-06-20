@@ -2,3 +2,4 @@ robotframework-seleniumlibrary==5.0.1
 robotframework-requests==0.9.3
 robotframework-jsonlibrary==0.4.1
 robotframework-jsonschemalibrary==1.0
+python-dotenv==0.20.0
