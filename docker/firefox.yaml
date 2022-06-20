@@ -1,0 +1,14 @@
+version: "3"
+services:
+  firefox:
+    image: selenium/node-firefox:4.2.2-20220609
+    container_name: firefox
+    shm_size: 2gb
+    networks:
+    - default
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    ports:
+      - "7903:7900"

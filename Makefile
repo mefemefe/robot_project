@@ -4,14 +4,21 @@ env:
 install:
 	python -m pip install -r requirements.txt
 
-test:
-	docker-compose up --build && docker-compose down
+gui:
+	export BROWSER=$(BROWSER) && \
+	export FILTER=$(FILTER) && \
+	docker-compose -f docker/hub.yaml up -d && \
+	docker-compose -f docker/$(BROWSER).yaml up -d && \
+	docker-compose -f docker/test.yaml up --build && \
+	docker-compose -f docker/test.yaml stop && \
+	docker-compose -f docker/hub.yaml stop && \
+	docker-compose -f docker/$(BROWSER).yaml down && \
+	docker rm -f $$(docker ps -a -q)
+# TODO : docker prune?
 
-tag:
-	export FILTER=$(FILTER) && make test
-
-test_wa:
-	docker-compose up --build && docker cp robot_project_automation_1:/reports . && docker-compose down
+api:
+	export FILTER=$(FILTER) && \
+	docker-compose -f docker/test.yaml up --build
 
 clean:
 	rm -r reports

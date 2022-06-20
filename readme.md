@@ -68,13 +68,14 @@ Install requirements
 ```bash
   make install
 ```
-Run tests on a docker container with a tag defined on a FILTER environment variable
+Run gui tests on a docker container with a tag and a browser
+(BROWSER needs to be one of the following case-sensitive words for now: 'chrome', 'firefox', 'edge')
 ```bash
-  make test
+  make gui BROWSER=<browser_name> FILTER=<tag_pattern>
 ```
-Run tests on a docker container with a tag
+Run api tests on a docker container with a tag
 ```bash
-  make tag FILTER=<tag_pattern>
+  make api FILTER=<tag_pattern>
 ```
 ## Authors
 

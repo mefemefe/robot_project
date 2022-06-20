@@ -1,0 +1,13 @@
+version: "3"
+services:
+  selenium-hub:
+    image: selenium/hub:4.2.2-20220609
+    container_name: selenium-hub
+    networks:
+    - default
+    ports:
+      - "4442:4442"
+      - "4443:4443"
+      - "4444:4444"
+    expose:
+      - "4444"
