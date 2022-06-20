@@ -4,6 +4,6 @@ Variables        tests/common/variables/env_manager.py    TRELLO_EMAIL    TRELLO
 Resource         tests/common/gui/resources/CommonGUI.resource
 
 *** Variables ***
-${BASE_URL}             https://trello.com/
+${GUI_BASE_URL}             https://trello.com/
 ${DEFAULT_EMAIL}        ${TRELLO_EMAIL}
 ${DEFAULT_PASSWORD}     ${TRELLO_PASSWORD}
