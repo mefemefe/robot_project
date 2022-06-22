@@ -3,8 +3,8 @@ Library          SeleniumLibrary
 Resource         resources/LoginPage.resource
 Resource         resources/BoardsPage.resource
 Resource         resources/Lists.resource
-Resource          C:/Users/danie/OneDrive/Escritorio/JALASOFT/BOOTCAMP/GUI_TESTING/robot_project/tests/trello/api/resources/Board.resource
-Resource          C:/Users/danie/OneDrive/Escritorio/JALASOFT/BOOTCAMP/GUI_TESTING/robot_project/tests/trello/api/resources/TrelloAPI.resource
+Resource          tests/trello/api/resources/Board.resource
+Resource          tests/trello/api/resources/TrelloAPI.resource
 Suite Setup       Run Keywords
 ...               Create Trello Session
 ...               Setup Board
