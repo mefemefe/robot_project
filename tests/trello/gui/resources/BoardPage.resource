@@ -9,11 +9,16 @@ Library          String
 
 ### Locators ###
 ## List Object
-${LIST_DIV}            //h2[text()='{list_name}']//ancestor::div[contains(@class, 'list-content')]
-${LIST_ADD_CARD}       ${LIST_DIV}//a[contains(.,'Add a card')]
-${LIST_CARD_NAME}      ${LIST_DIV}//a[contains(.,'{card_name}')]
-${CARD_TITLE_INPUT}    ${LIST_DIV}//textarea[contains(@class, 'list-card-composer-textarea')]
-${CONFIRM_ADD_CARD}    ${LIST_DIV}//input[@value='Add card']
+${LIST_DIV}                //h2[text()='{list_name}']//ancestor::div[contains(@class, 'list-content')]
+${LIST_ADD_CARD}           ${LIST_DIV}//a[contains(.,'Add a card')]
+${LIST_CARD_NAME}          ${LIST_DIV}//a[contains(.,'{card_name}')]
+${CARD_ANCHORS}            ${LIST_DIV}//a[contains(@class, 'list-card')]
+${FIRST_CARD_ANCHOR}       (${CARD_ANCHORS})[1]
+${CARD_TITLE_INPUT}        ${LIST_DIV}//textarea[contains(@class, 'list-card-composer-textarea')]
+${CONFIRM_ADD_CARD}        ${LIST_DIV}//input[@value='Add card']
+${FIRST_PENCIL_ICON}       ${FIRST_CARD_ANCHOR}//span[contains(@class, 'icon-edit')]
+${CARD_EDIT_TITLE}         css:textarea.list-card-edit-title
+${CARD_EDIT_TITLE_SAVE}    //input[@value='Save']
 
 
 *** Keywords ***
@@ -32,7 +37,7 @@ Create Card In List
     ${confirm_locator}=    Format String    ${CONFIRM_ADD_CARD}    list_name=${list_name}
     Click Button    ${confirm_locator}
 
-Verify Card Was Created
+Verify Card Exists
     [Documentation]         Verify that the card with card_name exists in the given list.
     [Arguments]             ${list_name}    ${card_name}
     ${card_name_locator}=    Format String    ${LIST_CARD_NAME}    list_name=${list_name}    card_name=${card_name}
@@ -44,3 +49,15 @@ Go To Card Modal
     ${card_name_locator}=    Format String    ${LIST_CARD_NAME}    list_name=${list_name}    card_name=${card_name}
     Wait Until Element Is Visible    ${card_name_locator}
     Click Element    ${card_name_locator}
+
+Edit Card Title Using Pencil Icon
+    [Arguments]    ${list_name}    ${card_name}    ${new_title}
+    ${card_element}=    Format String    ${LIST_CARD_NAME}    list_name=${list_name}    card_name=${card_name}
+    ${pencil_locator}=    Format String    ${FIRST_PENCIL_ICON}    list_name=${list_name}
+    Mouse Over    ${card_element}
+    Wait Until Page Contains Element    ${pencil_locator}
+    Click Element    ${pencil_locator}
+    Click Element    ${CARD_EDIT_TITLE}
+    Clear Element Text    ${CARD_EDIT_TITLE}
+    Input Text    ${CARD_EDIT_TITLE}    ${new_title}
+    Click Element    ${CARD_EDIT_TITLE_SAVE}

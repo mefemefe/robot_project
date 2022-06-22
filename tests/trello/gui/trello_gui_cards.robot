@@ -13,9 +13,21 @@ Verify A Card Can Be Created
     Set Test Variable    \${list}    To Do
     Set Test Variable    \${card}    Test Card
     Create Card In List    ${list}    ${card}
-    Verify Card Was Created    ${list}    ${card}
+    Verify Card Exists    ${list}    ${card}
     [Teardown]    Run Keywords    
     ...           Go To Card Modal    list_name=${list}    card_name=${card}
+    ...           AND    Delete Current Card
+
+Modify A Card's Name From The Board Page
+    [Tags]    regression    gui    card.title_board
+    Set Test Variable    \${list}    To Do
+    Set Test Variable    \${card}    Test Card
+    Create Card In List    ${list}    ${card}
+    Set Test Variable    \${new_name}    New Name
+    Edit Card Title Using Pencil Icon    ${list}    ${card}    ${new_name}
+    Verify Card Exists    ${list}    ${new_name}
+    [Teardown]    Run Keywords
+    ...           Go To Card Modal    list_name=${list}    card_name=${new_name}
     ...           AND    Delete Current Card
 
 *** Keywords ***
