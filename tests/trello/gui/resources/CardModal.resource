@@ -11,7 +11,7 @@ ${DELETE_BUTTON}         //a[@title='Delete']
 ${DELETE_CONFIRM}        //input[@value='Delete']
 ${COMMENT_BOX_INPUT}     //div[@class='comment-box']/textarea
 ${SAVE_COMMENT}          //div[contains(@class, 'comment-controls')]//input[@value='Save']
-${COMMENT_DIV}          //div[@class='comment-container']
+${COMMENT_DIV}           //div[@class='comment-container']
 
 *** Keywords ***
 Archive Current Card
@@ -32,13 +32,13 @@ Close Card Modal
     Click Element    ${MODAL_CLOSE_BUTTON}
 
 Send A Comment
-    [Arguments]    ${comment}
+    [Arguments]      ${comment}
     Wait Until Element Is Visible    ${COMMENT_BOX_INPUT}
     Click Element    ${COMMENT_BOX_INPUT}
     Clear Element Text    ${COMMENT_BOX_INPUT}
-    Input Text    ${COMMENT_BOX_INPUT}    ${comment}
+    Input Text       ${COMMENT_BOX_INPUT}    ${comment}
     Click Element    ${SAVE_COMMENT}
 
 Get Number Of Comments
-    ${n}=    Get Element Count    ${COMMENT_DIV}
+    ${n}=     Get Element Count    ${COMMENT_DIV}
     RETURN    ${n}

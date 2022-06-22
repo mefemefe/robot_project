@@ -10,37 +10,37 @@ Suite Teardown    Cards Suite Teardown
 *** Test Cases ***
 Verify A Card Can Be Created
     [Tags]    smoke    gui    card.create
-    Set Test Variable    \${list}    To Do
-    Set Test Variable    \${card}    Test Card
-    Create Card In List    ${list}    ${card}
-    Verify Card Exists    ${list}    ${card}
+    Set Test Variable     \${list}     To Do
+    Set Test Variable     \${card}     Test Card
+    Create Card In List    ${list}     ${card}
+    Verify Card Exists     ${list}     ${card}
     [Teardown]    Run Keywords    
     ...           Go To Card Modal    list_name=${list}    card_name=${card}
     ...           AND    Delete Current Card
 
 Modify A Card's Name From The Board Page
     [Tags]    regression    gui    card.title_board
-    Set Test Variable    \${list}    To Do
-    Set Test Variable    \${card}    Test Card
+    Set Test Variable     \${list}    To Do
+    Set Test Variable     \${card}    Test Card
     Create Card In List    ${list}    ${card}
-    Set Test Variable    \${new_name}    New Name
-    Edit Card Title Using Pencil Icon    ${list}    ${card}    ${new_name}
-    Verify Card Exists    ${list}    ${new_name}
+    Set Test Variable     \${new_name}    New Name
+    Edit Card Title Using Pencil Icon     ${list}    ${card}    ${new_name}
+    Verify Card Exists     ${list}    ${new_name}
     [Teardown]    Run Keywords
     ...           Go To Card Modal    list_name=${list}    card_name=${new_name}
     ...           AND    Delete Current Card
 
 Leave A Comment On A Card
     [Tags]    regression    gui    card.comment
-    Set Test Variable    \${list}    To Do
-    Set Test Variable    \${card}    Test Card
+    Set Test Variable     \${list}    To Do
+    Set Test Variable     \${card}    Test Card
     Create Card In List    ${list}    ${card}
-    Go To Card Modal    ${list}    ${card}
+    Go To Card Modal       ${list}    ${card}
     ${comments_before}=    Get Number Of Comments
-    Send A Comment    This is a test comment
+    Send A Comment         This is a test comment
     ${comments_after}=     Get Number Of Comments
-    Should Be True    ${comments_after} == ${comments_before}+${1}
-    [Teardown]    Delete Current Card
+    Should Be True         ${comments_after} == ${comments_before}+${1}
+    [Teardown]             Delete Current Card
 
 *** Keywords ***
 Cards Suite Setup
@@ -49,8 +49,8 @@ Cards Suite Setup
     Set Suite Variable    \${TEST_SUITE_BOARD_ID}    ${BOARD.json()}[id]
     Open Browser From Environment    ${LOGIN_URL}
     Maximize Browser Window
-    Login To Trello    ${DEFAULT_EMAIL}    ${DEFAULT_PASSWORD}
-    Go To Board    CardTestBoard
+    Login To Trello        ${DEFAULT_EMAIL}    ${DEFAULT_PASSWORD}
+    Go To Board            CardTestBoard
 
 Cards Suite Teardown
     Wait Until Keyword Succeeds    10    2.5    Delete A Board    ${TEST_SUITE_BOARD_ID}

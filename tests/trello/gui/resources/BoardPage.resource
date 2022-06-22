@@ -22,43 +22,43 @@ ${CARD_EDIT_TITLE_SAVE}    //input[@value='Save']
 
 *** Keywords ***
 Create Card In List
-    [Documentation]    Create a new card in the given list
-    ...                Required args: list_name, card_name
-    [Arguments]    ${list_name}    ${card_name}
+    [Documentation]         Create a new card in the given list
+    ...                     Required args: list_name, card_name
+    [Arguments]             ${list_name}    ${card_name}
     ${add_card_locator}=    Format String    ${LIST_ADD_CARD}    list_name=${list_name}
     Wait Until Element Is Visible    ${add_card_locator}
-    Click Element    ${add_card_locator}
+    Click Element           ${add_card_locator}
     ${textarea_locator}=    Format String    ${CARD_TITLE_INPUT}    list_name=${list_name}
     Wait Until Element Is Visible    ${textarea_locator}
-    Click Element     ${textarea_locator}
-    Clear Element Text    ${textarea_locator}
-    Input Text    ${textarea_locator}    ${card_name}
-    ${confirm_locator}=    Format String    ${CONFIRM_ADD_CARD}    list_name=${list_name}
-    Click Button    ${confirm_locator}
+    Click Element           ${textarea_locator}
+    Clear Element Text      ${textarea_locator}
+    Input Text              ${textarea_locator}    ${card_name}
+    ${confirm_locator}=     Format String    ${CONFIRM_ADD_CARD}    list_name=${list_name}
+    Click Button            ${confirm_locator}
 
 Verify Card Exists
-    [Documentation]         Verify that the card with card_name exists in the given list.
-    [Arguments]             ${list_name}    ${card_name}
+    [Documentation]          Verify that the card with card_name exists in the given list.
+    [Arguments]              ${list_name}    ${card_name}
     ${card_name_locator}=    Format String    ${LIST_CARD_NAME}    list_name=${list_name}    card_name=${card_name}
     Element Should Be Visible    ${card_name_locator}
 
 Go To Card Modal
-    [Documentation]        It opens the modal for card_name in list_name
-    [Arguments]    ${list_name}    ${card_name}
+    [Documentation]          It opens the modal for card_name in list_name
+    [Arguments]              ${list_name}     ${card_name}
     ${card_name_locator}=    Format String    ${LIST_CARD_NAME}    list_name=${list_name}    card_name=${card_name}
     Wait Until Element Is Visible    ${card_name_locator}
-    Click Element    ${card_name_locator}
+    Click Element            ${card_name_locator}
 
 Edit Card Title Using Pencil Icon
     [Documentation]        Modifies the title of the given card, using the pencil icon
     ...                    required: list_name, card_name, new_title
-    [Arguments]    ${list_name}    ${card_name}    ${new_title}
-    ${card_element}=    Format String    ${LIST_CARD_NAME}    list_name=${list_name}    card_name=${card_name}
-    ${pencil_locator}=    Format String    ${FIRST_PENCIL_ICON}    list_name=${list_name}
-    Mouse Over    ${card_element}
+    [Arguments]            ${list_name}     ${card_name}    ${new_title}
+    ${card_element}=       Format String    ${LIST_CARD_NAME}    list_name=${list_name}    card_name=${card_name}
+    ${pencil_locator}=     Format String    ${FIRST_PENCIL_ICON}    list_name=${list_name}
+    Mouse Over             ${card_element}
     Wait Until Page Contains Element    ${pencil_locator}
-    Click Element    ${pencil_locator}
-    Click Element    ${CARD_EDIT_TITLE}
-    Clear Element Text    ${CARD_EDIT_TITLE}
-    Input Text    ${CARD_EDIT_TITLE}    ${new_title}
-    Click Element    ${CARD_EDIT_TITLE_SAVE}
+    Click Element          ${pencil_locator}
+    Click Element          ${CARD_EDIT_TITLE}
+    Clear Element Text     ${CARD_EDIT_TITLE}
+    Input Text             ${CARD_EDIT_TITLE}    ${new_title}
+    Click Element          ${CARD_EDIT_TITLE_SAVE}
