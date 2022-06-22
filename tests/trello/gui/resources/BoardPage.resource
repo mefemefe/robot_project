@@ -66,3 +66,15 @@ Edit Card Title Using Pencil Icon
 Get Number Of Cards
     ${n}=     Get Element Count    ${CARD_ANCHORS}
     RETURN    ${n}
+
+Drag Card From One List To Another
+    [Arguments]    ${card_name}    ${list1_name}    ${list2_name}
+    ${card_locator}=    Format String    ${LIST_CARD_NAME}    list_name=${list1_name}    card_name=${card_name}
+    ${list2_locator}=    Format String    ${LIST_DIV}    list_name=${list2_name}
+    Wait Until Element Is Visible    ${card_locator}
+    Drag And Drop    ${card_locator}    ${list2_locator}
+
+Card Should Be In List
+    [Arguments]    ${card_name}    ${list_name}
+    ${card_locator}=    Format String    ${LIST_CARD_NAME}    list_name=${list_name}    card_name=${card_name}
+    Element Should Be Visible    ${card_locator}

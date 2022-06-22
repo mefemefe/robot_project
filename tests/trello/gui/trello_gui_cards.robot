@@ -53,6 +53,17 @@ Verify A Card Can Be Deleted
     ${cards_after}=        Get Number Of Cards
     Should Be True         ${cards_before} == ${cards_after}
 
+Card Can Be Dragged To Another List
+    [Tags]    regression    gui    card.drag
+    Set Test Variable         \${list}    To Do
+    Set Test Variable         \${card}    Test Card
+    Create Card In List        ${list}    ${card}
+    Set Test Variable         \${list2}    Doing
+    Drag Card From One List To Another    ${card}    ${list}    ${list2}
+    Card Should Be In List     ${card}    ${list2}
+    [Teardown]        Run Keywords
+    ...               Go To Card Modal    ${list2}    ${card}
+    ...               AND    Delete Current Card
 
 *** Keywords ***
 Cards Suite Setup
