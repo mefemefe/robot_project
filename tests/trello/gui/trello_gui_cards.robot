@@ -35,7 +35,7 @@ Cards Suite Setup
     Create Trello Session
     ${BOARD}=    Create A Board    CardTestBoard
     Set Suite Variable    \${TEST_SUITE_BOARD_ID}    ${BOARD.json()}[id]
-    Open Browser    ${LOGIN_URL}    ${BROWSER}
+    Open Browser From Environment    ${LOGIN_URL}
     Maximize Browser Window
     Login To Trello    ${DEFAULT_EMAIL}    ${DEFAULT_PASSWORD}
     Go To Board    CardTestBoard
