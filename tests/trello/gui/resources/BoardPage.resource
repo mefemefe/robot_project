@@ -6,7 +6,6 @@ Resource         CardModal.resource
 Library          String
 
 *** Variables ***
-
 ### Locators ###
 ## List Object
 ${LIST_DIV}                //h2[text()='{list_name}']//ancestor::div[contains(@class, 'list-content')]
@@ -51,6 +50,8 @@ Go To Card Modal
     Click Element    ${card_name_locator}
 
 Edit Card Title Using Pencil Icon
+    [Documentation]        Modifies the title of the given card, using the pencil icon
+    ...                    required: list_name, card_name, new_title
     [Arguments]    ${list_name}    ${card_name}    ${new_title}
     ${card_element}=    Format String    ${LIST_CARD_NAME}    list_name=${list_name}    card_name=${card_name}
     ${pencil_locator}=    Format String    ${FIRST_PENCIL_ICON}    list_name=${list_name}

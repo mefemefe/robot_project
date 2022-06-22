@@ -9,6 +9,9 @@ ${MODAL_CLOSE_BUTTON}    //a[contains(@class,'dialog-close-button')]
 ${ARCHIVE_BUTTON}        //span[@title='Archive']
 ${DELETE_BUTTON}         //a[@title='Delete']
 ${DELETE_CONFIRM}        //input[@value='Delete']
+${COMMENT_BOX_INPUT}     //div[@class='comment-box']/textarea
+${SAVE_COMMENT}          //div[contains(@class, 'comment-controls')]//input[@value='Save']
+${COMMENT_DIV}          //div[@class='comment-container']
 
 *** Keywords ***
 Archive Current Card
@@ -25,4 +28,17 @@ Delete Current Card
     Click Element       ${DELETE_CONFIRM}
 
 Close Card Modal
+    Wait Until Element Is Visible    ${MODAL_CLOSE_BUTTON}
     Click Element    ${MODAL_CLOSE_BUTTON}
+
+Send A Comment
+    [Arguments]    ${comment}
+    Wait Until Element Is Visible    ${COMMENT_BOX_INPUT}
+    Click Element    ${COMMENT_BOX_INPUT}
+    Clear Element Text    ${COMMENT_BOX_INPUT}
+    Input Text    ${COMMENT_BOX_INPUT}    ${comment}
+    Click Element    ${SAVE_COMMENT}
+
+Get Number Of Comments
+    ${n}=    Get Element Count    ${COMMENT_DIV}
+    RETURN    ${n}

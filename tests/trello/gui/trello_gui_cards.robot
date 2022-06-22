@@ -30,6 +30,18 @@ Modify A Card's Name From The Board Page
     ...           Go To Card Modal    list_name=${list}    card_name=${new_name}
     ...           AND    Delete Current Card
 
+Leave A Comment On A Card
+    [Tags]    regression    gui    card.comment
+    Set Test Variable    \${list}    To Do
+    Set Test Variable    \${card}    Test Card
+    Create Card In List    ${list}    ${card}
+    Go To Card Modal    ${list}    ${card}
+    ${comments_before}=    Get Number Of Comments
+    Send A Comment    This is a test comment
+    ${comments_after}=     Get Number Of Comments
+    Should Be True    ${comments_after} == ${comments_before}+${1}
+    [Teardown]    Delete Current Card
+
 *** Keywords ***
 Cards Suite Setup
     Create Trello Session
