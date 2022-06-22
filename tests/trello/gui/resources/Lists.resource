@@ -8,20 +8,19 @@ Resource         TrelloGUI.resource
 ${BOARD_BUTTON}     xpath://a[@class='board-tile' and contains(., "Behave")]
 ${ADD_LIST_BUTTON}    xpath://a[@class='open-add-list js-open-add-list']
 ${LIST_NAME_INPUT}    xpath://input[@class="list-name-input"]
-${LIST_TEXT_AREA_NAME}    xpath://textarea[@class='list-header-name mod-list-name js-list-name-input' and @aria-label='NEW_TEST_LIST']
+${LIST_TEXT_AREA_NAME}    xpath://div[@class='js-list list-wrapper'][last()]//textarea
 
-${NEW_LIST_HEADER}    xpath://div[@class='list-header js-list-header u-clearfix is-menu-shown' and contains(.,'NEW_TEST_LIST')]
+${NEW_LIST_HEADER}    //div[@class='js-list list-wrapper'][last()]//div[@class='list-header js-list-header u-clearfix is-menu-shown']
 ${PRE_TEXT_AREA_BUTTON}    xpath://div[@class="list-header-target js-editing-target"]
-${MODIFIED_LIST_HEADER}    //h2[@class="list-header-name-assist js-list-name-assist" and .="MODIFIED_LIST"]
-${LIST_HEADER}    xpath://div[@class='list-header js-list-header u-clearfix is-menu-shown']
+${TO_CHECK_LIST_HEADER}    //div[@class='list-header js-list-header u-clearfix is-menu-shown']/h2[contains(.,'MODIFIED_LIST')]
 
-${MORE_OPTIONS_BUTTON_LISTS}    xpath://div[@class='list-header js-list-header u-clearfix is-menu-shown' and contains(.,'MODIFIED_LIST') ]//a
 ${CLOSE_LIST_BUTTON}    xpath://li//a[@class='js-close-list']
 ${SHOW_SIDEBAR_BUTTON}    xpath://a[@class='board-header-btn mod-show-menu js-show-sidebar']
 ${ARCHIVED_ITEMS_BUTTON}    xpath://a[@class='board-menu-navigation-item-link js-open-archive']
 ${SWITCH_TO_LIST_BUTTON}    xpath://div[@class='archive-controls']/a[contains(.,'Switch to lists')]
 ${MORE_OPTIONS_SIDEBAR}     xpath://a[@class='board-menu-navigation-item-link js-open-more']
-${LIST_NAME_FIELD}    //div[@class='item-name']/span[.='MODIFIED_LIST']
+${LIST_NAME_FIELD}    xpath://div[@class='item-name']/span[.='TO_ARCHIVE']
+${CLOSE_ARCHIVE_X}    xpath://a[@title='Close the board menu.']
 
 *** Keywords ***
 Create new list with the name
@@ -35,20 +34,20 @@ Create new list with the name
     Press Keys     ${LIST_NAME_INPUT}    RETURN
 
 Modify the name of a list with
-    [Documentation]    Modify the name of an existent list named NEW_TEST_LIST
-    [Arguments]    ${NEW_NAME}
-    Click Element    ${NEW_LIST_HEADER}
+    [Documentation]    Modify the name of an existent list
+    [Arguments]    ${OLD_NAME}    ${NEW_NAME}
+    Click Element    xpath://div[@class='list-header js-list-header u-clearfix is-menu-shown' and contains(.,${OLD_NAME})]
     Sleep    5s
     Press Keys     ${LIST_NAME_INPUT}    BACKSPACE
     Sleep    3s
     Input Text    ${LIST_TEXT_AREA_NAME}    ${NEW_NAME}
     Press Keys    None    RETURN
 
-Archive a list
+Close a list
     [Documentation]    archives a list
-    Wait Until Page Contains Element    ${NEW_LIST_HEADER}    timeout=10s
+    [Arguments]    ${LIST_TO_CLOSE}
     Sleep    5s
-    Click Link     ${MORE_OPTIONS_BUTTON_LISTS}
+    Click Link     xpath://div[@class='js-list list-wrapper'][last()]//a[@aria-label="List actions"]
     Sleep    5s
     Click Link    ${CLOSE_LIST_BUTTON}
 
@@ -64,3 +63,8 @@ Enter to the list archive
     Sleep    5s
     Click Link   ${SWITCH_TO_LIST_BUTTON}
     Wait Until Page Contains Element    ${LIST_NAME_FIELD}        timeout=10s
+
+Close archive tab
+    Sleep    5s
+    Wait Until Page Contains Element   ${CLOSE_ARCHIVE_X}            timeout=10s
+    Click Link    ${CLOSE_ARCHIVE_X}
