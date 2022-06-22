@@ -7,9 +7,9 @@ Resource         resources/Lists.resource
 *** Test Cases ***
 create list
     [Tags]    smoke    gui    lists
-    Open Browser                     ${LOGIN_URL}    ${BROWSER}
+    Open Browser From Environment        ${LOGIN_URL}
     Maximize Browser Window
-    Login To Trello    ${DEFAULT_USER}     ${DEFAULT_PASSWORD}
+    Login To Trello    ${DEFAULT_EMAIL}     ${DEFAULT_PASSWORD}
     Wait Until Page Contains Element     ${BOARD_BUTTON}    timeout=10s
     Click Link    ${BOARD_BUTTON}
     Create new list with the name    NEW_TEST_LIST
@@ -19,9 +19,9 @@ create list
 
 modify name of a list
     [Tags]    smoke    gui    lists
-    Open Browser                     ${LOGIN_URL}    ${BROWSER}
+    Open Browser From Environment        ${LOGIN_URL}
     Maximize Browser Window
-    Login To Trello    ${DEFAULT_USER}     ${DEFAULT_PASSWORD}
+    Login To Trello    ${DEFAULT_EMAIL}     ${DEFAULT_PASSWORD}
     Wait Until Page Contains Element     ${BOARD_BUTTON}    timeout=10s
     Click Link    ${BOARD_BUTTON}
     Create new list with the name    TO_MODIFY
@@ -33,9 +33,9 @@ modify name of a list
 
 archive a list
     [Tags]    smoke    gui    lists
-    Open Browser                     ${LOGIN_URL}    ${BROWSER}
+    Open Browser From Environment        ${LOGIN_URL}
     Maximize Browser Window
-    Login To Trello    ${DEFAULT_USER}     ${DEFAULT_PASSWORD}
+    Login To Trello    ${DEFAULT_EMAIL}     ${DEFAULT_PASSWORD}
     Wait Until Page Contains Element     ${BOARD_BUTTON}    timeout=10s
     Click Link    ${BOARD_BUTTON}
     Create new list with the name    TO_ARCHIVE
