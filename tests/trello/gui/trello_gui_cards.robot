@@ -42,6 +42,18 @@ Leave A Comment On A Card
     Should Be True         ${comments_after} == ${comments_before}+${1}
     [Teardown]             Delete Current Card
 
+Verify A Card Can Be Deleted
+    [Tags]    smoke    gui    card.delete
+    Set Test Variable     \${list}    To Do
+    Set Test Variable     \${card}    Test Card
+    ${cards_before}=       Get Number Of Cards
+    Create Card In List    ${list}    ${card}
+    Go To Card Modal       ${list}    ${card}
+    Delete Current Card
+    ${cards_after}=        Get Number Of Cards
+    Should Be True         ${cards_before} == ${cards_after}
+
+
 *** Keywords ***
 Cards Suite Setup
     Create Trello Session

@@ -62,3 +62,7 @@ Edit Card Title Using Pencil Icon
     Clear Element Text     ${CARD_EDIT_TITLE}
     Input Text             ${CARD_EDIT_TITLE}    ${new_title}
     Click Element          ${CARD_EDIT_TITLE_SAVE}
+
+Get Number Of Cards
+    ${n}=     Get Element Count    ${CARD_ANCHORS}
+    RETURN    ${n}
