@@ -46,11 +46,11 @@ Verify A Card Can Be Deleted
     [Tags]    smoke    gui    card.delete
     Set Test Variable     \${list}    To Do
     Set Test Variable     \${card}    Test Card
-    ${cards_before}=       Get Number Of Cards
+    ${cards_before}=       Get Number Of Cards In List    ${list}
     Create Card In List    ${list}    ${card}
     Go To Card Modal       ${list}    ${card}
     Delete Current Card
-    ${cards_after}=        Get Number Of Cards
+    ${cards_after}=        Get Number Of Cards In List    ${list}
     Should Be True         ${cards_before} == ${cards_after}
 
 Card Can Be Dragged To Another List

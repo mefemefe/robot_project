@@ -1,10 +1,9 @@
 *** Settings ***
 Documentation    Variables and Keywords for the 
 ...              Card modal in Trello.
-Resource         TrelloGUI.resource
+Resource         ../TrelloGUI.resource
 
 *** Variables ***
-### Locators ###
 ${MODAL_CLOSE_BUTTON}    //a[contains(@class,'dialog-close-button')]
 ${ARCHIVE_BUTTON}        //span[@title='Archive']
 ${DELETE_BUTTON}         //a[@title='Delete']
@@ -28,17 +27,21 @@ Delete Current Card
     Click Element       ${DELETE_CONFIRM}
 
 Close Card Modal
+    [Documentation]    Closes the modal using the upper-right 'X'
     Wait Until Element Is Visible    ${MODAL_CLOSE_BUTTON}
     Click Element    ${MODAL_CLOSE_BUTTON}
 
 Send A Comment
-    [Arguments]      ${comment}
+    [Documentation]    Sends a comment under the "activity" section of the modal
+    ...                required: comment
+    [Arguments]        ${comment}
     Wait Until Element Is Visible    ${COMMENT_BOX_INPUT}
-    Click Element    ${COMMENT_BOX_INPUT}
+    Click Element      ${COMMENT_BOX_INPUT}
     Clear Element Text    ${COMMENT_BOX_INPUT}
-    Input Text       ${COMMENT_BOX_INPUT}    ${comment}
-    Click Element    ${SAVE_COMMENT}
+    Input Text         ${COMMENT_BOX_INPUT}    ${comment}
+    Click Element      ${SAVE_COMMENT}
 
 Get Number Of Comments
+    [Documentation]    Return the number of comments present in the modal.
     ${n}=     Get Element Count    ${COMMENT_DIV}
     RETURN    ${n}
