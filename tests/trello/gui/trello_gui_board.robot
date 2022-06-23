@@ -2,13 +2,13 @@
 Documentation    Board Tests
 Resource         resources/LoginPage.resource
 Resource         resources/BoardsPage.resource
-Resource         resources/components/TopBar.resource
+Resource         resources/components/UpperHorizontalMenu.resource
 Resource         resources/components/ShownMenu.resource
 
 *** Test Cases ***
 create a board
     [Tags]    smoke    gui    board.create
-    Open Browser                     ${LOGIN_URL}    ${BROWSER}    remote_url=http://selenium-hub:4444
+    Open Browser From Environment
     Maximize Browser Window    
     Login To Trello                     ${DEFAULT_EMAIL}    ${DEFAULT_PASSWORD}
     Click New Board Button
@@ -18,7 +18,7 @@ create a board
 
 delete a board
     [Tags]    smoke    gui    board.delete
-    Open Browser                     ${LOGIN_URL}    ${BROWSER}    remote_url=http://selenium-hub:4444
+    Open Browser From Environment
     Maximize Browser Window    
     Login To Trello                     ${DEFAULT_EMAIL}    ${DEFAULT_PASSWORD}
     Click New Board Button
@@ -31,7 +31,7 @@ delete a board
 
 Update a board's description
     [Tags]    smoke    gui    board.update.description
-    Open Browser                     ${LOGIN_URL}    ${BROWSER}    remote_url=http://selenium-hub:4444 
+    Open Browser From Environment 
     Maximize Browser Window      
     Login To Trello                     ${DEFAULT_EMAIL}    ${DEFAULT_PASSWORD}
     Click New Board Button
@@ -47,7 +47,7 @@ Update a board's description
 
 Update a board's name
     [Tags]    smoke    gui    board.update.description
-    Open Browser                     ${LOGIN_URL}    ${BROWSER}    remote_url=http://selenium-hub:4444
+    Open Browser From Environment
     Maximize Browser Window    
     Login To Trello                     ${DEFAULT_EMAIL}    ${DEFAULT_PASSWORD}
     Click New Board Button

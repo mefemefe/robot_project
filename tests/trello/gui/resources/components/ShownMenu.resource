@@ -1,8 +1,6 @@
 *** Settings ***
 Documentation    Variables and Keywords for Trello's Board Page Menu that is Show when clicking
 ...              show menu in the top bar 
-...              (default page after logging in)
-
 *** Variables ***
 ### Locators ###
 ${MORE_BUTTON}             xpath://div[contains(@class, 'board-menu-content')]//a[contains(text(), 'More')]
@@ -39,7 +37,7 @@ Update Description of Board
     Click Element           ${ABOUT_THIS_BOARD}
     Wait Until Element Is Visible           ${DESCRIPTION}
     Click Element           ${DESCRIPTION}
-    Input Text           ${DESC_TEXT_AREA}    ThisIsANewDescription
+    Input Text           ${DESC_TEXT_AREA}    ${desc}
     Wait Until Element Is Visible           ${SAVE_DESC_BUTTON}
     Click Element           ${SAVE_DESC_BUTTON}
     Click Element           ${GO_BACK_BUTTON}
