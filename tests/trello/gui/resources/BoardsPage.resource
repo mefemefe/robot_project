@@ -13,7 +13,7 @@ ${CREATE_BUTTON}             xpath://div[@title='Create board']/ancestor::sectio
 
 *** Keywords ***
 Verify Current Page Is Boards Page
-    Wait Until Location Contains     ${BOARDS_PATH}   
+    Wait Until Location Contains     ${BOARDS_PATH}
     Wait Until Element Is Visible    ${YOUR_WORKSPACES}
     Element Text Should Be           ${YOUR_WORKSPACES}    YOUR WORKSPACES
 
