@@ -13,8 +13,8 @@ gui:
 	docker-compose -f docker/test.yaml stop && \
 	docker-compose -f docker/hub.yaml stop && \
 	docker-compose -f docker/$(BROWSER).yaml down && \
-	docker rm -f $$(docker ps -a -q)
-# TODO : docker prune?
+	docker rm -f $$(docker ps -a -q) && \
+	docker rmi docker_automation:latest
 
 api:
 	export FILTER=$(FILTER) && \
