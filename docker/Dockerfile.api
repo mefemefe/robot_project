@@ -2,7 +2,7 @@ FROM python:slim-buster
 
 WORKDIR .
 
-COPY ../ .
+COPY ./ .
 RUN pip install -r requirements.txt
 
 ENTRYPOINT robot --outputDir /reports --include $FILTER tests
