@@ -1,0 +1,4 @@
+# don't add CR to bash scripts
+*.sh text eol=lf
+# consider .resource as .robot
+*.resource linguist-language=RobotFramework

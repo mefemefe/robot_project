@@ -8,14 +8,14 @@ Resource         tests/common/api/resources/CommonAPI.resource
 *** Variables ***
 ${DEFAULT_KEY}         ${TRELLO_APIKEY}
 ${DEFAULT_TOKEN}       ${TRELLO_TOKEN}
-${BASE_URL}            https://api.trello.com/1/
+${API_BASE_URL}        https://api.trello.com/1/
 &{HEADERS}             Accept=application/json    Content-Type=application/json    Authorization=OAuth oauth_consumer_key="${DEFAULT_KEY}", oauth_token="${DEFAULT_TOKEN}"
 ${DEFAULT_SESSION_ALIAS}    TestSession
 &{PATHS}               card=cards/{}    board=boards/{}    label=labels/{}    list=lists/{}    lists_on_board=boards/{}/lists/    archive_list=lists/{}/closed
 
 *** Keywords ***
 Create Trello Session
-    Create Session    ${DEFAULT_SESSION_ALIAS}    ${BASE_URL}    disable_warnings=1    headers=&{HEADERS}
+    Create Session    ${DEFAULT_SESSION_ALIAS}    ${API_BASE_URL}    disable_warnings=1    headers=&{HEADERS}
 
 Create An Element
     [Documentation]      Creates a new element using the Trello API

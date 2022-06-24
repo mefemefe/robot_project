@@ -4,7 +4,7 @@
 Trello's API and GUI Test Automation project using Robot Framework.
 
 
-### Environment Variables
+## Environment Variables
 
 To run this project, you will need to have the following environment variables
 
@@ -15,9 +15,15 @@ To run this project, you will need to have the following environment variables
 `TRELLO_EMAIL`
 `TRELLO_PASSWORD`
 
-For Docker
-`PYTHONPATH=/automation/tests`
+#### For Docker
+
 `FILTER=<tag_pattern>`
+
+`REMOTE=True` (REMOTE is False by default, it is needed to be True for running with selenium containers. When using the 'make gui' command it will be set to True automatically)
+
+#### Both Local & Docker
+
+`BROWSER=<chrome, firefox or edge>`
 
 It is recommended to have a .env file with these environment variables so that docker-compose can read them directly.
 
@@ -59,7 +65,7 @@ It is recommended to have a .env file with these environment variables so that d
   robot --include smoke .
 ```
 
-### Using make
+## Using make
 Create a virtual environment
 ```bash
   make env
