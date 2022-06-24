@@ -36,19 +36,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: 💻 Step 0 - Set environment variables
+    - name: 💻 API and GUI smoke tests
       run: |
         export TRELLO_APIKEY=${{secrets.TRELLO_APIKEY}}
         export TRELLO_TOKEN=${{secrets.TRELLO_TOKEN}}
         export TRELLO_PASSWORD=${{secrets.TRELLO_PASSWORD}}
         export TRELLO_EMAIL=${{secrets.TRELLO_EMAIL}}
-    - name: 📨 Step 1 - API smoke tests
-      run: |
         make api FILTER=apiANDsmoke
-    - name: 🏞️ Step 2 - GUI smoke tests
-      run: |
         make gui FILTER=guiANDsmoke BROWSER=firefox
-    - name: 🗒️ Step 3 - Save Reports
+    - name: 🗒️ Save Reports
       uses: actions/upload-artifact@v3
       with:
         name: reports
