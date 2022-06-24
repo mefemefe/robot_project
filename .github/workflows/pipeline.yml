@@ -31,7 +31,8 @@ jobs:
       if: always()
       uses: carlosnizolli/RobotLint@v2.3
       with:
-        robot-files: tests/          
+        robot-files: tests/
+        ignore-rule: RequireKeywordDocumentation  LineTooLong
   
   test:
     name: Run Test Framework
