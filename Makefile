@@ -9,7 +9,7 @@ gui:
 	export FILTER=$(FILTER) && \
 	docker-compose -f docker/hub.yaml up -d && \
 	docker-compose -f docker/$(BROWSER).yaml up -d && \
-	docker-compose --env-file .env -f docker/gui_test.yaml up --build && \
+	docker-compose -f docker/gui_test.yaml up --build && \
 	docker-compose -f docker/gui_test.yaml stop && \
 	docker-compose -f docker/hub.yaml stop && \
 	docker-compose -f docker/$(BROWSER).yaml down && \
