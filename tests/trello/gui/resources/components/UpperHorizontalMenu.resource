@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation    Variables and Keywords for Trello's Board Page upper horizontal menu
 ...              ( the top bar, where the title of the board is located)
+Resource         ../TrelloGUI.resource
 
 *** Variables ***
 ### Locators ###

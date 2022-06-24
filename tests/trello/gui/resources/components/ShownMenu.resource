@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation    Variables and Keywords for Trello's Board Page Menu that is Show when clicking
 ...              show menu in the top bar 
+Resource         ../TrelloGUI.resource
 *** Variables ***
 ### Locators ###
 ${MORE_BUTTON}             xpath://div[contains(@class, 'board-menu-content')]//a[contains(text(), 'More')]

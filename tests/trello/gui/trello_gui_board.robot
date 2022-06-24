@@ -8,7 +8,7 @@ Resource         resources/components/ShownMenu.resource
 *** Test Cases ***
 create a board
     [Tags]    smoke    gui    board.create
-    Open Browser From Environment
+    Open Browser From Environment    ${LOGIN_URL}
     Maximize Browser Window    
     Login To Trello                     ${DEFAULT_EMAIL}    ${DEFAULT_PASSWORD}
     Click New Board Button
@@ -18,7 +18,7 @@ create a board
 
 delete a board
     [Tags]    smoke    gui    board.delete
-    Open Browser From Environment
+    Open Browser From Environment    ${LOGIN_URL}
     Maximize Browser Window    
     Login To Trello                     ${DEFAULT_EMAIL}    ${DEFAULT_PASSWORD}
     Click New Board Button
@@ -31,7 +31,7 @@ delete a board
 
 Update a board's description
     [Tags]    smoke    gui    board.update.description
-    Open Browser From Environment 
+    Open Browser From Environment    ${LOGIN_URL} 
     Maximize Browser Window      
     Login To Trello                     ${DEFAULT_EMAIL}    ${DEFAULT_PASSWORD}
     Click New Board Button
@@ -47,7 +47,7 @@ Update a board's description
 
 Update a board's name
     [Tags]    smoke    gui    board.update.description
-    Open Browser From Environment
+    Open Browser From Environment    ${LOGIN_URL}
     Maximize Browser Window    
     Login To Trello                     ${DEFAULT_EMAIL}    ${DEFAULT_PASSWORD}
     Click New Board Button
