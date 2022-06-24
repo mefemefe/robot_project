@@ -28,11 +28,8 @@ jobs:
       run: |
         flake8 . --count --ignore=F811 --max-line-length=120 --show-source --statistics
     - name: 🤖 Step 3 - Lint with RLint
-      if: always()
-      uses: carlosnizolli/RobotLint@v2.3
-      with:
-        robot-files: tests/
-        ignore-rule: RequireKeywordDocumentation  LineTooLong
+      run: |
+        echo TODO
   
   test:
     name: Run Test Framework
