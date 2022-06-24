@@ -38,10 +38,19 @@ jobs:
     - uses: actions/checkout@v3
     - name: 💻 Step 0 - Set environment variables
       run: |
-        echo "TRELLO_APIKEY=${{secrets.TRELLO_APIKEY}} \n TRELLO_TOKEN=${{secrets.TRELLO_TOKEN}} \n TRELLO_PASSWORD=${{secrets.TRELLO_PASSWORD}} \n TRELLO_EMAIL=${{secrets.TRELLO_EMAIL}}" > .env
+        export TRELLO_APIKEY=${{secrets.TRELLO_APIKEY}}
+        export TRELLO_TOKEN=${{secrets.TRELLO_TOKEN}}
+        export TRELLO_PASSWORD=${{secrets.TRELLO_PASSWORD}}
+        export TRELLO_EMAIL=${{secrets.TRELLO_EMAIL}}
     - name: 📨 Step 1 - API smoke tests
       run: |
         make api FILTER=apiANDsmoke
     - name: 🏞️ Step 2 - GUI smoke tests
       run: |
         make gui FILTER=guiANDsmoke BROWSER=firefox
+    - name: 🗒️ Step 3 - Save Reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: reports
+        path: reports
+        retention-days: 5
