@@ -1,0 +1,15 @@
+version: "3"
+services:
+  automation:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile.api
+    container_name: automation
+    networks:
+    - default
+    volumes:
+    - ../reports:/reports
+    env_file:
+    - ../.env
+    environment:
+    - PYTHONPATH=/

@@ -3,11 +3,13 @@ services:
   automation:
     build:
       context: ../
+      dockerfile: docker/Dockerfile.gui
     container_name: automation
     networks:
     - default
     volumes:
     - ../reports:/reports
+    env_file: 
+    - ../.env
     environment:
     - PYTHONPATH=/
-    env_file: ../.env

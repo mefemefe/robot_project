@@ -1,0 +1,47 @@
+name: RF code-check & tests
+
+on:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
+permissions:
+  contents: read
+
+jobs:
+  unit:
+    name: Code Check & Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: 🐍 Step 0 - Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: 💾 Step 1 - Install flake8
+      run: |
+        pip install flake8
+    - name: ❄️ Step 2 - Lint with flake8
+      run: |
+        flake8 . --count --ignore=F811 --max-line-length=120 --show-source --statistics
+    - name: 🤖 Step 3 - Lint with RLint
+      uses: carlosnizolli/RobotLint@v2.3
+      with:
+        robot-files: tests/          
+  
+  test:
+    name: Run Test Framework
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: 💻 Step 0 - Set environment variables
+      run: |
+        echo "TRELLO_APIKEY=${{secrets.TRELLO_APIKEY}} \n TRELLO_TOKEN=${{secrets.TRELLO_TOKEN}} \n TRELLO_PASSWORD=${{secrets.TRELLO_PASSWORD}} \n TRELLO_USER=${{secrets.TRELLO_USER}}" > .env
+    - name: 📨 Step 1 - API smoke tests
+      run: |
+        make api FILTER=apiANDsmoke
+    - name: 🏞️ Step 2 - GUI smoke tests
+      run: |
+        make gui FILTER=guiANDsmoke BROWSER=firefox
