@@ -20,16 +20,16 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
-    - name: 💾 Step 1 - Install flake8
+    - name: 💾 Step 1 - Install flake8 & robotframework-lint
       run: |
-        pip install flake8
+        pip install flake8 robotframework-lint
     - name: ❄️ Step 2 - Lint with flake8
       if: always()
       run: |
         flake8 . --count --ignore=F811 --max-line-length=120 --show-source --statistics
     - name: 🤖 Step 3 - Lint with RLint
       run: |
-        echo TODO
+        rflint --ignore LineTooLong --ignore TooFewKeywordSteps --recursive tests
   
   test:
     name: Run Test Framework
