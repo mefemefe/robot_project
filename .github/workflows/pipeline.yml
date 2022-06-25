@@ -27,7 +27,8 @@ jobs:
       if: always()
       run: |
         flake8 . --count --ignore=F811 --max-line-length=120 --show-source --statistics
-    - name: 🤖 Step 3 - Lint with RLint
+    - name: 🤖 Step 3 - Lint with RFLint
+      if: always()
       run: |
         rflint --ignore LineTooLong --ignore TooFewKeywordSteps --recursive tests
   
