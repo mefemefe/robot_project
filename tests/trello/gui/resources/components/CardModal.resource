@@ -8,6 +8,9 @@ ${MODAL_CLOSE_BUTTON}    //a[contains(@class,'dialog-close-button')]
 ${ARCHIVE_BUTTON}        //span[@title='Archive']
 ${DELETE_BUTTON}         //a[@title='Delete']
 ${DELETE_CONFIRM}        //input[@value='Delete']
+${MOVE_BUTTON}           //a[@title='Move']
+${SELECT_DESTINATION}    //select[@data-test-id='move-board-select']
+${ACEPT_MOVE_BUTTON}     //input[@value="Move"]
 ${COMMENT_BOX_INPUT}     //div[@class='comment-box']/textarea
 ${SAVE_COMMENT}          //div[contains(@class, 'comment-controls')]//input[@value='Save']
 ${COMMENT_DIV}           //div[@class='comment-container']
@@ -45,3 +48,15 @@ Get Number Of Comments
     [Documentation]    Return the number of comments present in the modal.
     ${n}=     Get Element Count    ${COMMENT_DIV}
     RETURN    ${n}
+
+Move Card To An Above Board
+    [Documentation]    Moves the card using the "move" button in Actions
+    ...                And Selects the board N° above 
+    ...                required: number (number of boards that the card will be moved above)
+    [Arguments]        ${number}
+    Wait Until Element Is Visible    ${MOVE_BUTTON} 
+    Click Element    ${MOVE_BUTTON}
+    Click Element    ${SELECT_DESTINATION}
+    Repeat Keyword    ${number}         Press Keys   ${SELECT_DESTINATION}         \uE013
+    Press Keys   ${SELECT_DESTINATION}         \uE007
+    Click Element    ${ACEPT_MOVE_BUTTON}

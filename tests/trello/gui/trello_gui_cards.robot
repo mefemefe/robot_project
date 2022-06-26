@@ -4,10 +4,12 @@ Resource          resources/LoginPage.resource
 Resource          tests/trello/api/resources/Board.resource
 Resource          resources/BoardsPage.resource
 Resource          resources/BoardPage.resource
+Resource          resources/components/TrelloUpperMenu.resource
 Suite Setup       Cards Suite Setup
 Suite Teardown    Cards Suite Teardown
 
 *** Test Cases ***
+
 Verify A Card Can Be Created
     [Tags]    smoke    gui    card.create
     Set Test Variable     \${list}     To Do
@@ -65,6 +67,21 @@ Card Can Be Dragged To Another List
     ...               Go To Card Modal    ${list2}    ${card}
     ...               AND    Delete Current Card
 
+Card Can Be Moved To Another Board
+    [Tags]    regression    gui    card.move
+    Go Home
+    ${board2}=         Create A Board    CardTestBoard2
+    Go To Board       CardTestBoard2
+    Set Test Variable         \${list}    To Do
+    Set Test Variable         \${card}    Test Card2
+    Create Card In List        ${list}    ${card}
+    Go To Card Modal           ${list}    ${card}
+    Move Card To An Above Board     1
+    ${Cards_On_list}=       Get Number Of Cards In List       To Do
+    ${0}=	                 Convert To Integer	             0
+    Should Be Equal             ${Cards_On_list}        ${0}
+    Wait Until Keyword Succeeds    10    2.5    Delete A Board            ${board2.json()}[id]
+
 *** Keywords ***
 Cards Suite Setup
     Create Trello Session
@@ -74,6 +91,7 @@ Cards Suite Setup
     Maximize Browser Window
     Login To Trello        ${DEFAULT_EMAIL}    ${DEFAULT_PASSWORD}
     Go To Board            CardTestBoard
+    
 
 Cards Suite Teardown
     Wait Until Keyword Succeeds    10    2.5    Delete A Board    ${TEST_SUITE_BOARD_ID}
