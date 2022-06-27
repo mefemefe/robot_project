@@ -16,6 +16,15 @@ ${DESC_TEXT_AREA}             xpath://div[contains(@class, 'board-menu-content')
 ${SAVE_DESC_BUTTON}             xpath://div[contains(@class, 'board-menu-content')]//input[@value="Save"]
 ${GO_BACK_BUTTON}             xpath://a[@title="Go back."]
 ${CLOSE_SHOW_MENU}             xpath://a[@title="Close the board menu."]
+${CLOSE_LIST_BUTTON}        xpath://li//a[@class='js-close-list']
+
+${ARCHIVED_ITEMS_BUTTON}    xpath://a[@class='board-menu-navigation-item-link js-open-archive']
+${SWITCH_TO_LIST_BUTTON}    xpath://div[@class='archive-controls']/a[contains(.,'Switch to lists')]
+${MORE_OPTIONS_SIDEBAR}     xpath://a[@class='board-menu-navigation-item-link js-open-more']
+${ARCHIVED_LIST_NAME_FIELD}    xpath://div[@class='item-name']/span[.='{archived_list_title}']
+${TO_CHECK_LIST_HEADER}     xpath://div[@class='list-header js-list-header u-clearfix is-menu-shown']/h2[contains(.,'{list_header}')]
+
+
 
 *** Keywords ***
 Delete Current Board
@@ -43,3 +52,35 @@ Update Description of Board
     Click Element           ${SAVE_DESC_BUTTON}
     Click Element           ${GO_BACK_BUTTON}
     Click Element           ${CLOSE_SHOW_MENU}
+
+Enter to the list archive
+    [Documentation]    accesing to the archive menu in the sidebar
+    Wait Until Element Is Enabled    ${MORE_OPTIONS_SIDEBAR}    timeout=10s
+    Click Link    ${MORE_OPTIONS_SIDEBAR}
+    Wait Until Element Is Enabled    ${ARCHIVED_ITEMS_BUTTON}            timeout=10s
+    Click Link    ${ARCHIVED_ITEMS_BUTTON}
+    Wait Until Element Is Enabled    ${SWITCH_TO_LIST_BUTTON}        timeout=10s
+    Click Link   ${SWITCH_TO_LIST_BUTTON}
+
+Close archive tab
+    [Documentation]   close sidebar tab
+    Wait Until Element Is Enabled   ${CLOSE_SHOW_MENU}            timeout=10s
+    Click Link    ${CLOSE_SHOW_MENU}
+
+Click watch/unwatch button
+    [Documentation]    click to watch/unwatch the last list on ui
+    Click Link     xpath://div[@class='js-list list-wrapper'][last()]//a[@aria-label="List actions"]
+    Click Link    ${WATCH_LIST_BUTTON}
+
+Verify That The List Exists
+    [Documentation]          Verify that a given header of a list matches
+    [Arguments]              ${list_header}
+    ${list_name_locator}=    Format String   ${TO_CHECK_LIST_HEADER}    list_header=${list_header}
+    Page Should Contain Element    ${list_name_locator}
+
+Verify That A List Is In The Archive
+    [Documentation]          Verify that a given header of a list matches
+    [Arguments]              ${archived_list_title}
+    ${list_name_locator_archive}=    Format String   ${ARCHIVED_LIST_NAME_FIELD}    archived_list_title=${archived_list_title}
+    Wait Until Element Is Enabled    ${list_name_locator_archive}        timeout=10s
+    Page Should Contain Element    ${list_name_locator_archive}
