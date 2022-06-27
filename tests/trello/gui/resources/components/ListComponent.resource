@@ -13,6 +13,9 @@ ${CONFIRM_ADD_CARD}        ${LIST_DIV}//input[@value='Add card']
 ${PENCIL_ICON}             ${LIST_CARD_NAME}//span[contains(@class, 'icon-edit')]
 ${CARD_EDIT_TITLE}         css:textarea.list-card-edit-title
 ${CARD_EDIT_TITLE_SAVE}    //input[@value='Save']
+${ADD_LIST_BUTTON}          xpath:// a[contains(@Class, 'open-add-list')]
+${LIST_NAME_INPUT}          xpath://input[@class="list-name-input"]
+${LIST_TEXT_AREA_NAME}      xpath://div[@class='js-list list-wrapper'][last()]//textarea
 
 *** Keywords ***
 Create Card In List
@@ -81,3 +84,43 @@ Drag Card From One List To Another
     ${list2_locator}=                Format String    ${LIST_DIV}    list_name=${list2_name}
     Wait Until Element Is Visible    ${card_locator}
     Drag And Drop                    ${card_locator}    ${list2_locator}
+    
+Create new list with the name
+    [Documentation]    Create  a new list with the given name
+    [Arguments]    ${list_name}
+    Wait Until Page Contains Element      ${ADD_LIST_BUTTON}        timeout=10s
+    Click Link     ${ADD_LIST_BUTTON}
+    Wait Until Element Is Enabled       ${LIST_NAME_INPUT}    timeout=10s
+    Input text    ${LIST_NAME_INPUT}    ${list_name}
+    Press Keys     ${LIST_NAME_INPUT}    RETURN
+
+Verify That The List Exists
+    [Documentation]          Verify that a given header of a list matches
+    [Arguments]              ${list_name}
+    ${list_name_locator}=    Format String   ${LIST_DIV}    list_name=${list_name}
+    Page Should Contain Element    ${list_name_locator}
+
+Modify the name of a list with
+    [Documentation]    Modify the name of an existent list
+    [Arguments]    ${old_name}    ${new_name}
+    Click Element    xpath://div[@class='list-header js-list-header u-clearfix is-menu-shown' and contains(.,${old_name})]
+    Press Keys     ${LIST_NAME_INPUT}    BACKSPACE
+    Input Text    ${LIST_TEXT_AREA_NAME}    ${new_name}
+    Press Keys    None    RETURN
+
+Close a list
+    [Documentation]    archives a list
+    Click Link     xpath://div[@class='js-list list-wrapper'][last()]//a[@aria-label="List actions"]
+    Click Link    ${CLOSE_LIST_BUTTON}
+
+Click pencil menu
+    [Documentation]        Adds a label to an specific card
+    [Arguments]            ${list_name}     ${card_name}
+    ${card_element}=       Format String    ${LIST_CARD_NAME}    list_name=${list_name}    card_name=${card_name}
+    ${pencil_locator}=     Format String    ${PENCIL_ICON}    list_name=${list_name}    card_name=${card_name}
+    Wait Until Element Is Visible    ${card_element}
+    Sleep   5s
+    Mouse Over             ${card_element}
+    Sleep    5s
+    Wait Until Page Contains Element    ${pencil_locator}
+    Click Element          ${pencil_locator}
