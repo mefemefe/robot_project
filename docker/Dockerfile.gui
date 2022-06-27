@@ -5,4 +5,4 @@ WORKDIR .
 COPY ./ .
 RUN pip install -r requirements.txt
 
-ENTRYPOINT chmod -R 777 docker/wait-for-it.sh && docker/wait-for-it.sh selenium-hub:4444 -- robot --outputDir /reports --output gui.xml --log NONE --report NONE --include $FILTER -v BROWSER:$BROWSER -v REMOTE:True tests/trello/gui || robot --rerunfailed reports/gui.xml --output guirerun.xml --log NONE --report NONE tests/trello/gui ; rebot --report reports/index.html --log reports/log.html --merge reports/*.xml
+ENTRYPOINT chmod -R 777 docker/wait-for-it.sh && docker/wait-for-it.sh selenium-hub:4444 -- robot --outputDir /reports --output gui.xml --log NONE --report NONE --include $FILTER --exclude board.* -v BROWSER:$BROWSER -v REMOTE:True tests/trello/gui || robot --rerunfailed reports/gui.xml --output guirerun.xml --log NONE --report NONE tests/trello/gui ; rebot --report reports/index.html --log reports/log.html --merge reports/*.xml
