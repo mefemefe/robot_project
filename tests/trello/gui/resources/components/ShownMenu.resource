@@ -18,12 +18,10 @@ ${GO_BACK_BUTTON}             xpath://a[@title="Go back."]
 ${CLOSE_SHOW_MENU}             xpath://a[@title="Close the board menu."]
 ${CLOSE_LIST_BUTTON}        xpath://li//a[@class='js-close-list']
 
-${ARCHIVED_ITEMS_BUTTON}    xpath://a[@class='board-menu-navigation-item-link js-open-archive']
+${ARCHIVED_ITEMS_BUTTON}    xpath://a[contains(@class, 'js-open-archive')]
 ${SWITCH_TO_LIST_BUTTON}    xpath://div[@class='archive-controls']/a[contains(.,'Switch to lists')]
-${MORE_OPTIONS_SIDEBAR}     xpath://a[@class='board-menu-navigation-item-link js-open-more']
+${MORE_OPTIONS_SIDEBAR}     xpath://a[contains(@class,'board-menu-navigation-item-link') and contains(.,'More')]
 ${ARCHIVED_LIST_NAME_FIELD}    xpath://div[@class='item-name']/span[.='{archived_list_title}']
-${TO_CHECK_LIST_HEADER}     xpath://div[@class='list-header js-list-header u-clearfix is-menu-shown']/h2[contains(.,'{list_header}')]
-
 
 
 *** Keywords ***
@@ -72,11 +70,6 @@ Click watch/unwatch button
     Click Link     xpath://div[@class='js-list list-wrapper'][last()]//a[@aria-label="List actions"]
     Click Link    ${WATCH_LIST_BUTTON}
 
-Verify That The List Exists
-    [Documentation]          Verify that a given header of a list matches
-    [Arguments]              ${list_header}
-    ${list_name_locator}=    Format String   ${TO_CHECK_LIST_HEADER}    list_header=${list_header}
-    Page Should Contain Element    ${list_name_locator}
 
 Verify That A List Is In The Archive
     [Documentation]          Verify that a given header of a list matches

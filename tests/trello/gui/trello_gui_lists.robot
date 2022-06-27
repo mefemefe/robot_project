@@ -3,6 +3,7 @@ Library          SeleniumLibrary
 Resource         resources/LoginPage.resource
 Resource         resources/BoardsPage.resource
 Resource          tests/trello/api/resources/Board.resource
+
 Resource          resources/components/ListComponent.resource
 Resource         resources/components/ShownMenu.resource
 Resource         resources/components/TopBar.resource
@@ -21,7 +22,7 @@ create list
     Login To Trello    ${DEFAULT_EMAIL}     ${DEFAULT_PASSWORD}
     Go To Board    TestBoard
     Create new list with the name    NEW_TEST_LIST
-    Element Text Should Be    ${NEW_LIST_HEADER}    NEW_TEST_LIST
+    Verify That The List Exists    NEW_TEST_LIST
     [Teardown]    Run Keywords
 ...               Close a list
 ...               Close Browser
@@ -47,7 +48,6 @@ archive a list
     Go To Board    TestBoard
     Create new list with the name    TO_ARCHIVE
     Close a list
-    Element Text Should Not Be    ${NEW_LIST_HEADER}    TO_ARCHIVE
     Enter to the side menu
     Enter to the list archive
     Verify That A List Is In The Archive    TO_ARCHIVE

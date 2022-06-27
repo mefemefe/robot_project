@@ -16,8 +16,8 @@ ${CARD_EDIT_TITLE_SAVE}    //input[@value='Save']
 ${ADD_LIST_BUTTON}          xpath:// a[contains(@Class, 'open-add-list')]
 ${LIST_NAME_INPUT}          xpath://input[@class="list-name-input"]
 ${LIST_TEXT_AREA_NAME}      xpath://div[@class='js-list list-wrapper'][last()]//textarea
-${NEW_LIST_HEADER}          xpath://div[@class='js-list list-wrapper'][last()]//div[@class='list-header js-list-header u-clearfix is-menu-shown']
-${PRE_TEXT_AREA_BUTTON}     xpath://div[@class="list-header-target js-editing-target"]
+
+
 
 
 *** Keywords ***
@@ -96,6 +96,12 @@ Create new list with the name
     Wait Until Element Is Enabled       ${LIST_NAME_INPUT}    timeout=10s
     Input text    ${LIST_NAME_INPUT}    ${list_name}
     Press Keys     ${LIST_NAME_INPUT}    RETURN
+
+Verify That The List Exists
+    [Documentation]          Verify that a given header of a list matches
+    [Arguments]              ${list_name}
+    ${list_name_locator}=    Format String   ${LIST_DIV}    list_name=${list_name}
+    Page Should Contain Element    ${list_name_locator}
 
 Modify the name of a list with
     [Documentation]    Modify the name of an existent list
