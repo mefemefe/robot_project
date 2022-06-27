@@ -34,17 +34,32 @@ jobs:
   
   test:
     name: Run Test Framework
+    needs: unit
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: 💻 API and GUI smoke tests
+    - name: 📨 Export Env Variables
       run: |
         export TRELLO_APIKEY=${{secrets.TRELLO_APIKEY}}
         export TRELLO_TOKEN=${{secrets.TRELLO_TOKEN}}
         export TRELLO_PASSWORD=${{secrets.TRELLO_PASSWORD}}
         export TRELLO_EMAIL=${{secrets.TRELLO_EMAIL}}
-        make api FILTER=apiANDsmoke
-        make gui FILTER=guiANDsmoke BROWSER=firefox
+    - name: 🅰️ API tests
+      id: api
+      run: |
+        make api FILTER=api
+    - name: 🅱️ Retry API test ?
+      if: steps.api.outcome=='failure'
+      run: |
+        make api FILTER=api
+    - name: 🏞️ GUI tests
+      id: gui
+      run: |
+        make gui FILTER=gui BROWSER=chrome
+    - name: 🌅 Retry GUI test ?
+      if: steps.gui.outcome=='failure'
+      run: |
+        make gui FILTER=gui BROWSER=chrome
     - name: 🗒️ Save Reports
       if: always()
       uses: actions/upload-artifact@v3
@@ -52,3 +67,10 @@ jobs:
         name: reports
         path: reports
         retention-days: 5
+    - name: 🐈‍⬛ Deploy report to Github Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        PERSONAL_TOKEN: ${{ secrets.MY_TOKEN }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: reports
