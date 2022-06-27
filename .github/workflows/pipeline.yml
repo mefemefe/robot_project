@@ -35,30 +35,33 @@ jobs:
   test:
     name: Run Test Framework
     runs-on: ubuntu-latest
+    env:
+      TRELLO_APIKEY: ${{secrets.TRELLO_APIKEY}}
+      TRELLO_TOKEN: ${{secrets.TRELLO_TOKEN}}
+      TRELLO_PASSWORD: ${{secrets.TRELLO_PASSWORD}}
+      TRELLO_EMAIL: ${{secrets.TRELLO_EMAIL}}
     steps:
     - uses: actions/checkout@v3
-    - name: 📨 Export Env Variables
-      run: |
-        export TRELLO_APIKEY=${{secrets.TRELLO_APIKEY}}
-        export TRELLO_TOKEN=${{secrets.TRELLO_TOKEN}}
-        export TRELLO_PASSWORD=${{secrets.TRELLO_PASSWORD}}
-        export TRELLO_EMAIL=${{secrets.TRELLO_EMAIL}}
     - name: 🅰️ API tests
       id: api
       run: |
-        make api FILTER=api
-    - name: 🅱️ Retry API test ?
-      if: steps.api.outcome=='failure'
-      run: |
-        make api FILTER=api
+        export FILTER=api
+        docker-compose -f docker/api_test.yaml up --build --exit-code-from automation
+        docker-compose -f docker/api_test.yaml down
+        docker rmi docker_automation:latest
     - name: 🏞️ GUI tests
       id: gui
       run: |
-        make gui FILTER=gui BROWSER=chrome
-    - name: 🌅 Retry GUI test ?
-      if: steps.gui.outcome=='failure'
-      run: |
-        make gui FILTER=gui BROWSER=chrome
+        export BROWSER=chrome
+        export FILTER=gui
+        docker-compose -f docker/hub.yaml up -d
+        docker-compose -f docker/chrome.yaml up -d
+        docker-compose -f docker/gui_test.yaml up --build --exit-code-from automation
+        docker-compose -f docker/gui_test.yaml stop
+        docker-compose -f docker/hub.yaml stop
+        docker-compose -f docker/chrome.yaml down
+        docker rm -f $(docker ps -a -q)
+        docker rmi docker_automation:latest
     - name: 🗒️ Save Reports
       if: always()
       uses: actions/upload-artifact@v3

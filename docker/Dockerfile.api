@@ -5,4 +5,4 @@ WORKDIR .
 COPY ./ .
 RUN pip install -r requirements.txt
 
-ENTRYPOINT robot --outputDir /reports --include $FILTER tests
+ENTRYPOINT robot --outputDir /reports --include $FILTER tests || robot --rerunfailed reports/output.xml tests
