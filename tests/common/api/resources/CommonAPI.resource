@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation    Keywords for general API usage.
-Library          RequestsLibrary
+Library          ../libraries/request_own_library.py
 Library          JSONSchemaLibrary    schemas/
 
 *** Keywords ***

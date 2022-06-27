@@ -16,7 +16,7 @@ Create A Board
 Get A Board
     [Documentation]    Gets the Board with the given ID
     [Arguments]        ${id}    ${status_code}=200
-    ${response}=       Get An Element    board    ${id}    status_code=${status_code}
+    ${response}=       Get An Element    board    ${id}    status_code=${status_code}   
     RETURN             ${response}
 
 Delete A Board

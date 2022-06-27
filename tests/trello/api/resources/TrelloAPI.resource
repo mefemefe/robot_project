@@ -15,7 +15,15 @@ ${DEFAULT_SESSION_ALIAS}    TestSession
 
 *** Keywords ***
 Create Trello Session
-    Create Session    ${DEFAULT_SESSION_ALIAS}    ${API_BASE_URL}    disable_warnings=1    headers=&{HEADERS}
+    Create Session    ${API_BASE_URL}    headers=&{HEADERS}
+
+Get An Element
+    [Documentation]    Gets an element with the given id using the trello API
+    ...                Elements: card, board, label
+    [Arguments]        ${element}    ${id}    ${status_code}=200
+    ${url}=            Format String      ${PATHS}[${element}]    ${id}
+    ${response}=       GET On Session    ${url}    expected_status=${status_code}    
+    RETURN             ${response}
 
 Create An Element
     [Documentation]      Creates a new element using the Trello API
@@ -24,23 +32,15 @@ Create An Element
     &{json}=             Create Dictionary
     Set To Dictionary    ${json}    @{args}
     ${url}=              Format String      ${PATHS}[${element}]    ${EMPTY}
-    ${response}=         POST On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${url}    json=&{json}    expected_status=${status_code}
+    ${response}=         POST On Session    ${url}    ${status_code}   &{json}           
     RETURN               ${response}
-
-Get An Element
-    [Documentation]    Gets an element with the given id using the trello API
-    ...                Elements: card, board, label
-    [Arguments]        ${element}    ${id}    ${status_code}=200
-    ${url}=            Format String      ${PATHS}[${element}]    ${id}
-    ${response}=       GET On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${url}    expected_status=${status_code}
-    RETURN             ${response}
 
 Delete An Element
     [Documentation]    Deletes the element with the given id
     ...                Elements: card, board, label
     [Arguments]        ${element}    ${id}    ${status_code}=200
     ${url}=            Format String      ${PATHS}[${element}]    ${id}
-    ${response}=       DELETE On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${url}    expected_status=${status_code}
+    ${response}=       DELETE On Session    ${url}    expected_status=${status_code}
     RETURN             ${response}
 
 Update An Element
@@ -50,5 +50,7 @@ Update An Element
     &{json}=             Create Dictionary
     Set To Dictionary    ${json}    @{args}
     ${url}=              Format String      ${PATHS}[${element}]    ${id}
-    ${response}=         PUT On Session    alias=${DEFAULT_SESSION_ALIAS}    url=${url}    json=&{json}    expected_status=${status_code}
+    ${response}=         PUT On Session    ${url}    ${status_code}   &{json} 
     RETURN               ${response}
+
+
