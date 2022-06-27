@@ -77,3 +77,4 @@ Verify That A List Is In The Archive
     ${list_name_locator_archive}=    Format String   ${ARCHIVED_LIST_NAME_FIELD}    archived_list_title=${archived_list_title}
     Wait Until Element Is Enabled    ${list_name_locator_archive}        timeout=10s
     Page Should Contain Element    ${list_name_locator_archive}
+    
