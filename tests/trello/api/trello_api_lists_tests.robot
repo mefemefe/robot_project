@@ -13,7 +13,7 @@ Suite Teardown    Run Keywords
 CREATE a list
     [Tags]             smoke    api    list.create
     ${response}=       Create A List    NewList
-    Validate Response Schema       ${response}    list 
+    Validate Response Schema       ${response}    list
 
 UPDATE a list
     [Tags]             regression    api    list.update
@@ -22,14 +22,14 @@ UPDATE a list
     Update A List       ${response.json()}[id]    name    NewName
     ${new_response}=       Get A List    ${response.json()}[id]
     Validate Response Schema       ${new_response}    list
-    Should Be Equal    ${new_response.json()}[name]     NewName 
+    Should Be Equal    ${new_response.json()}[name]     NewName
 
 ARCHIVE A list
     [Tags]             regression    api    list.archive
-    ${response}=       Create A List    NewList     
+    ${response}=       Create A List    NewList
     Archive A List       ${response.json()}[id]
     ${new_response}=       Get A List    ${response.json()}[id]
-    Should Be True    ${new_response.json()}[closed]            
+    Should Be True    ${new_response.json()}[closed]
 
 *** Keywords ***
 Setup Board

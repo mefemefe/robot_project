@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation    Variables and Keywords for Trello's Board Page Menu that is Show when clicking
-...              show menu in the top bar 
+...              show menu in the top bar
 Resource         ../TrelloGUI.resource
 *** Variables ***
 ### Locators ###

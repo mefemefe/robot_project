@@ -30,11 +30,10 @@ jobs:
     - name: 🤖 Step 3 - Lint with RFLint
       if: always()
       run: |
-        rflint --ignore LineTooLong --ignore TooFewKeywordSteps --recursive tests
+        rflint --ignore LineTooLong --ignore TooFewKeywordSteps --ignore TooManyTestSteps --recursive tests
   
   test:
     name: Run Test Framework
-    needs: unit
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
