@@ -2,8 +2,8 @@
 Documentation    Board Tests
 Resource         resources/LoginPage.resource
 Resource         resources/BoardsPage.resource
-Resource         resources/components/UpperHorizontalMenu.resource
-Resource         resources/components/ShownMenu.resource
+Resource         resources/BoardPage.resource
+
 
 *** Test Cases ***
 create a board
@@ -14,7 +14,10 @@ create a board
     Click New Board Button
     Set Name to Board                     NewName
     Verify Name of Board                     NewName
-    [Teardown]    Close Browser
+    Open Show Menu
+    [Teardown]        Run Keywords
+    ...               Delete Current Board
+    ...               Close Browser
 
 delete a board
     [Tags]    smoke    gui    board.delete
@@ -25,9 +28,9 @@ delete a board
     Set Name to Board                     NewName
     Verify Name of Board                     NewName
     Open Show Menu
-    Delete Current Board
-    Verify Current Page Is Boards Page
-    [Teardown]    Close Browser
+    [Teardown]        Run Keywords
+    ...               Delete Current Board
+    ...               Close Browser
 
 Update a board's description
     [Tags]    smoke    gui    board.update.description
@@ -40,9 +43,9 @@ Update a board's description
     Open Show Menu
     Update Description of Board                     UpdatedDescription
     Open Show Menu
-    Delete Current Board
-    Verify Current Page Is Boards Page
-    [Teardown]    Close Browser
+    [Teardown]        Run Keywords
+    ...               Delete Current Board
+    ...               Close Browser
 
 
 Update a board's name
@@ -56,6 +59,7 @@ Update a board's name
     Update Name of Board                     UpdatedName
     Verify Name of Board                     UpdatedName
     Open Show Menu
-    Delete Current Board
-    Verify Current Page Is Boards Page
-    [Teardown]    Close Browser
+    [Teardown]        Run Keywords
+    ...               Delete Current Board
+    ...               Close Browser   
+
