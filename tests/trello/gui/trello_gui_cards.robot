@@ -9,7 +9,7 @@ Suite Setup       Cards Suite Setup
 Suite Teardown    Cards Suite Teardown
 
 *** Test Cases ***
-erify A Card Can Be Created
+Verify A Card Can Be Created
     [Documentation]    Verify that it is possible to create a new
     ...                card through Trello's GUI.
     [Tags]    smoke    gui    card.create
