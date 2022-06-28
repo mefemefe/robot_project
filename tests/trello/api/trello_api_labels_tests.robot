@@ -52,10 +52,3 @@ Setup Board And List
 
 Teardown Board
     Delete A Board    ${TEST_SUITE_BOARD_ID}
-
-
-
-
-
-
-

@@ -37,7 +37,7 @@ Verify A Card Can Be Deleted
     ${response}=       Delete A Card      ${CARD_ID}
     Validate Response Schema    ${response}    delete
     Get A Card         ${CARD_ID}    status_code=404
-    
+
 Verify A Card Can Be Updated
     [Tags]             api    regression    card.update
     ${response}=       Create A Card    name    RFCard4
