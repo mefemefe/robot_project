@@ -13,6 +13,7 @@ Suite Teardown    Run Keywords
 
 *** Test Cases ***
 Create and get label on board
+    [Documentation]    Verify that a label can be created through API
     [Tags]             smoke    api    label.create    label.get
     ${response}=       Create A Label    name    label2    color   yellow
     Validate Response Schema     ${response}   label
@@ -26,6 +27,7 @@ Create and get label on board
 
 
 Update label on board
+    [Documentation]    Verify that a label's name and color can be updated through API
     [Tags]             smoke    api    label.update
     ${response}=       Create A Label    name    label2    color   yellow
     Validate Response Schema     ${response}   label
@@ -38,6 +40,7 @@ Update label on board
     [Teardown]    Delete A Label     ${LABEL_ID}
 
 Delete label on board
+    [Documentation]    Verify that a label can be deleted through API
     [Tags]             smoke    api    label.delete
     ${response}=       Create A Label    name    label2    color   yellow
     ${LABEL_ID}=       Get Information From Response    ${response}    id
@@ -46,10 +49,12 @@ Delete label on board
 
 *** Keywords ***
 Setup Board And List
+    [Documentation]    Create a board and save its ID and its first list's ID
     ${BOARD}=    Create A Board    TestBoard
     Set Suite Variable    \${TEST_SUITE_BOARD_ID}    ${BOARD.json()}[id]
     ${LISTS}=    GET On Session    url=https://api.trello.com/1/boards/${TEST_SUITE_BOARD_ID}/lists    alias=${DEFAULT_SESSION_ALIAS}
     Set Suite Variable    \${TEST_SUITE_LIST_ID}    ${LISTS.json()}[0][id]
 
 Teardown Board
+    [Documentation]    Delete the board created for this session.
     Delete A Board    ${TEST_SUITE_BOARD_ID}

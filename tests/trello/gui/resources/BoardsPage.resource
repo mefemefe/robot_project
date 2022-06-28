@@ -28,7 +28,6 @@ Click New Board Button
 
 Set Name to Board
     [Documentation]    Set the name of the board and press the create button
-    ...
     [Arguments]        ${name}
     Wait Until Element Is Visible           ${BOARD_NAME_INPUT}
     Input Text           ${BOARD_NAME_INPUT}    ${name}
