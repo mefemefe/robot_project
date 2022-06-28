@@ -9,16 +9,18 @@ Suite Teardown    Cards Suite Teardown
 
 *** Test Cases ***
 Verify A Card Can Be Created
+    [Documentation]    Verify that a card can be created through GUI
     [Tags]    smoke    gui    card.create
     Set Test Variable     \${list}     To Do
     Set Test Variable     \${card}     Test Card
     Create Card In List    ${list}     ${card}
     Verify Card Exists     ${list}     ${card}
-    [Teardown]    Run Keywords    
+    [Teardown]    Run Keywords
     ...           Go To Card Modal    list_name=${list}    card_name=${card}
     ...           AND    Delete Current Card
 
 Modify A Card's Name From The Board Page
+    [Documentation]    Verify that a card's name can be modified through GUI
     [Tags]    regression    gui    card.title_board
     Set Test Variable     \${list}    To Do
     Set Test Variable     \${card}    Test Card
@@ -31,6 +33,7 @@ Modify A Card's Name From The Board Page
     ...           AND    Delete Current Card
 
 Leave A Comment On A Card
+    [Documentation]    Verify that it is possible to comment on a card through GUI
     [Tags]    regression    gui    card.comment
     Set Test Variable     \${list}    To Do
     Set Test Variable     \${card}    Test Card
@@ -43,6 +46,7 @@ Leave A Comment On A Card
     [Teardown]             Delete Current Card
 
 Verify A Card Can Be Deleted
+    [Documentation]    Verify that a card can be deleted through GUI
     [Tags]    smoke    gui    card.delete
     Set Test Variable     \${list}    To Do
     Set Test Variable     \${card}    Test Card
@@ -54,6 +58,7 @@ Verify A Card Can Be Deleted
     Should Be True         ${cards_before} == ${cards_after}
 
 Card Can Be Dragged To Another List
+    [Documentation]    Verify that a card can be dragged in the board page GUI
     [Tags]    regression    gui    card.drag
     Set Test Variable         \${list}    To Do
     Set Test Variable         \${card}    Test Card
@@ -67,6 +72,7 @@ Card Can Be Dragged To Another List
 
 *** Keywords ***
 Cards Suite Setup
+    [Documentation]    Create board through API, Open Browser, Login and Go To Board
     Create Trello Session
     ${BOARD}=    Create A Board    CardTestBoard
     Set Suite Variable    \${TEST_SUITE_BOARD_ID}    ${BOARD.json()}[id]
@@ -76,6 +82,7 @@ Cards Suite Setup
     Go To Board            CardTestBoard
 
 Cards Suite Teardown
+    [Documentation]    Delete the suite board and clean sessions/browsers
     Wait Until Keyword Succeeds    10    2.5    Delete A Board    ${TEST_SUITE_BOARD_ID}
     Delete All Sessions
     Close All Browsers

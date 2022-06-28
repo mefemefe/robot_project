@@ -15,6 +15,7 @@ ${DEFAULT_SESSION_ALIAS}    TestSession
 
 *** Keywords ***
 Create Trello Session
+    [Documentation]    Create an API session with the given alias and headers
     Create Session    ${DEFAULT_SESSION_ALIAS}    ${API_BASE_URL}    disable_warnings=1    headers=&{HEADERS}
 
 Create An Element

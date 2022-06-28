@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation    Variables and Keywords for Trello's Board Page Menu that is Show when clicking
-...              show menu in the top bar 
+...              show menu in the top bar
 Resource         ../TrelloGUI.resource
 *** Variables ***
 ### Locators ###
@@ -23,17 +23,17 @@ Delete Current Board
     Wait Until Element Is Visible           ${MORE_BUTTON}
     Click Element           ${MORE_BUTTON}
     Wait Until Element Is Visible           ${CLOSE_BOARD_BUTTON}
-    Click Element           ${CLOSE_BOARD_BUTTON} 
+    Click Element           ${CLOSE_BOARD_BUTTON}
     Wait Until Element Is Visible           ${CLOSE_BUTTON}
     Click Element           ${CLOSE_BUTTON}
     Wait Until Element Is Visible           ${DELETE_BUTTON}
     Click Element           ${DELETE_BUTTON}
     Wait Until Element Is Visible           ${CONFIRM_DELETE_BUTTON}
-    Click Element           ${CONFIRM_DELETE_BUTTON}   
+    Click Element           ${CONFIRM_DELETE_BUTTON}
 
 Update Description of Board
     [Documentation]    Updates the description of a board
-    [Arguments]        ${desc} 
+    [Arguments]        ${desc}
     Wait Until Element Is Visible           ${ABOUT_THIS_BOARD}
     Click Element           ${ABOUT_THIS_BOARD}
     Wait Until Element Is Visible           ${DESCRIPTION}
