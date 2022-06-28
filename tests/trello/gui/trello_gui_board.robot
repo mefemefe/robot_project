@@ -14,8 +14,8 @@ create a board
     Click New Board Button
     Set Name to Board                     NewName
     Verify Name of Board                     NewName
-    Open Show Menu
     [Teardown]        Run Keywords
+    ...               Open Show Menu
     ...               Delete Current Board
     ...               Close Browser
 
@@ -27,8 +27,8 @@ delete a board
     Click New Board Button
     Set Name to Board                     NewName
     Verify Name of Board                     NewName
-    Open Show Menu
     [Teardown]        Run Keywords
+    ...               Open Show Menu
     ...               Delete Current Board
     ...               Close Browser
 
@@ -42,8 +42,8 @@ Update a board's description
     Verify Name of Board                     NewName
     Open Show Menu
     Update Description of Board                     UpdatedDescription
-    Open Show Menu
     [Teardown]        Run Keywords
+    ...               Open Show Menu
     ...               Delete Current Board
     ...               Close Browser
 
@@ -58,8 +58,8 @@ Update a board's name
     Verify Name of Board                     NewName
     Update Name of Board                     UpdatedName
     Verify Name of Board                     UpdatedName
-    Open Show Menu
     [Teardown]        Run Keywords
+    ...               Open Show Menu
     ...               Delete Current Board
     ...               Close Browser   
 
