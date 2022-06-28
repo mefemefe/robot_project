@@ -22,7 +22,7 @@ Get An Element
     ...                Elements: card, board, label
     [Arguments]        ${element}    ${id}    ${status_code}=200
     ${url}=            Format String      ${PATHS}[${element}]    ${id}
-    ${response}=       GET On Session    ${url}    expected_status=${status_code}    
+    ${response}=       GET On Session    ${url}    ${status_code}    
     RETURN             ${response}
 
 Create An Element
@@ -40,7 +40,7 @@ Delete An Element
     ...                Elements: card, board, label
     [Arguments]        ${element}    ${id}    ${status_code}=200
     ${url}=            Format String      ${PATHS}[${element}]    ${id}
-    ${response}=       DELETE On Session    ${url}    expected_status=${status_code}
+    ${response}=       DELETE On Session    ${url}    ${status_code}
     RETURN             ${response}
 
 Update An Element

@@ -1,15 +1,11 @@
 import json
 import requests
 from tests.common.api.exceptions.InvalidExpectedStatus import InvalidExpectedStatus
-
-try:
-    from robot.libraries.BuiltIn import BuiltIn
-    from robot.libraries.BuiltIn import _Misc
-    import robot.api.logger as logger
-    from robot.api.deco import keyword
-    ROBOT = False
-except Exception:
-    ROBOT = False
+from robot.libraries.BuiltIn import BuiltIn
+from robot.libraries.BuiltIn import _Misc
+import robot.api.logger as logger
+from robot.api.deco import keyword
+ROBOT = False
 
 class request_own_library():
     ROBOT_LIBRARY_SCOPE = 'TEST SUITE'
@@ -41,23 +37,21 @@ class request_own_library():
 
         return response.status_code, response
     @keyword('GET On Session')
-    def get_request(self, endpoint, expected_status_code ):
+    def get_request(self, endpoint, expected_status_code=200 ):
         """Method to send GET requests to the specified endpoint
         :param endpoint:  str   Endpoint of service to which the request will be sent
         :param expected_status_codet:  str   Expected status code
         :return:  the response.
         """
-        expected = expected_status_code[len(expected_status_code)-3:]
-        
         status_code, response = self.do_request('GET', endpoint)
-        if int(status_code) == int(expected)  :
+        if int(status_code) == expected_status_code  :
             return response
         else:
-            raise InvalidExpectedStatus("the expected status code were not equal to the recived one")
+            raise InvalidExpectedStatus(f"it was expected the status {expected_status_code} but the status was {status_code}")
 
             
     @keyword('POST On Session')
-    def post_request(self, endpoint,  expected_status_code, **kwargs):
+    def post_request(self, endpoint,  expected_status_code=200 , **kwargs):
         """Method to send POST requests to the specified endpoint
         :param endpoint:  str   Endpoint of service to which the request will be sent
         :param expected_status_code:  str   Expected status code
@@ -67,17 +61,15 @@ class request_own_library():
         """ 
         payload1 ={}
         for key, value in kwargs.items():
-            payload1[key]= value
-
-        expected = expected_status_code[len(expected_status_code)-3:]        
+            payload1[key]= value       
         status_code, response = self.do_request('POST', endpoint, payload1 )
-        if int(status_code) == int(expected)  :
+        if int(status_code) == expected_status_code  :
             return response
         else:
-            raise InvalidExpectedStatus("the expected status code were not equals to the recived one")
+            raise InvalidExpectedStatus(f"it was expected the status {expected_status_code} but the status was {status_code}")
 
     @keyword('PUT On Session')
-    def put_request(self, endpoint,  expected_status_code, **kwargs):
+    def put_request(self, endpoint,  expected_status_code=200, **kwargs):
         """Method to send PUT requests to the specified endpoint
         :param endpoint:  str   Endpoint of service to which the request will be sent
         :param expected_status_codet:  str   Expected status code
@@ -87,30 +79,26 @@ class request_own_library():
         """ 
         payload1 ={}
         for key, value in kwargs.items():
-            payload1[key]= value
-
-        expected = expected_status_code[len(expected_status_code)-3:]        
+            payload1[key]= value       
         status_code, response = self.do_request('PUT', endpoint, payload1 )
-        if int(status_code) == int(expected)  :
+        if int(status_code) == expected_status_code  :
             return response
         else:
-            raise InvalidExpectedStatus("the expected status code were not equals to the recived one")
+            raise InvalidExpectedStatus(f"it was expected the status {expected_status_code} but the status was {status_code}")
     
     
     
     @keyword('DELETE On Session')
-    def delete_request(self, endpoint, expected_status_code):
+    def delete_request(self, endpoint, expected_status_code=200):
         """Method to send DELETE requests to the specified endpoint
         :param endpoint:  str   Endpoint of service to which the request will be sent
         :return:  the response.
         """
-        expected = expected_status_code[len(expected_status_code)-3:]
-        
         status_code, response =self.do_request('DELETE', endpoint)
-        if int(status_code) == int(expected)  :
+        if int(status_code) == expected_status_code  :
             return response
         else:
-            raise InvalidExpectedStatus("the expected status code were not equals to the recived one")
+            raise InvalidExpectedStatus(f"it was expected the status {expected_status_code} but the status was {status_code}")
 
     @keyword('Delete All Sessions')
     def delete_all_session(self):

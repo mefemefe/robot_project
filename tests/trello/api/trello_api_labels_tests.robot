@@ -1,6 +1,5 @@
 *** Settings ***
 Documentation    Example Test with Trello API Cards
-Library          RequestsLibrary
 Resource         resources/Label.resource
 Resource         resources/Board.resource
 Suite Setup       Run Keywords
@@ -48,7 +47,7 @@ Delete label on board
 Setup Board And List
     ${BOARD}=    Create A Board    TestBoard
     Set Suite Variable    \${TEST_SUITE_BOARD_ID}    ${BOARD.json()}[id]
-    ${LISTS}=    GET On Session    url=https://api.trello.com/1/boards/${TEST_SUITE_BOARD_ID}/lists    alias=${DEFAULT_SESSION_ALIAS}
+    ${LISTS}=    GET On Session    boards/${TEST_SUITE_BOARD_ID}/lists
     Set Suite Variable    \${TEST_SUITE_LIST_ID}    ${LISTS.json()}[0][id]
 
 Teardown Board
