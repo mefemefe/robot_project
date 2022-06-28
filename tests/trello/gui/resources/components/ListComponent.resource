@@ -112,15 +112,3 @@ Close a list
     [Documentation]    archives a list
     Click Link     xpath://div[@class='js-list list-wrapper'][last()]//a[@aria-label="List actions"]
     Click Link    ${CLOSE_LIST_BUTTON}
-
-Click pencil menu
-    [Documentation]        Adds a label to an specific card
-    [Arguments]            ${list_name}     ${card_name}
-    ${card_element}=       Format String    ${LIST_CARD_NAME}    list_name=${list_name}    card_name=${card_name}
-    ${pencil_locator}=     Format String    ${PENCIL_ICON}    list_name=${list_name}    card_name=${card_name}
-    Wait Until Element Is Visible    ${card_element}
-    Sleep   5s
-    Mouse Over             ${card_element}
-    Sleep    5s
-    Wait Until Page Contains Element    ${pencil_locator}
-    Click Element          ${pencil_locator}
