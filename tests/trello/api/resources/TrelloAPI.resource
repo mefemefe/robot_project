@@ -15,6 +15,7 @@ ${DEFAULT_SESSION_ALIAS}    TestSession
 
 *** Keywords ***
 Create Trello Session
+    [Documentation]    Creates an API session containing a base url and auth credentials.
     Create Session    ${DEFAULT_SESSION_ALIAS}    ${API_BASE_URL}    disable_warnings=1    headers=&{HEADERS}
 
 Create An Element

@@ -12,7 +12,7 @@ Get Information From Response
 Validate Response Schema
     [Documentation]    Validate the response against the corresponding schema
     ...                required_args: response object, element name
-    ...                current available element schemas: attachment, board, card, 
+    ...                current available element schemas: attachment, board, card,
     ...                comment_on_card, delete, get_attachments, list, labels_on_board
     [Arguments]    ${response}    ${element}
     Validate Json    ${element}.json    ${response.json()}

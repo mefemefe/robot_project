@@ -47,10 +47,11 @@ Click Login Button
     IF    '${url}' == '${LOGIN_URL}'
         Wait Until Element Is Enabled    ${LOGIN_BUTTON_TRELLO}
         Click Button    ${LOGIN_BUTTON_TRELLO}
-    ELSE 
+    ELSE
         Wait Until Element Is Enabled    ${LOGIN_BUTTON_ATLASSIAN}
         Click Button    ${LOGIN_BUTTON_ATLASSIAN}
     END
 
 Wait Until Location Is Atlassian's Login
-    Wait Until Location Contains     atlassian.com 
+    [Documentation]    Waits for the page redirection when logging in.
+    Wait Until Location Contains     atlassian.com

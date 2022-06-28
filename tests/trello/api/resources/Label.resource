@@ -39,6 +39,3 @@ Verify if Label is deleted
     [Arguments]        ${id}
     ${response}=       Get An Element    label    ${id}     status_code=404
     RETURN             ${response}
-
-
-
