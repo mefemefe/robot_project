@@ -5,8 +5,9 @@ Documentation    Variables and Keywords for Trello's Upper menu
 
 *** Variables ***
 ### Locators ###
-${TRELO_ICON}             xpath://a[@aria-label='Back to home']
+${TRELLO_ICON}             xpath://a[@aria-label='Back to home']
 
 *** Keywords ***
 Go Home
-     Click Element           ${TRELO_ICON}
+     Wait Until Element Is Enabled    ${TRELLO_ICON}
+     Click Element           ${TRELLO_ICON}

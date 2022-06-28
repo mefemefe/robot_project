@@ -49,14 +49,13 @@ Get Number Of Comments
     ${n}=     Get Element Count    ${COMMENT_DIV}
     RETURN    ${n}
 
-Move Card To An Above Board
-    [Documentation]    Moves the card using the "move" button in Actions
-    ...                And Selects the board N° above 
-    ...                required: number (number of boards that the card will be moved above)
-    [Arguments]        ${number}
+Move Card To Another Board
+        [Documentation]    Moves the card using the "name of destination board" 
+    ...                required: name (name of the destination board)
+    [Arguments]        ${name_of_destination_board}
     Wait Until Element Is Visible    ${MOVE_BUTTON} 
     Click Element    ${MOVE_BUTTON}
-    Click Element    ${SELECT_DESTINATION}
-    Repeat Keyword    ${number}         Press Keys   ${SELECT_DESTINATION}         \uE013
-    Press Keys   ${SELECT_DESTINATION}         \uE007
+    Select From List By Label           ${SELECT_DESTINATION}           ${name_of_destination_board} 
+    Wait Until Element Is Enabled       ${ACEPT_MOVE_BUTTON}   
     Click Element    ${ACEPT_MOVE_BUTTON}
+    Wait Until Element Is Not Visible       ${ARCHIVE_BUTTON}  
