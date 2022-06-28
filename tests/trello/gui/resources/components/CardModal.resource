@@ -57,5 +57,5 @@ Move Card To Another Board
     Click Element    ${MOVE_BUTTON}
     Select From List By Label           ${SELECT_DESTINATION}           ${name_of_destination_board} 
     Wait Until Element Is Enabled       ${ACEPT_MOVE_BUTTON}   
-    Click Element    ${ACEPT_MOVE_BUTTON}
+    Click Element    ${ACCEPT_MOVE_BUTTON}
     Wait Until Element Is Not Visible       ${ARCHIVE_BUTTON}  
