@@ -5,6 +5,8 @@ Resource         resources/BoardsPage.resource
 
 *** Test Cases ***
 Login With A Valid User and Password
+    [Documentation]    Verify that it is possible to login through
+    ...                Trello's GUI using a valid email and password.
     [Tags]    smoke    gui    login
     Open Browser From Environment        ${LOGIN_URL}
     Enter Username                       ${DEFAULT_EMAIL}

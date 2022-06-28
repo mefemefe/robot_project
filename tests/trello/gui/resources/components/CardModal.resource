@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    Variables and Keywords for the 
+Documentation    Variables and Keywords for the
 ...              Card modal in Trello.
 Resource         ../TrelloGUI.resource
 

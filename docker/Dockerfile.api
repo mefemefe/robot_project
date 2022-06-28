@@ -1,0 +1,8 @@
+FROM python:slim-buster
+
+WORKDIR .
+
+COPY ./ .
+RUN pip install -r requirements.txt
+
+ENTRYPOINT robot --outputDir /reports --output api.xml --log NONE --report NONE --include $FILTER tests/trello || robot --rerunfailed reports/api.xml --output apirerun.xml --log NONE --report NONE tests/trello ; rebot --report reports/index.html --log reports/log.html --merge reports/*.xml

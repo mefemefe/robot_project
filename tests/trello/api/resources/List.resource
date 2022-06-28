@@ -6,12 +6,12 @@ Resource         TrelloAPI.resource
 *** Keywords ***
 Create A List
     [Documentation]    Creates a new List
-    ...                board id 
-    ...                name the list will have 
+    ...                board id
+    ...                name the list will have
     ...                optional_args:  idListSource, pos, etc.
     ...                keys and values should be separated, eg:    name    desired_name
-    [Arguments]        ${name}    ${idBoard}=${TEST_SUITE_BOARD_ID}    @{optional_args} 
-    ${response}=       Create An Element    list    name    ${name}    idBoard    ${idBoard}    @{optional_args}          
+    [Arguments]        ${name}    ${idBoard}=${TEST_SUITE_BOARD_ID}    @{optional_args}
+    ${response}=       Create An Element    list    name    ${name}    idBoard    ${idBoard}    @{optional_args}
     RETURN             ${response}
 
 Get A List
@@ -33,5 +33,3 @@ Update A List
     [Arguments]        ${id}    @{optional_args}
     ${response}=       Update An Element    list    ${id}    @{optional_args}
     RETURN             ${response}
-
-

@@ -95,6 +95,8 @@ Card Can Be Moved To Another Board
 
 *** Keywords ***
 Cards Suite Setup
+    [Documentation]    Creates a new board through API, then Opens a Browser
+    ...                Login to Trello, and Go to the created board's page.
     Create Trello Session
     ${BOARD}=    Create A Board    CardTestBoard
     Set Suite Variable    \${TEST_SUITE_BOARD_ID}    ${BOARD.json()}[id]
@@ -105,6 +107,7 @@ Cards Suite Setup
     
 
 Cards Suite Teardown
+    [Documentation]    Deletes the created board through API and closes all browsers.
     Wait Until Keyword Succeeds    10    2.5    Delete A Board    ${TEST_SUITE_BOARD_ID}
     Delete All Sessions
     Close All Browsers
