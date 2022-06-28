@@ -4,6 +4,7 @@ Resource         resources/Board.resource
 Suite Setup       Create Trello Session
 Suite Teardown    Delete All Sessions
 
+
 *** Test Cases ***
 CREATE a board
     [Documentation]    Verify that a board can be create through API
@@ -28,4 +29,5 @@ DELETE A Board
     [Tags]             smoke    api    board.delete
     ${response}=       Create A Board    NewBoard
     Delete A Board       ${response.json()}[id]
-    Get A Board       ${response.json()}[id]    status_code=404
+    Get A Board       ${response.json()}[id]    status_code=404  
+    
