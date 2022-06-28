@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    Variables and Keywords for the
+Documentation    Variables and Keywords for the 
 ...              Card modal in Trello.
 Resource         ../TrelloGUI.resource
 
@@ -11,6 +11,10 @@ ${DELETE_CONFIRM}        //input[@value='Delete']
 ${COMMENT_BOX_INPUT}     //div[@class='comment-box']/textarea
 ${SAVE_COMMENT}          //div[contains(@class, 'comment-controls')]//input[@value='Save']
 ${COMMENT_DIV}           //div[@class='comment-container']
+${EDIT_LABEL}           //a[contains(@class,'js-edit-labels')]
+${LABEL_COLOR_MENU}     //span[contains(@data-color,'{color}')]
+${CREATE_A_NEW_LABEL}    //button[contains(.,'Create a new label')]
+${LABEL_INPUT}           //input[contains(@class,"js-autofocus")]
 
 *** Keywords ***
 Archive Current Card
@@ -45,3 +49,16 @@ Get Number Of Comments
     [Documentation]    Return the number of comments present in the modal.
     ${n}=     Get Element Count    ${COMMENT_DIV}
     RETURN    ${n}
+
+Add Color Label In Card
+    [Documentation]              add label of a given color to a list
+    [Arguments]                  ${color}
+    Wait Until Element Is Enabled       ${EDIT_LABEL}    timeout=10s
+    Click Element    ${EDIT_LABEL}
+    Wait Until Element Is Enabled      ${LABEL_INPUT}    timeout=10s
+    Click Element    ${LABEL_INPUT}
+    Input Text                     ${LABEL_INPUT}     ${color}
+    Wait Until Element Is Enabled      ${LABEL_INPUT}    timeout=10s
+    Press Keys                       ${LABEL_INPUT}    RETURN
+    Press Keys    None    ESCAPE
+    Press Keys    None    ESCAPE
