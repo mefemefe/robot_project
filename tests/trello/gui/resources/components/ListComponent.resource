@@ -13,7 +13,7 @@ ${CONFIRM_ADD_CARD}        ${LIST_DIV}//input[@value='Add card']
 ${PENCIL_ICON}             ${LIST_CARD_NAME}//span[contains(@class, 'icon-edit')]
 ${CARD_EDIT_TITLE}         css:textarea.list-card-edit-title
 ${CARD_EDIT_TITLE_SAVE}    //input[@value='Save']
-${ADD_LIST_BUTTON}          xpath:// a[contains(@Class, 'open-add-list')]
+${ADD_LIST_BUTTON}          xpath://a[contains(@Class, 'open-add-list')]
 ${LIST_NAME_INPUT}          xpath://input[@class="list-name-input"]
 ${LIST_TEXT_AREA_NAME}      xpath://div[@class='js-list list-wrapper'][last()]//textarea
 
