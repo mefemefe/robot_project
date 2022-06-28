@@ -17,6 +17,7 @@ ${ADD_LIST_BUTTON}          xpath://a[contains(@Class, 'open-add-list')]
 ${LIST_NAME_INPUT}          xpath://input[@class="list-name-input"]
 ${LIST_TEXT_AREA_NAME}      xpath://div[@class='js-list list-wrapper'][last()]//textarea
 ${LIST_ACTIONS_BUTTON}       xpath://div[@class='js-list list-wrapper'][last()]//a[@aria-label="List actions"]
+${LIST_NAME_HEADER}         xpath://div[@class='list-header js-list-header u-clearfix is-menu-shown' and contains(.,'{old_name}')]
 
 *** Keywords ***
 Create Card In List
@@ -104,7 +105,8 @@ Verify That The List Exists
 Modify the name of a list with
     [Documentation]    Modify the name of an existent list
     [Arguments]    ${old_name}    ${new_name}
-    Click Element    xpath://div[@class='list-header js-list-header u-clearfix is-menu-shown' and contains(.,${old_name})]
+    ${name_header_instance}=    Format String   ${LIST_NAME_HEADER}    old_name=${old_name}
+    Click Element    ${name_header_instance}
     Press Keys     ${LIST_NAME_INPUT}    BACKSPACE
     Input Text    ${LIST_TEXT_AREA_NAME}    ${new_name}
     Press Keys    None    RETURN
