@@ -2,7 +2,9 @@ name: RF code-check & tests
 
 on:
   schedule:
+    - cron: '0 2 * * *'
     - cron: '0 4 * * *'
+    - cron: '0 6 * * *'
   workflow_dispatch:
   pull_request:
     branches:
@@ -76,3 +78,5 @@ jobs:
         PERSONAL_TOKEN: ${{ secrets.MY_TOKEN }}
         PUBLISH_BRANCH: gh-pages
         PUBLISH_DIR: reports
+        destination_dir: ${{ github.run_number }}-${{ github.run_attempt}}
+        keep_files: true
