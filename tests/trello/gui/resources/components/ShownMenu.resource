@@ -62,11 +62,6 @@ Close archive tab
     Wait Until Element Is Enabled   ${CLOSE_SHOW_MENU}            timeout=10s
     Click Link    ${CLOSE_SHOW_MENU}
 
-Click watch/unwatch button
-    [Documentation]    click to watch/unwatch the last list on ui
-    Click Link     xpath://div[@class='js-list list-wrapper'][last()]//a[@aria-label="List actions"]
-    Click Link    ${WATCH_LIST_BUTTON}
-
 Verify That A List Is In The Archive
     [Documentation]          Verify that a given header of a list matches
     [Arguments]              ${archived_list_title}
