@@ -15,14 +15,13 @@ ${BOARD_BUTTON}                //div[@title="{}"]
 
 *** Keywords ***
 Verify Current Page Is Boards Page
-    [Documentation]    Assert that the browser is at the boards page.
+    [Documentation]    Assert that the browser is showing the boards page.
     Wait Until Location Contains     ${BOARDS_PATH}
     Wait Until Element Is Visible    ${YOUR_WORKSPACES}
     Element Text Should Be           ${YOUR_WORKSPACES}    YOUR WORKSPACES
 
-
 Click New Board Button
-    [Documentation]    Click the button for creating a new board.
+    [Documentation]    Clicks the button that creates a new board.
     Wait Until Location Contains     ${BOARDS_PATH}
     Wait Until Element Is Visible    ${CREATE_NEW_BOARD_BUTTON}
     Click Element           ${CREATE_NEW_BOARD_BUTTON}

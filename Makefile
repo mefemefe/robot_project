@@ -9,8 +9,8 @@ gui:
 	export FILTER=$(FILTER) && \
 	docker-compose -f docker/hub.yaml up -d && \
 	docker-compose -f docker/$(BROWSER).yaml up -d && \
-	docker-compose -f docker/test.yaml up --build && \
-	docker-compose -f docker/test.yaml stop && \
+	docker-compose -f docker/gui_test.yaml up --build && \
+	docker-compose -f docker/gui_test.yaml stop && \
 	docker-compose -f docker/hub.yaml stop && \
 	docker-compose -f docker/$(BROWSER).yaml down && \
 	docker rm -f $$(docker ps -a -q) && \
@@ -18,7 +18,9 @@ gui:
 
 api:
 	export FILTER=$(FILTER) && \
-	docker-compose -f docker/test.yaml up --build
+	docker-compose -f docker/api_test.yaml up --build && \
+	docker-compose -f docker/api_test.yaml down && \
+	docker rmi docker_automation:latest
 
 clean:
 	rm -r reports

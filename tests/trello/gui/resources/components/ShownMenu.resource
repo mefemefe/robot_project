@@ -7,7 +7,7 @@ Resource         ../TrelloGUI.resource
 ${MORE_BUTTON}             xpath://div[contains(@class, 'board-menu-content')]//a[contains(text(), 'More')]
 ${CLOSE_BOARD_BUTTON}             xpath://div[@class= 'board-menu-content-frame']//a[contains(text(), 'Close board')]
 ${CLOSE_BUTTON}             xpath://div[@class= 'no-back']//input
-${DELETE_BUTTON}             xpath://button[text()= 'Permanently delete board']
+${PERMANENTLY_DELETE_BUTTON}             xpath://button[text()= 'Permanently delete board']
 ${CONFIRM_DELETE_BUTTON}             xpath://section//button[text()= 'Delete']
 ${CHANGE_NAME_OF_BOARD_FIELD}             xpath://input[contains(@class, 'board-name-input')]
 ${ABOUT_THIS_BOARD}             xpath://div[contains(@class, 'board-menu-content')]//a[contains(text(), 'About')]
@@ -25,9 +25,9 @@ Delete Current Board
     Wait Until Element Is Visible           ${CLOSE_BOARD_BUTTON}
     Click Element           ${CLOSE_BOARD_BUTTON}
     Wait Until Element Is Visible           ${CLOSE_BUTTON}
-    Click Element           ${CLOSE_BUTTON}
-    Wait Until Element Is Visible           ${DELETE_BUTTON}
-    Click Element           ${DELETE_BUTTON}
+    Click Element          ${CLOSE_BUTTON}
+    Wait Until Element Is Visible           ${PERMANENTLY_DELETE_BUTTON}
+    Click Element           ${PERMANENTLY_DELETE_BUTTON}
     Wait Until Element Is Visible           ${CONFIRM_DELETE_BUTTON}
     Click Element           ${CONFIRM_DELETE_BUTTON}
 

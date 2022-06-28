@@ -53,5 +53,5 @@ Click Login Button
     END
 
 Wait Until Location Is Atlassian's Login
-    [Documentation]    Wait until location is atlassian's login
+    [Documentation]    Waits for the page redirection when logging in.
     Wait Until Location Contains     atlassian.com

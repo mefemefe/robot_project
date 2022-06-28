@@ -2,8 +2,8 @@
 Documentation    Board Tests
 Resource         resources/LoginPage.resource
 Resource         resources/BoardsPage.resource
-Resource         resources/components/UpperHorizontalMenu.resource
-Resource         resources/components/ShownMenu.resource
+Resource         resources/BoardPage.resource
+
 
 *** Test Cases ***
 create a board
@@ -15,7 +15,10 @@ create a board
     Click New Board Button
     Set Name to Board                     NewName
     Verify Name of Board                     NewName
-    [Teardown]    Close Browser
+    [Teardown]        Run Keywords
+    ...               Open Show Menu
+    ...               Delete Current Board
+    ...               Close Browser
 
 delete a board
     [Documentation]    Verify that a board can be deleted through GUI
@@ -26,10 +29,10 @@ delete a board
     Click New Board Button
     Set Name to Board                     NewName
     Verify Name of Board                     NewName
-    Open Show Menu
-    Delete Current Board
-    Verify Current Page Is Boards Page
-    [Teardown]    Close Browser
+    [Teardown]        Run Keywords
+    ...               Open Show Menu
+    ...               Delete Current Board
+    ...               Close Browser
 
 Update a board's description
     [Documentation]    Verify that a board's description can be updated through GUI
@@ -42,10 +45,10 @@ Update a board's description
     Verify Name of Board                     NewName
     Open Show Menu
     Update Description of Board                     UpdatedDescription
-    Open Show Menu
-    Delete Current Board
-    Verify Current Page Is Boards Page
-    [Teardown]    Close Browser
+    [Teardown]        Run Keywords
+    ...               Open Show Menu
+    ...               Delete Current Board
+    ...               Close Browser
 
 
 Update a board's name
@@ -59,7 +62,8 @@ Update a board's name
     Verify Name of Board                     NewName
     Update Name of Board                     UpdatedName
     Verify Name of Board                     UpdatedName
-    Open Show Menu
-    Delete Current Board
-    Verify Current Page Is Boards Page
-    [Teardown]    Close Browser
+    [Teardown]        Run Keywords
+    ...               Open Show Menu
+    ...               Delete Current Board
+    ...               Close Browser   
+
