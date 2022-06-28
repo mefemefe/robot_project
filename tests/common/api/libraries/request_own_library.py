@@ -1,5 +1,6 @@
 import json
 import requests
+from tests.common.api.exceptions.InvalidExpectedStatus import InvalidExpectedStatus
 
 try:
     from robot.libraries.BuiltIn import BuiltIn
@@ -52,7 +53,7 @@ class request_own_library():
         if int(status_code) == int(expected)  :
             return response
         else:
-            return f"it was expected the status {expected } but the status was {status_code}"
+            raise InvalidExpectedStatus("the expected status code were not equal to the recived one")
 
             
     @keyword('POST On Session')
@@ -73,7 +74,7 @@ class request_own_library():
         if int(status_code) == int(expected)  :
             return response
         else:
-            return f"it was expected the status {expected } but the status was {status_code}"
+            raise InvalidExpectedStatus("the expected status code were not equals to the recived one")
 
     @keyword('PUT On Session')
     def put_request(self, endpoint,  expected_status_code, **kwargs):
@@ -93,7 +94,7 @@ class request_own_library():
         if int(status_code) == int(expected)  :
             return response
         else:
-            return f"it was expected the status {expected } but the status was {status_code}"
+            raise InvalidExpectedStatus("the expected status code were not equals to the recived one")
     
     
     
@@ -109,7 +110,7 @@ class request_own_library():
         if int(status_code) == int(expected)  :
             return response
         else:
-            return f"it was expected the status {expected } but the status was {status_code}"
+            raise InvalidExpectedStatus("the expected status code were not equals to the recived one")
 
     @keyword('Delete All Sessions')
     def delete_all_session(self):

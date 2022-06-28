@@ -10,7 +10,7 @@ CREATE a board
     [Tags]             smoke    api    board.create
     ${response}=       Create A Board    NewBoard
     Validate Response Schema       ${response}    board       
-    [Teardown]         Delete A Board       ${response.json()}[id]  
+    [Teardown]         Delete A Board       ${response.json()}[id]
 
 UPDATE a Board
     [Tags]             smoke    api    board.update
@@ -20,7 +20,7 @@ UPDATE a Board
     ${new_response}=       Get A Board    ${response.json()}[id]
     Validate Response Schema       ${new_response}    board
     Should Be Equal    ${new_response.json()}[name]     NewName 
-    [Teardown]         Delete A Board       ${response.json()}[id] 
+    [Teardown]         Delete A Board       ${response.json()}[id]
 
 DELETE A Board
     [Tags]             smoke    api    board.delete

@@ -32,7 +32,7 @@ Create An Element
     &{json}=             Create Dictionary
     Set To Dictionary    ${json}    @{args}
     ${url}=              Format String      ${PATHS}[${element}]    ${EMPTY}
-    ${response}=         POST On Session    ${url}    ${status_code}   &{json}           
+    ${response}=         POST On Session    ${url}    ${status_code}   &{json}
     RETURN               ${response}
 
 Delete An Element

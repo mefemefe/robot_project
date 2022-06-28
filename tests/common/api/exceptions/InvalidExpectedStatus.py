@@ -1,0 +1,3 @@
+class InvalidExpectedStatus(Exception):
+
+    pass
