@@ -16,6 +16,7 @@ ${CARD_EDIT_TITLE_SAVE}    //input[@value='Save']
 ${ADD_LIST_BUTTON}          xpath://a[contains(@Class, 'open-add-list')]
 ${LIST_NAME_INPUT}          xpath://input[@class="list-name-input"]
 ${LIST_TEXT_AREA_NAME}      xpath://div[@class='js-list list-wrapper'][last()]//textarea
+${LIST_ACTIONS_BUTTON}       xpath://div[@class='js-list list-wrapper'][last()]//a[@aria-label="List actions"]
 
 *** Keywords ***
 Create Card In List
@@ -110,5 +111,5 @@ Modify the name of a list with
 
 Close a list
     [Documentation]    archives a list
-    Click Link     xpath://div[@class='js-list list-wrapper'][last()]//a[@aria-label="List actions"]
+    Click Link    ${LIST_ACTIONS_BUTTON}
     Click Link    ${CLOSE_LIST_BUTTON}
