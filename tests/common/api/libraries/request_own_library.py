@@ -50,17 +50,17 @@ class request_own_library():
                 f"it was expected the status {expected_status_code} but the status was {status_code}")
 
     @keyword('POST On Session')
-    def post_request(self, endpoint,  expected_status_code=200, **kwargs):
+    def post_request(self, endpoint, expected_status_code=200, **kwargs):
         """Method to send POST requests to the specified endpoint
         :param endpoint:  str   Endpoint of service to which the request will be sent
         :param expected_status_code:  str   Expected status code
         :param kwargs:    dict  Data that will be considered as Payload
         :return:  the response.
-        
+
         """
         payload1 = {}
         for key, value in kwargs.items():
-            payload1[key] = value   
+            payload1[key] = value
         status_code, response = self.do_request('POST', endpoint, payload1)
         if int(status_code) == expected_status_code:
             return response
@@ -93,7 +93,7 @@ class request_own_library():
         :param endpoint:  str   Endpoint of service to which the request will be sent
         :return:  the response.
         """
-        status_code, response =self.do_request('DELETE', endpoint)
+        status_code, response = self.do_request('DELETE', endpoint)
         if int(status_code) == expected_status_code:
             return response
         else:
