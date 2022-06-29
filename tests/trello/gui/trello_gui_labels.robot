@@ -1,4 +1,5 @@
 *** Settings ***
+Documentation    Label Tests
 Library          SeleniumLibrary
 Resource         resources/LoginPage.resource
 Resource         resources/BoardsPage.resource
@@ -18,6 +19,7 @@ Suite Teardown    Run Keywords
 
 *** Test Cases ***
 filter label
+    [Documentation]    check filter card by label function
     [Tags]    smoke    gui    list.create
     Open Browser From Environment        ${LOGIN_URL}
     Maximize Browser Window
@@ -33,14 +35,15 @@ filter label
     Card Should Not Be In List     card1    To Do
     Click no labels filter
     Card Should Be In List     card1    To Do
+    [Teardown]    Close Browser
 
-    [Teardown]    Run Keywords
-...               Close Browser
 
 *** Keywords ***
 Setup Board
+    [Documentation]    Creates a board and saves its ID
     ${BOARD}=    Create A Board    TestBoard
     Set Suite Variable    \${TEST_SUITE_BOARD_ID}    ${BOARD.json()}[id]
 
 Teardown Board
+    [Documentation]    Deletes used board for teardown
     Delete A Board    ${TEST_SUITE_BOARD_ID}

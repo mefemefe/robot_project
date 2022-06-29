@@ -15,6 +15,7 @@ ${DEFAULT_SESSION_ALIAS}    TestSession
 
 *** Keywords ***
 Create Trello Session
+    [Documentation]    Creates Trello Session with given headers
     Create Session    ${API_BASE_URL}    headers=&{HEADERS}
 
 Get An Element
@@ -22,7 +23,7 @@ Get An Element
     ...                Elements: card, board, label
     [Arguments]        ${element}    ${id}    ${status_code}=200
     ${url}=            Format String      ${PATHS}[${element}]    ${id}
-    ${response}=       GET On Session    ${url}    ${status_code}    
+    ${response}=       GET On Session    ${url}    ${status_code}
     RETURN             ${response}
 
 Create An Element
@@ -50,7 +51,5 @@ Update An Element
     &{json}=             Create Dictionary
     Set To Dictionary    ${json}    @{args}
     ${url}=              Format String      ${PATHS}[${element}]    ${id}
-    ${response}=         PUT On Session    ${url}    ${status_code}   &{json} 
+    ${response}=         PUT On Session    ${url}    ${status_code}   &{json}
     RETURN               ${response}
-
-

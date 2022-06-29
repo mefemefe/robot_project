@@ -65,5 +65,5 @@ Update a board's name
     [Teardown]        Run Keywords
     ...               Open Show Menu
     ...               Delete Current Board
-    ...               Close Browser   
+    ...               Close Browser
 

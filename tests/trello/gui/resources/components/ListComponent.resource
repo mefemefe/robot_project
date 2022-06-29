@@ -86,7 +86,7 @@ Drag Card From One List To Another
     ${list2_locator}=                Format String    ${LIST_DIV}    list_name=${list2_name}
     Wait Until Element Is Visible    ${card_locator}
     Drag And Drop                    ${card_locator}    ${list2_locator}
-    
+
 Create new list with the name
     [Documentation]    Create  a new list with the given name
     [Arguments]    ${list_name}
@@ -134,4 +134,4 @@ Card Should Not Be In List
     [Arguments]                  ${card_name}    ${list_name}
     ${card_locator}=             Format String    ${LIST_CARD_NAME}    list_name=${list_name}    card_name=${card_name}
     Element Should Not Be Visible    ${card_locator}
-    
+
