@@ -7,6 +7,7 @@ Documentation    Variables and Keywords for Trello's Board Page Top menu bar
 ${NAME_OF_BOARD}             xpath://h1[contains(@class, 'js-board-editing-target')]
 ${NAME_OF_BOARD_INPUT}             xpath://input[contains(@class, 'board-name-input')]
 ${SHOW_MENU_BUTTON}             xpath://div[contains(@class, 'board-header')]//a[contains(., 'Show menu')]
+${FILTER_BUTTON}                      xpath://button[@data-test-id='filter-popover-button']
 
 *** Keywords ***
 Verify Name of Board
@@ -34,3 +35,8 @@ Update Name of Board
     Repeat Keyword           ${names_lenght}         Press Keys   ${NAME_OF_BOARD_INPUT}         \ue017
     Press Keys   ${NAME_OF_BOARD_INPUT}         ${name}
     Press Keys   ${NAME_OF_BOARD_INPUT}         \ue007
+    
+Enter to the side menu
+    [Documentation]    accesing to the archive menu in the sidebar
+    Wait Until Element Is Enabled    ${SHOW_MENU_BUTTON}    timeout=10s
+    Click Link    ${SHOW_MENU_BUTTON}
