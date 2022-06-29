@@ -4,12 +4,14 @@ Resource          resources/LoginPage.resource
 Resource          tests/trello/api/resources/Board.resource
 Resource          resources/BoardsPage.resource
 Resource          resources/BoardPage.resource
+Resource          resources/components/TrelloUpperMenu.resource
 Suite Setup       Cards Suite Setup
 Suite Teardown    Cards Suite Teardown
 
 *** Test Cases ***
 Verify A Card Can Be Created
-    [Documentation]    Verify that a card can be created through GUI
+    [Documentation]    Verify that it is possible to create a new
+    ...                card through Trello's GUI.
     [Tags]    smoke    gui    card.create
     Set Test Variable     \${list}     To Do
     Set Test Variable     \${card}     Test Card
@@ -72,6 +74,26 @@ Card Can Be Dragged To Another List
     [Teardown]        Run Keywords
     ...               Go To Card Modal    ${list2}    ${card}
     ...               AND    Delete Current Card
+
+
+Card Can Be Moved To Another Board
+    [Tags]    regression    gui    card.move
+    [Documentation]    Creates a new board through API, then goes to the
+    ...                second board, creates a card and moves it to the other board
+    ${board2}=         Create A Board    CardTestBoard2
+    Go Home
+    Go To Board       CardTestBoard2
+    Set Test Variable         \${list}    To Do
+    Set Test Variable         \${card}    Test Card2
+    Create Card In List        ${list}    ${card}
+    Go To Card Modal           ${list}    ${card}
+    Move Card To Another Board              CardTestBoard
+    ${Cards_On_list}=       Get Number Of Cards In List       To Do
+    ${0}=	                 Convert To Integer	             0
+    Should Be Equal             ${Cards_On_list}        ${0}
+   [Teardown]      Run Keywords
+    ...             Close Browser
+    ...             AND  Wait Until Keyword Succeeds        10        2.5        Delete A Board        ${board2.json()}[id]
 
 *** Keywords ***
 Cards Suite Setup
