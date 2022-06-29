@@ -15,6 +15,10 @@ ${ACCEPT_MOVE_BUTTON}     //input[@value="Move"]
 ${COMMENT_BOX_INPUT}     //div[@class='comment-box']/textarea
 ${SAVE_COMMENT}          //div[contains(@class, 'comment-controls')]//input[@value='Save']
 ${COMMENT_DIV}           //div[@class='comment-container']
+${EDIT_LABEL}           //a[contains(@class,'js-edit-labels')]
+${LABEL_COLOR_MENU}     //span[contains(@data-color,'{color}')]
+${CREATE_A_NEW_LABEL}    //button[contains(.,'Create a new label')]
+${LABEL_INPUT}           //input[contains(@class,"js-autofocus")]
 
 *** Keywords ***
 Archive Current Card
@@ -50,6 +54,20 @@ Get Number Of Comments
     ${n}=     Get Element Count    ${COMMENT_DIV}
     RETURN    ${n}
 
+
+Add Color Label In Card
+    [Documentation]              add label of a given color to a list
+    [Arguments]                  ${color}
+    Wait Until Element Is Enabled       ${EDIT_LABEL}    timeout=10s
+    Click Element    ${EDIT_LABEL}
+    Wait Until Element Is Enabled      ${LABEL_INPUT}    timeout=10s
+    Click Element    ${LABEL_INPUT}
+    Input Text                     ${LABEL_INPUT}     ${color}
+    Wait Until Element Is Enabled      ${LABEL_INPUT}    timeout=10s
+    Press Keys                       ${LABEL_INPUT}    RETURN
+    Press Keys    None    ESCAPE
+    Press Keys    None    ESCAPE
+
 Move Card To Another Board
     [Documentation]    Moves the card using the "name of destination board"
     ...                required: name (name of the destination board)
@@ -60,3 +78,4 @@ Move Card To Another Board
     Wait Until Element Is Enabled       ${ACCEPT_MOVE_BUTTON}
     Click Element    ${ACCEPT_MOVE_BUTTON}
     Wait Until Element Is Not Visible       ${ARCHIVE_BUTTON}
+

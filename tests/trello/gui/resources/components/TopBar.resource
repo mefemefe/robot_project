@@ -1,7 +1,6 @@
 *** Settings ***
 Documentation    Variables and Keywords for Trello's Board Page Top menu bar
 ...              (default page after logging in, the top bar, where the title of the board is located)
-
 *** Variables ***
 ### Locators ###
 ${NAME_OF_BOARD}             xpath://h1[contains(@class, 'js-board-editing-target')]
@@ -35,8 +34,12 @@ Update Name of Board
     Repeat Keyword           ${names_lenght}         Press Keys   ${NAME_OF_BOARD_INPUT}         \ue017
     Press Keys   ${NAME_OF_BOARD_INPUT}         ${name}
     Press Keys   ${NAME_OF_BOARD_INPUT}         \ue007
-    
+
 Enter to the side menu
     [Documentation]    accesing to the archive menu in the sidebar
     Wait Until Element Is Enabled    ${SHOW_MENU_BUTTON}    timeout=10s
     Click Link    ${SHOW_MENU_BUTTON}
+
+Enter To Filter Menu
+    [Documentation]    accesing to the filter menu
+    Click Element    ${FILTER_BUTTON}

@@ -18,6 +18,7 @@ Create Trello Session
     [Documentation]    Creates a Trello Session
     Create Session    ${API_BASE_URL}    headers=&{HEADERS}
 
+
 Get An Element
     [Documentation]    Gets an element with the given id using the trello API
     ...                Elements: card, board, label
