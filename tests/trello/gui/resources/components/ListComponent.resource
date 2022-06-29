@@ -86,7 +86,7 @@ Drag Card From One List To Another
     ${list2_locator}=                Format String    ${LIST_DIV}    list_name=${list2_name}
     Wait Until Element Is Visible    ${card_locator}
     Drag And Drop                    ${card_locator}    ${list2_locator}
-    
+
 Create new list with the name
     [Documentation]    Create  a new list with the given name
     [Arguments]    ${list_name}
@@ -100,18 +100,23 @@ Verify That The List Exists
     [Documentation]          Verify that a given header of a list matches
     [Arguments]              ${list_name}
     ${list_name_locator}=    Format String   ${LIST_DIV}    list_name=${list_name}
+    Wait Until Element Is Visible    ${list_name_locator}
     Page Should Contain Element    ${list_name_locator}
 
 Modify the name of a list with
     [Documentation]    Modify the name of an existent list
     [Arguments]    ${old_name}    ${new_name}
     ${name_header_instance}=    Format String   ${LIST_NAME_HEADER}    old_name=${old_name}
+    Wait Until Element Is Enabled       ${name_header_instance}    timeout=10s
     Click Element    ${name_header_instance}
+    Wait Until Element Is Enabled       ${LIST_NAME_INPUT}    timeout=10s
     Press Keys     ${LIST_NAME_INPUT}    BACKSPACE
     Input Text    ${LIST_TEXT_AREA_NAME}    ${new_name}
     Press Keys    None    RETURN
 
 Close a list
     [Documentation]    archives a list
+    Wait Until Element Is Enabled       ${LIST_ACTIONS_BUTTON}    timeout=10s
     Click Link    ${LIST_ACTIONS_BUTTON}
+    Wait Until Element Is Enabled       ${CLOSE_LIST_BUTTON}    timeout=10s
     Click Link    ${CLOSE_LIST_BUTTON}
