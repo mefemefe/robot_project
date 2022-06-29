@@ -4,12 +4,12 @@ from tests.common.api.exceptions.InvalidExpectedStatus import InvalidExpectedSta
 from robot.api.deco import keyword
 ROBOT = False
 
+
 class request_own_library():
     ROBOT_LIBRARY_SCOPE = 'TEST SUITE'
     base_url = ""
     session = requests.Session()
 
-    
     @keyword('Create Session')
     def create_session(self, base_url, headers):
         self.base_url = base_url
@@ -22,7 +22,7 @@ class request_own_library():
         :param payload:   dict  Data or payload send along with the REST request
         :return: Tuple that contains the status code and the response.
         """
-        
+
         endpoint_url = f"{self.base_url}/{endpoint}"
 
         if method in ['POST', 'PUT']:
@@ -36,7 +36,6 @@ class request_own_library():
         return response.status_code, response
 
     @keyword('GET On Session')
-
     def get_request(self, endpoint, expected_status_code=200):
         """Method to send GET requests to the specified endpoint
         :param endpoint:  str   Endpoint of service to which the request will be sent
@@ -44,12 +43,11 @@ class request_own_library():
         :return:  the response.
         """
         status_code, response = self.do_request('GET', endpoint)
-        if int(status_code) == expected_status_code  :
+        if int(status_code) == expected_status_code:
             return response
         else:
             raise InvalidExpectedStatus(
                 f"it was expected the status {expected_status_code} but the status was {status_code}")
-
 
     @keyword('POST On Session')
     def post_request(self, endpoint,  expected_status_code=200, **kwargs):
@@ -64,7 +62,7 @@ class request_own_library():
         for key, value in kwargs.items():
             payload1[key] = value   
         status_code, response = self.do_request('POST', endpoint, payload1)
-        if int(status_code) == expected_status_code  :
+        if int(status_code) == expected_status_code:
             return response
         else:
             raise InvalidExpectedStatus(
@@ -83,13 +81,11 @@ class request_own_library():
         for key, value in kwargs.items():
             payload1[key] = value
         status_code, response = self.do_request('PUT', endpoint, payload1)
-        if int(status_code) == expected_status_code  :
+        if int(status_code) == expected_status_code:
             return response
         else:
             raise InvalidExpectedStatus(
                 f"it was expected the status {expected_status_code} but the status was {status_code}")
-
-
 
     @keyword('DELETE On Session')
     def delete_request(self, endpoint, expected_status_code=200):
@@ -98,7 +94,7 @@ class request_own_library():
         :return:  the response.
         """
         status_code, response =self.do_request('DELETE', endpoint)
-        if int(status_code) == expected_status_code  :
+        if int(status_code) == expected_status_code:
             return response
         else:
             raise InvalidExpectedStatus(
