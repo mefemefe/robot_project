@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    Variables and Keywords for Trello's Boards Page 
+Documentation    Variables and Keywords for Trello's Boards Page
 ...              (default page after logging in)
 Resource         TrelloGUI.resource
 Library          String
@@ -15,23 +15,23 @@ ${BOARD_BUTTON}                //div[@title="{}"]
 
 *** Keywords ***
 Verify Current Page Is Boards Page
+    [Documentation]    Assert that the browser is showing the boards page.
     Wait Until Location Contains     ${BOARDS_PATH}
     Wait Until Element Is Visible    ${YOUR_WORKSPACES}
     Element Text Should Be           ${YOUR_WORKSPACES}    YOUR WORKSPACES
 
-
 Click New Board Button
+    [Documentation]    Clicks the button that creates a new board.
     Wait Until Location Contains     ${BOARDS_PATH}
-    Wait Until Element Is Visible    ${CREATE_NEW_BOARD_BUTTON} 
+    Wait Until Element Is Visible    ${CREATE_NEW_BOARD_BUTTON}
     Click Element           ${CREATE_NEW_BOARD_BUTTON}
-      
+
 Set Name to Board
     [Documentation]    Set the name of the board and press the create button
-    ...                 
-    [Arguments]        ${name}  
-    Wait Until Element Is Visible           ${BOARD_NAME_INPUT} 
-    Input Text           ${BOARD_NAME_INPUT}    ${name} 
-    Wait Until Element Is Enabled           ${CREATE_BUTTON} 
+    [Arguments]        ${name}
+    Wait Until Element Is Visible           ${BOARD_NAME_INPUT}
+    Input Text           ${BOARD_NAME_INPUT}    ${name}
+    Wait Until Element Is Enabled           ${CREATE_BUTTON}
     Click Element           ${CREATE_BUTTON}
 
 Go To Board

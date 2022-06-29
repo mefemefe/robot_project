@@ -13,26 +13,26 @@ ${FILTER_BUTTON}                      xpath://button[@data-test-id='filter-popov
 Verify Name of Board
     [Documentation]    Verifies the name of a board
     ...                name the board should have
-    [Arguments]        ${name}  
-    Wait Until Element Is Visible           ${NAME_OF_BOARD}    10   
+    [Arguments]        ${name}
+    Wait Until Element Is Visible           ${NAME_OF_BOARD}    10
     Element Text Should Be           ${NAME_OF_BOARD}    ${name}
 
 Open Show Menu
     [Documentation]    Deletes the current board
     Wait Until Element Is Visible           ${SHOW_MENU_BUTTON}
     Click Element           ${SHOW_MENU_BUTTON}
-    
+
 Update Name of Board
     [Documentation]    Updates the name of a board
-    ...                 it takes the Length of the boards's name in order to press the delete key 
+    ...                 it takes the Length of the boards's name in order to press the delete key
     ...                 as many times as the name's length
-    [Arguments]        ${name} 
+    [Arguments]        ${name}
     Wait Until Element Is Visible           ${NAME_OF_BOARD}
     ${response}=       Get Text    ${NAME_OF_BOARD}
-    ${names_lenght}=       Get Length    ${response}    
+    ${names_lenght}=       Get Length    ${response}
     Click Element           ${NAME_OF_BOARD}
     Press Keys           ${NAME_OF_BOARD_INPUT}         \ue011
-    Repeat Keyword           ${names_lenght}         Press Keys   ${NAME_OF_BOARD_INPUT}         \ue017      
+    Repeat Keyword           ${names_lenght}         Press Keys   ${NAME_OF_BOARD_INPUT}         \ue017
     Press Keys   ${NAME_OF_BOARD_INPUT}         ${name}
     Press Keys   ${NAME_OF_BOARD_INPUT}         \ue007
     
@@ -40,4 +40,3 @@ Enter to the side menu
     [Documentation]    accesing to the archive menu in the sidebar
     Wait Until Element Is Enabled    ${SHOW_MENU_BUTTON}    timeout=10s
     Click Link    ${SHOW_MENU_BUTTON}
-    
