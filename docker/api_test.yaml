@@ -1,0 +1,21 @@
+version: "3"
+services:
+  automation:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile.api
+    container_name: automation
+    networks:
+    - default
+    volumes:
+    - ../reports:/reports
+    env_file:
+    - docker.env
+    environment:
+    - PYTHONPATH=/
+    - TRELLO_APIKEY=${TRELLO_APIKEY}
+    - TRELLO_TOKEN=${TRELLO_TOKEN}
+    - TRELLO_EMAIL=${TRELLO_EMAIL}
+    - TRELLO_PASSWORD=${TRELLO_PASSWORD}
+    - BROWSER=${BROWSER}
+    - FILTER=${FILTER}

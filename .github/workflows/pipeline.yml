@@ -1,0 +1,82 @@
+name: RF code-check & tests
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+    - cron: '0 4 * * *'
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
+permissions:
+  contents: read
+
+jobs:
+  unit:
+    name: Code Check & Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: 🐍 Step 0 - Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: 💾 Step 1 - Install flake8 & robotframework-lint
+      run: |
+        pip install flake8 robotframework-lint
+    - name: ❄️ Step 2 - Lint with flake8
+      if: always()
+      run: |
+        flake8 . --count --ignore=F811 --max-line-length=120 --show-source --statistics
+    - name: 🤖 Step 3 - Lint with RFLint
+      if: always()
+      run: |
+        rflint --ignore LineTooLong --ignore TooFewKeywordSteps --ignore TooManyTestSteps --recursive tests
+  
+  test:
+    name: Run Test Framework
+    runs-on: ubuntu-latest
+    env:
+      TRELLO_APIKEY: ${{secrets.TRELLO_APIKEY}}
+      TRELLO_TOKEN: ${{secrets.TRELLO_TOKEN}}
+      TRELLO_PASSWORD: ${{secrets.TRELLO_PASSWORD}}
+      TRELLO_EMAIL: ${{secrets.TRELLO_EMAIL}}
+    steps:
+    - uses: actions/checkout@v3
+    - name: 🅰️ API tests
+      id: api
+      run: |
+        export FILTER=api
+        docker-compose -f docker/api_test.yaml up --build --exit-code-from automation
+        docker-compose -f docker/api_test.yaml down
+        docker rmi docker_automation:latest
+    - name: 🏞️ GUI tests
+      id: gui
+      run: |
+        export BROWSER=chrome
+        export FILTER=gui
+        docker-compose -f docker/hub.yaml up -d
+        docker-compose -f docker/chrome.yaml up -d
+        docker-compose -f docker/gui_test.yaml up --build --exit-code-from automation
+        docker-compose -f docker/gui_test.yaml stop
+        docker-compose -f docker/hub.yaml stop
+        docker-compose -f docker/chrome.yaml down
+        docker rm -f $(docker ps -a -q)
+        docker rmi docker_automation:latest
+    - name: 🗒️ Save Reports
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: reports
+        path: reports
+        retention-days: 5
+    - name: 🐈‍⬛ Deploy report to Github Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        PERSONAL_TOKEN: ${{ secrets.MY_TOKEN }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: reports
+        destination_dir: ${{ github.run_number }}-${{ github.run_attempt}}
+        keep_files: true

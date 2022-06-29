@@ -4,21 +4,26 @@ Resource          resources/LoginPage.resource
 Resource          tests/trello/api/resources/Board.resource
 Resource          resources/BoardsPage.resource
 Resource          resources/BoardPage.resource
+Resource          resources/components/TrelloUpperMenu.resource
 Suite Setup       Cards Suite Setup
 Suite Teardown    Cards Suite Teardown
 
 *** Test Cases ***
 Verify A Card Can Be Created
+    [Documentation]    Verify that it is possible to create a new
+    ...                card through Trello's GUI.
     [Tags]    smoke    gui    card.create
     Set Test Variable     \${list}     To Do
     Set Test Variable     \${card}     Test Card
     Create Card In List    ${list}     ${card}
     Verify Card Exists     ${list}     ${card}
-    [Teardown]    Run Keywords    
+    [Teardown]    Run Keywords
     ...           Go To Card Modal    list_name=${list}    card_name=${card}
     ...           AND    Delete Current Card
 
 Modify A Card's Name From The Board Page
+    [Documentation]    Verify that it is possible to edit a card's Name
+    ...                using the pencil icon in the board page.
     [Tags]    regression    gui    card.title_board
     Set Test Variable     \${list}    To Do
     Set Test Variable     \${card}    Test Card
@@ -31,6 +36,8 @@ Modify A Card's Name From The Board Page
     ...           AND    Delete Current Card
 
 Leave A Comment On A Card
+    [Documentation]    Verify that it is possible to write a comment
+    ...                on a card, through the card modal.
     [Tags]    regression    gui    card.comment
     Set Test Variable     \${list}    To Do
     Set Test Variable     \${card}    Test Card
@@ -43,6 +50,8 @@ Leave A Comment On A Card
     [Teardown]             Delete Current Card
 
 Verify A Card Can Be Deleted
+    [Documentation]    Verify that it is possible to delete a card
+    ...                from inside the card modal.
     [Tags]    smoke    gui    card.delete
     Set Test Variable     \${list}    To Do
     Set Test Variable     \${card}    Test Card
@@ -54,6 +63,7 @@ Verify A Card Can Be Deleted
     Should Be True         ${cards_before} == ${cards_after}
 
 Card Can Be Dragged To Another List
+    [Documentation]    Verify that a card can be dragged from one list to another.
     [Tags]    regression    gui    card.drag
     Set Test Variable         \${list}    To Do
     Set Test Variable         \${card}    Test Card
@@ -65,8 +75,30 @@ Card Can Be Dragged To Another List
     ...               Go To Card Modal    ${list2}    ${card}
     ...               AND    Delete Current Card
 
+
+Card Can Be Moved To Another Board
+    [Tags]    regression    gui    card.move
+    [Documentation]    Creates a new board through API, then goes to the
+    ...                second board, creates a card and moves it to the other board
+    ${board2}=         Create A Board    CardTestBoard2
+    Go Home
+    Go To Board       CardTestBoard2
+    Set Test Variable         \${list}    To Do
+    Set Test Variable         \${card}    Test Card2
+    Create Card In List        ${list}    ${card}
+    Go To Card Modal           ${list}    ${card}
+    Move Card To Another Board              CardTestBoard
+    ${Cards_On_list}=       Get Number Of Cards In List       To Do
+    ${0}=	                 Convert To Integer	             0
+    Should Be Equal             ${Cards_On_list}        ${0}
+   [Teardown]      Run Keywords
+    ...             Close Browser
+    ...             AND  Wait Until Keyword Succeeds        10        2.5        Delete A Board        ${board2.json()}[id]
+
 *** Keywords ***
 Cards Suite Setup
+    [Documentation]    Creates a new board through API, then Opens a Browser
+    ...                Login to Trello, and Go to the created board's page.
     Create Trello Session
     ${BOARD}=    Create A Board    CardTestBoard
     Set Suite Variable    \${TEST_SUITE_BOARD_ID}    ${BOARD.json()}[id]
@@ -76,6 +108,7 @@ Cards Suite Setup
     Go To Board            CardTestBoard
 
 Cards Suite Teardown
+    [Documentation]    Deletes the created board through API and closes all browsers.
     Wait Until Keyword Succeeds    10    2.5    Delete A Board    ${TEST_SUITE_BOARD_ID}
     Delete All Sessions
     Close All Browsers
