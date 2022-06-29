@@ -9,5 +9,6 @@ ${TRELLO_ICON}             xpath://a[@aria-label='Back to home']
 
 *** Keywords ***
 Go Home
+     [Documentation]    it goes to the gome page
      Wait Until Element Is Enabled    ${TRELLO_ICON}
      Click Element           ${TRELLO_ICON}

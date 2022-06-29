@@ -30,4 +30,3 @@ DELETE A Board
     ${response}=       Create A Board    NewBoard
     Delete A Board       ${response.json()}[id]
     Get A Board       ${response.json()}[id]    status_code=404
-    

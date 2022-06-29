@@ -50,12 +50,12 @@ Get Number Of Comments
     RETURN    ${n}
 
 Move Card To Another Board
-        [Documentation]    Moves the card using the "name of destination board" 
+    [Documentation]    Moves the card using the "name of destination board"
     ...                required: name (name of the destination board)
     [Arguments]        ${name_of_destination_board}
-    Wait Until Element Is Visible    ${MOVE_BUTTON} 
+    Wait Until Element Is Visible    ${MOVE_BUTTON}
     Click Element    ${MOVE_BUTTON}
-    Select From List By Label           ${SELECT_DESTINATION}           ${name_of_destination_board} 
-    Wait Until Element Is Enabled       ${ACCEPT_MOVE_BUTTON}   
+    Select From List By Label           ${SELECT_DESTINATION}           ${name_of_destination_board}
+    Wait Until Element Is Enabled       ${ACCEPT_MOVE_BUTTON}
     Click Element    ${ACCEPT_MOVE_BUTTON}
-    Wait Until Element Is Not Visible       ${ARCHIVE_BUTTON}  
+    Wait Until Element Is Not Visible       ${ARCHIVE_BUTTON}
