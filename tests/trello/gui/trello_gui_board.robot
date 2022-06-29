@@ -66,4 +66,3 @@ Update a board's name
     ...               Open Show Menu
     ...               Delete Current Board
     ...               Close Browser
-
