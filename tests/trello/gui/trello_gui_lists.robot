@@ -1,4 +1,5 @@
 *** Settings ***
+Documentation    List Tests
 Library          SeleniumLibrary
 Resource         resources/LoginPage.resource
 Resource         resources/BoardsPage.resource
@@ -17,17 +18,19 @@ Suite Teardown    Run Keywords
 *** Test Cases ***
 create list
     [Tags]    smoke    gui    list.create
+    [Documentation]    verify that a list can be created in GUI
     Open Browser From Environment        ${LOGIN_URL}
     Maximize Browser Window
     Login To Trello    ${DEFAULT_EMAIL}     ${DEFAULT_PASSWORD}
     Go To Board    TestBoard
     Create new list with the name    NEW_TEST_LIST
     Verify That The List Exists    NEW_TEST_LIST
-    [Teardown]    Run Keywords
-...               Close a list
-...               Close Browser
+    [Teardown]        Run Keywords
+    ...               Close a list
+    ...               Close Browser
 
 modify name of a list
+    [Documentation]    verify that a list name can be modified in GUI
     [Tags]    smoke    gui    list.update
     Open Browser From Environment        ${LOGIN_URL}
     Maximize Browser Window
@@ -36,11 +39,12 @@ modify name of a list
     Create new list with the name    TO_MODIFY
     Modify the name of a list with    TO_MODIFY    MODIFIED_LIST
     Verify That The List Exists    MODIFIED_LIST
-    [Teardown]    Run Keywords
-...               Close a list
-...               Close Browser
+    [Teardown]        Run Keywords
+    ...               Close a list
+    ...               Close Browser
 
 archive a list
+    [Documentation]    verify that a list can be archived in GUI
     [Tags]    smoke    gui    list.archive
     Open Browser From Environment        ${LOGIN_URL}
     Maximize Browser Window
@@ -57,8 +61,10 @@ archive a list
 
 *** Keywords ***
 Setup Board
+    [Documentation]    Creates a board and saves its ID
     ${BOARD}=    Create A Board    TestBoard
     Set Suite Variable    \${TEST_SUITE_BOARD_ID}    ${BOARD.json()}[id]
 
 Teardown Board
+    [Documentation]    Deletes used board for teardown
     Delete A Board    ${TEST_SUITE_BOARD_ID}
