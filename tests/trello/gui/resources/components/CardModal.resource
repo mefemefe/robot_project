@@ -8,6 +8,9 @@ ${MODAL_CLOSE_BUTTON}    //a[contains(@class,'dialog-close-button')]
 ${ARCHIVE_BUTTON}        //span[@title='Archive']
 ${DELETE_BUTTON}         //a[@title='Delete']
 ${DELETE_CONFIRM}        //input[@value='Delete']
+${MOVE_BUTTON}           //a[@title='Move']
+${SELECT_DESTINATION}    //select[@data-test-id='move-board-select']
+${ACCEPT_MOVE_BUTTON}     //input[@value="Move"]
 ${COMMENT_BOX_INPUT}     //div[@class='comment-box']/textarea
 ${SAVE_COMMENT}          //div[contains(@class, 'comment-controls')]//input[@value='Save']
 ${COMMENT_DIV}           //div[@class='comment-container']
@@ -50,6 +53,7 @@ Get Number Of Comments
     ${n}=     Get Element Count    ${COMMENT_DIV}
     RETURN    ${n}
 
+
 Add Color Label In Card
     [Documentation]              add label of a given color to a list
     [Arguments]                  ${color}
@@ -62,3 +66,15 @@ Add Color Label In Card
     Press Keys                       ${LABEL_INPUT}    RETURN
     Press Keys    None    ESCAPE
     Press Keys    None    ESCAPE
+
+Move Card To Another Board
+    [Documentation]    Moves the card using the "name of destination board"
+    ...                required: name (name of the destination board)
+    [Arguments]        ${name_of_destination_board}
+    Wait Until Element Is Visible    ${MOVE_BUTTON}
+    Click Element    ${MOVE_BUTTON}
+    Select From List By Label           ${SELECT_DESTINATION}           ${name_of_destination_board}
+    Wait Until Element Is Enabled       ${ACCEPT_MOVE_BUTTON}
+    Click Element    ${ACCEPT_MOVE_BUTTON}
+    Wait Until Element Is Not Visible       ${ARCHIVE_BUTTON}
+

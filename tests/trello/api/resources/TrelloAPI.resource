@@ -16,7 +16,8 @@ ${DEFAULT_SESSION_ALIAS}    TestSession
 *** Keywords ***
 Create Trello Session
     [Documentation]    Creates a Trello Session
-    Create Session    ${API_BASE_URL}    headers=&{HEADER
+    Create Session    ${API_BASE_URL}    headers=&{HEADERS}
+
 
 Get An Element
     [Documentation]    Gets an element with the given id using the trello API
