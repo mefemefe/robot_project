@@ -7,6 +7,7 @@ Resource         ../TrelloGUI.resource
 ${MODAL_CLOSE_BUTTON}    //a[contains(@class,'dialog-close-button')]
 ${ARCHIVE_BUTTON}        //span[@title='Archive']
 ${DELETE_BUTTON}         //a[@title='Delete']
+${IS_ARCHIVED_MSG}       //p[text()='This card is archived.']
 ${DELETE_CONFIRM}        //input[@value='Delete']
 ${MOVE_BUTTON}           //a[@title='Move']
 ${SELECT_DESTINATION}    //select[@data-test-id='move-board-select']
@@ -28,9 +29,9 @@ Archive Current Card
 Delete Current Card
     [Documentation]     The Keyword will first check if the card is archived,
     ...                 if it's not, it will archive it to be able to delete it.
-    ${not_archived}=    Run Keyword And Return Status    Element Should Not Be Visible    ${DELETE_BUTTON}
+    ${not_archived}=    Run Keyword And Return Status    Element Should Not Be Visible    ${IS_ARCHIVED_MSG}
     Run Keyword If      ${not_archived}    Archive Current Card
-    Click Element       ${DELETE_BUTTON}
+    Wait Until Keyword Succeeds    3    0.9    Click Element    ${DELETE_BUTTON}
     Click Element       ${DELETE_CONFIRM}
 
 Close Card Modal
