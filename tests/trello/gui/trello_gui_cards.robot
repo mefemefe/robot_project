@@ -91,7 +91,7 @@ Card Can Be Moved To Another Board
     Should Be Equal             ${Cards_On_list}        ${0}   
    [Teardown]      Run Keywords
     ...             Close Browser
-    ...             AND  Delete A Board            ${board2.json()}[id]               
+    ...             AND  Wait Until Keyword Succeeds        10        2.5        Delete A Board        ${board2.json()}[id]              
 
 *** Keywords ***
 Cards Suite Setup
