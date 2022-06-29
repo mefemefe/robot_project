@@ -78,8 +78,8 @@ Card Can Be Dragged To Another List
 
 Card Can Be Moved To Another Board
     [Tags]    regression    gui    card.move
-    [Documentation]    Creates a new board through API, then goes to the 
-    ...                second board, creates a card and moves it to the other board 
+    [Documentation]    Creates a new board through API, then goes to the
+    ...                second board, creates a card and moves it to the other board
     ${board2}=         Create A Board    CardTestBoard2
     Go Home
     Go To Board       CardTestBoard2
