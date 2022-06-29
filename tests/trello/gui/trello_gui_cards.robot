@@ -90,10 +90,10 @@ Card Can Be Moved To Another Board
     Move Card To Another Board              CardTestBoard
     ${Cards_On_list}=       Get Number Of Cards In List       To Do
     ${0}=	                 Convert To Integer	             0
-    Should Be Equal             ${Cards_On_list}        ${0}   
+    Should Be Equal             ${Cards_On_list}        ${0}
    [Teardown]      Run Keywords
     ...             Close Browser
-    ...             AND  Wait Until Keyword Succeeds        10        2.5        Delete A Board        ${board2.json()}[id]              
+    ...             AND  Wait Until Keyword Succeeds        10        2.5        Delete A Board        ${board2.json()}[id]
 
 *** Keywords ***
 Cards Suite Setup
@@ -106,7 +106,6 @@ Cards Suite Setup
     Maximize Browser Window
     Login To Trello        ${DEFAULT_EMAIL}    ${DEFAULT_PASSWORD}
     Go To Board            CardTestBoard
-    
 
 Cards Suite Teardown
     [Documentation]    Deletes the created board through API and closes all browsers.
