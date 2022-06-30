@@ -13,7 +13,7 @@ CREATE a board
     Validate Response Schema       ${response}    board
     [Teardown]         Delete A Board       ${response.json()}[id]
 
-UPDATE a Board
+UPDATE a Board's name
     [Documentation]    Verify that a board's name can be updated through API
     [Tags]             smoke    api    board.update
     ${response}=       Create A Board    NewBoard
@@ -30,3 +30,26 @@ DELETE A Board
     ${response}=       Create A Board    NewBoard
     Delete A Board       ${response.json()}[id]
     Get A Board       ${response.json()}[id]    status_code=404
+
+GET Information of A Board
+    [Documentation]    Verify that a board's information can be accesed through API
+    [Tags]             smoke    api    board.get
+    ${response}=       Create A Board    BoardTest
+    Validate Response Schema       ${response}    board
+    ${response2}=       Get A Board       ${response.json()}[id]
+    Validate Response Schema       ${response2}    board
+    Should Be Equal    ${response2.json()}[name]     BoardTest
+    [Teardown]        Delete A Board       ${response.json()}[id]
+
+UPDATE a Board's description
+    [Documentation]    Verify that a board's description can be updated through API
+    [Tags]             smoke    api    board.update
+    ${response}=       Create A Board    NewBoardForTest
+    Validate Response Schema       ${response}    board
+    Update A Board       ${response.json()}[id]    desc    sampleDescription
+    ${new_response}=       Get A Board    ${response.json()}[id]
+    Should Be Equal    ${new_response.json()}[desc]     sampleDescription
+    Update A Board       ${response.json()}[id]    desc    updatedDescription
+    ${new_response2}=       Get A Board    ${response.json()}[id]
+    Should Be Equal    ${new_response2.json()}[desc]     updatedDescription
+    [Teardown]         Delete A Board       ${response.json()}[id]
