@@ -11,7 +11,7 @@ ${DEFAULT_TOKEN}       ${TRELLO_TOKEN}
 ${API_BASE_URL}        https://api.trello.com/1/
 &{HEADERS}             Accept=application/json    Content-Type=application/json    Authorization=OAuth oauth_consumer_key="${DEFAULT_KEY}", oauth_token="${DEFAULT_TOKEN}"
 ${DEFAULT_SESSION_ALIAS}    TestSession
-&{PATHS}               card=cards/{}    board=boards/{}    label=labels/{}    list=lists/{}    lists_on_board=boards/{}/lists/    archive_list=lists/{}/closed
+&{PATHS}               card=cards/{}    board=boards/{}    label=labels/{}    list=lists/{}    lists_on_board=boards/{}/lists/    archive_list=lists/{}/closed    checklist=checklists/{}
 
 *** Keywords ***
 Create Trello Session
