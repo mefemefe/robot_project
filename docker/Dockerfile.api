@@ -5,4 +5,4 @@ WORKDIR .
 COPY ./ .
 RUN pip install -r requirements.txt
 
-ENTRYPOINT robot --outputDir /reports --output api.xml --log NONE --report NONE --include $FILTER tests/trello || robot --rerunfailed reports/api.xml --output apirerun.xml --log NONE --report NONE tests/trello ; rebot --name $(date '+%m-%d-%Y|%Hh%Mm%Ss') --report reports/index.html --log reports/log.html --merge reports/*.xml
+ENTRYPOINT robot --outputDir /reports --output api.xml --log NONE --report NONE --include $FILTER trello || robot --rerunfailed reports/api.xml --output apirerun.xml --log NONE --report NONE trello ; rebot --name $(date '+%m-%d-%Y|%Hh%Mm%Ss') --report reports/index.html --log reports/log.html --merge reports/*.xml

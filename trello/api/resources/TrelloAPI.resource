@@ -2,8 +2,8 @@
 Documentation    Keywords and Variables for using the Trello API
 Library          Collections
 Library          String
-Variables        tests/common/variables/env_manager.py    TRELLO_APIKEY    TRELLO_TOKEN
-Resource         tests/common/api/resources/CommonAPI.resource
+Variables        core/variables/env_manager.py    TRELLO_APIKEY    TRELLO_TOKEN
+Resource         core/api/resources/CommonAPI.resource
 
 *** Variables ***
 ${DEFAULT_KEY}         ${TRELLO_APIKEY}

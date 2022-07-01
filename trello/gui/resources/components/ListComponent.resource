@@ -119,7 +119,7 @@ Close a list
     Wait Until Element Is Enabled       ${LIST_ACTIONS_BUTTON}    timeout=10s
     Click Link    ${LIST_ACTIONS_BUTTON}
     Wait Until Element Is Enabled       ${CLOSE_LIST_BUTTON}    timeout=10s
-    Click Link    ${CLOSE_LIST_BUTTON}
+    Wait Until Keyword Succeeds        10        2.5            Click Link    ${CLOSE_LIST_BUTTON}
 
 Click pencil menu
     [Documentation]        Adds a label to an specific card

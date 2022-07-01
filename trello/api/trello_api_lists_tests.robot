@@ -38,8 +38,8 @@ ARCHIVE A list
 Setup Board
     [Documentation]    Create a board and save it's id for the suite
     ${BOARD}=    Create A Board    TestBoard
-    Set Suite Variable    \${TEST_SUITE_BOARD_ID}    ${BOARD.json()}[id]
+    Wait Until Keyword Succeeds    10    2.5        Set Suite Variable    \${TEST_SUITE_BOARD_ID}    ${BOARD.json()}[id]
 
 Teardown Board
     [Documentation]    Delete the board created for this suite.
-    Delete A Board    ${TEST_SUITE_BOARD_ID}
+    Wait Until Keyword Succeeds    10    2.5        Delete A Board    ${TEST_SUITE_BOARD_ID}

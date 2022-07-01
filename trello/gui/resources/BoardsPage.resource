@@ -23,8 +23,7 @@ Verify Current Page Is Boards Page
 Click New Board Button
     [Documentation]    Clicks the button that creates a new board.
     Wait Until Location Contains     ${BOARDS_PATH}
-    Wait Until Element Is Visible    ${CREATE_NEW_BOARD_BUTTON}
-    Click Element           ${CREATE_NEW_BOARD_BUTTON}
+    Wait Until Keyword Succeeds        10        2.5            Click Element           ${CREATE_NEW_BOARD_BUTTON}
 
 Set Name to Board
     [Documentation]    Set the name of the board and press the create button

@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation    Keywords for general API usage.
 Library          ../libraries/request_own_library.py
-Library          JSONSchemaLibrary    schemas/
+Library          JSONSchemaLibrary    trello/schemas/
 
 *** Keywords ***
 Get Information From Response

@@ -22,7 +22,7 @@ Create and get label on board
     ${LABEL_NAME}=       Get Information From Response    ${response}    name
     Should Be Equal    ${LABEL_COLOR}     yellow
     Should Be Equal    ${LABEL_NAME}     label2
-    [Teardown]    Delete A Label     ${LABEL_ID}
+    [Teardown]    Wait Until Keyword Succeeds    10    2.5         Delete A Label     ${LABEL_ID}
 
 
 Update label on board
@@ -36,14 +36,14 @@ Update label on board
     ${NEW_LABEL_NAME}=       Get Information From Response    ${new_response}    name
     Should Be Equal    ${NEW_LABEL_COLOR}     orange
     Should Be Equal    ${NEW_LABEL_NAME}     label3
-    [Teardown]    Delete A Label     ${LABEL_ID}
+    [Teardown]    Wait Until Keyword Succeeds    10    2.5        Delete A Label     ${LABEL_ID}
 
 Delete label on board
     [Documentation]    Verify that a label can be deleted through API
     [Tags]             smoke    api    label.delete
     ${response}=       Create A Label    name    label2    color   yellow
     ${LABEL_ID}=       Get Information From Response    ${response}    id
-    Delete A Label     ${LABEL_ID}
+    Wait Until Keyword Succeeds    10    2.5          Delete A Label     ${LABEL_ID}
     Get A Label  ${LABEL_ID}    status_code=404
 
 *** Keywords ***
@@ -56,4 +56,5 @@ Setup Board And List
 
 Teardown Board
     [Documentation]    Delete the board created for this session.
-    Delete A Board    ${TEST_SUITE_BOARD_ID}
+    Wait Until Keyword Succeeds    10    2.5              Delete A Board    ${TEST_SUITE_BOARD_ID}
+
