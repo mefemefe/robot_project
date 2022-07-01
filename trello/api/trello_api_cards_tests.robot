@@ -19,7 +19,7 @@ Verify A Card Can Be Created
     ${response}=       Get A Card       ${CARD_ID}
     ${CARD_NAME}=      Get Information From Response    ${response}    name
     Should Be Equal    ${CARD_NAME}     RFCard2
-    [Teardown]         Delete A Card      ${CARD_ID}
+    [Teardown]    Wait Until Keyword Succeeds    10    2.5          Delete A Card      ${CARD_ID}
 
 Verify A Card Can Be Closed
     [Documentation]    Verify that a card can be closed through API
@@ -30,7 +30,7 @@ Verify A Card Can Be Closed
     ${response}=       Get A Card    ${CARD_ID}
     ${CARD_CLOSED}=    Get Information From Response    ${response}    closed
     Should Be True     ${CARD_CLOSED}
-    [Teardown]         Delete A Card    ${CARD_ID}
+    [Teardown]    Wait Until Keyword Succeeds    10    2.5         Delete A Card    ${CARD_ID}
 
 Verify A Card Can Be Deleted
     [Documentation]    Verify that a card can be deleted through API
@@ -53,7 +53,7 @@ Verify A Card Can Be Updated
     ${CARD_DESC}=      Get Information From Response    ${response}    desc
     Should Be Equal    ${CARD_NAME}    RFCard5
     Should Be Equal    ${CARD_DESC}    Description
-    [Teardown]         Delete A Card    ${CARD_ID}
+    [Teardown]    Wait Until Keyword Succeeds    10    2.5          Delete A Card    ${CARD_ID}
 
 *** Keywords ***
 Setup Board And List
@@ -65,4 +65,4 @@ Setup Board And List
 
 Teardown Board
     [Documentation]    Delete the board created for this suite
-    Delete A Board    ${TEST_SUITE_BOARD_ID}
+    Wait Until Keyword Succeeds    10    2.5        Delete A Board    ${TEST_SUITE_BOARD_ID}

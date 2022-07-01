@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation     Test Cases for Cards Feature
 Resource          resources/LoginPage.resource
-Resource          tests/trello/api/resources/Board.resource
+Resource          trello/api/resources/Board.resource
 Resource          resources/BoardsPage.resource
 Resource          resources/BoardPage.resource
 Resource          resources/components/TrelloUpperMenu.resource

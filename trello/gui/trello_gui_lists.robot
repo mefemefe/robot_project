@@ -3,8 +3,7 @@ Documentation    List Tests
 Library          SeleniumLibrary
 Resource         resources/LoginPage.resource
 Resource         resources/BoardsPage.resource
-Resource          tests/trello/api/resources/Board.resource
-
+Resource          trello/api/resources/Board.resource
 Resource          resources/components/ListComponent.resource
 Resource         resources/components/ShownMenu.resource
 Resource         resources/components/TopBar.resource
