@@ -67,4 +67,4 @@ Setup Board
 
 Teardown Board
     [Documentation]    Deletes used board for teardown
-    Delete A Board    ${TEST_SUITE_BOARD_ID}
+    Wait Until Keyword Succeeds        10        2.5        Delete A Board        ${TEST_SUITE_BOARD_ID}
