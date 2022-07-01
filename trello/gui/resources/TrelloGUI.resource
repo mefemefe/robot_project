@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation    Keywords and Variables for using Trello through GUI
-Variables        tests/common/variables/env_manager.py    TRELLO_EMAIL    TRELLO_PASSWORD
-Resource         tests/common/gui/resources/CommonGUI.resource
+Variables        core/variables/env_manager.py    TRELLO_EMAIL    TRELLO_PASSWORD
+Resource         core/gui/resources/CommonGUI.resource
 
 *** Variables ***
 ${GUI_BASE_URL}         https://trello.com/

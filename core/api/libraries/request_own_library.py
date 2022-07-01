@@ -1,6 +1,6 @@
 import json
 import requests
-from tests.common.api.exceptions.InvalidExpectedStatus import InvalidExpectedStatus
+from core.api.exceptions.InvalidExpectedStatus import InvalidExpectedStatus
 from robot.api.deco import keyword
 ROBOT = False
 
