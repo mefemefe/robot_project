@@ -25,7 +25,7 @@ create list
     Create new list with the name    NEW_TEST_LIST
     Verify That The List Exists    NEW_TEST_LIST
     [Teardown]        Run Keywords
-    ...               Wait Until Keyword Succeeds        10x        3 seconds        Close a list
+    ...               Wait Until Keyword Succeeds        ${DEFAULT_REPEAT}        ${DEFAULT_INTERVAL} seconds        Close a list
     ...               AND    Close Browser
 
 modify name of a list
@@ -39,7 +39,7 @@ modify name of a list
     Modify the name of a list with    TO_MODIFY    MODIFIED_LIST
     Verify That The List Exists    MODIFIED_LIST
     [Teardown]        Run Keywords
-    ...               Wait Until Keyword Succeeds        10x        3 seconds        Close a list
+    ...               Wait Until Keyword Succeeds        ${DEFAULT_REPEAT}        ${DEFAULT_INTERVAL} seconds        Close a list
     ...               AND    Close Browser
 
 archive a list
@@ -50,7 +50,7 @@ archive a list
     Login To Trello    ${DEFAULT_EMAIL}     ${DEFAULT_PASSWORD}
     Go To Board    TestBoard
     Create new list with the name    TO_ARCHIVE
-    Wait Until Keyword Succeeds        10x        3 seconds        Close a list
+    Wait Until Keyword Succeeds        ${DEFAULT_REPEAT}        ${DEFAULT_INTERVAL} seconds       Close a list
     Enter to the side menu
     Enter to the list archive
     Verify That A List Is In The Archive    TO_ARCHIVE
@@ -66,4 +66,4 @@ Setup Board
 
 Teardown Board
     [Documentation]    Deletes used board for teardown
-    Wait Until Keyword Succeeds        10        2.5        Delete A Board        ${TEST_SUITE_BOARD_ID}
+    Wait Until Keyword Succeeds        ${DEFAULT_TIMEOUT}        ${DEFAULT_INTERVAL}        Delete A Board        ${TEST_SUITE_BOARD_ID}

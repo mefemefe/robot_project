@@ -36,7 +36,7 @@ delete a board
     Delete Current Board
     [Teardown]      Run Keywords
     ...             Close Browser
-    ...             AND  Run Keyword If Test Failed      Wait Until Keyword Succeeds        10        2.5        Delete A Board        ${BOARD.json()}[id]
+    ...             AND  Run Keyword If Test Failed      Wait Until Keyword Succeeds        ${DEFAULT_TIMEOUT}        ${DEFAULT_INTERVAL}        Delete A Board        ${BOARD.json()}[id]
 
 Update a board's description
     [Documentation]    Verify that a board's description can be updated through GUI
@@ -51,7 +51,7 @@ Update a board's description
     Update Description of Board                     UpdatedDescription
     [Teardown]      Run Keywords
     ...             Close Browser
-    ...             AND  Wait Until Keyword Succeeds        10        2.5        Delete A Board        ${BOARD.json()}[id]
+    ...             AND  Wait Until Keyword Succeeds        ${DEFAULT_TIMEOUT}        ${DEFAULT_INTERVAL}        Delete A Board        ${BOARD.json()}[id]
 
 Update a board's name
     [Documentation]    Verify that a board's name can be updated through GUI
@@ -66,7 +66,7 @@ Update a board's name
     Verify Name of Board                     UpdatedName
     [Teardown]      Run Keywords
     ...             Close Browser
-    ...             AND  Wait Until Keyword Succeeds        10        2.5        Delete A Board        ${BOARD.json()}[id]
+    ...             AND  Wait Until Keyword Succeeds        ${DEFAULT_TIMEOUT}        ${DEFAULT_INTERVAL}        Delete A Board        ${BOARD.json()}[id]
 *** Keywords ***
 Boards Suite Setup
     [Documentation]    Creates a Trello Sesion in order to use api's keywords.

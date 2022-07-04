@@ -93,7 +93,7 @@ Card Can Be Moved To Another Board
     Should Be Equal             ${Cards_On_list}        ${0}
    [Teardown]      Run Keywords
     ...             Close Browser
-    ...             AND  Wait Until Keyword Succeeds        10        2.5        Delete A Board        ${board2.json()}[id]
+    ...             AND  Wait Until Keyword Succeeds        ${DEFAULT_TIMEOUT}        ${DEFAULT_INTERVAL}        Delete A Board        ${board2.json()}[id]
 
 *** Keywords ***
 Cards Suite Setup
@@ -109,6 +109,6 @@ Cards Suite Setup
 
 Cards Suite Teardown
     [Documentation]    Deletes the created board through API and closes all browsers.
-    Wait Until Keyword Succeeds    10    2.5    Delete A Board    ${TEST_SUITE_BOARD_ID}
+    Wait Until Keyword Succeeds    ${DEFAULT_TIMEOUT}        ${DEFAULT_INTERVAL}    Delete A Board    ${TEST_SUITE_BOARD_ID}
     Delete All Sessions
     Close All Browsers

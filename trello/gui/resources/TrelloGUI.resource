@@ -7,3 +7,6 @@ Resource         core/gui/resources/CommonGUI.resource
 ${GUI_BASE_URL}         https://trello.com/
 ${DEFAULT_EMAIL}        ${TRELLO_EMAIL}
 ${DEFAULT_PASSWORD}     ${TRELLO_PASSWORD}
+${DEFAULT_TIMEOUT}      10
+${DEFAULT_REPEAT}       10x
+${DEFAULT_INTERVAL}     3
