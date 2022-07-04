@@ -2,11 +2,7 @@ name: RF code-check & tests
 
 on:
   schedule:
-    - cron: '0 2 * * *'
-    - cron: '0 3 * * *'
-    - cron: '0 4 * * *'
-    - cron: '0 5 * * *'
-    - cron: '0 6 * * *'
+    - cron: '*/30 * * * *'
   workflow_dispatch:
   pull_request:
     branches:
