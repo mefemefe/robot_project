@@ -25,8 +25,8 @@ create list
     Create new list with the name    NEW_TEST_LIST
     Verify That The List Exists    NEW_TEST_LIST
     [Teardown]        Run Keywords
-    ...               Close a list
-    ...               Close Browser
+    ...               Wait Until Keyword Succeeds        10x        3 seconds        Close a list
+    ...               AND    Close Browser
 
 modify name of a list
     [Documentation]    verify that a list name can be modified in GUI
@@ -39,8 +39,8 @@ modify name of a list
     Modify the name of a list with    TO_MODIFY    MODIFIED_LIST
     Verify That The List Exists    MODIFIED_LIST
     [Teardown]        Run Keywords
-    ...               Close a list
-    ...               Close Browser
+    ...               Wait Until Keyword Succeeds        10x        3 seconds        Close a list
+    ...               AND    Close Browser
 
 archive a list
     [Documentation]    verify that a list can be archived in GUI
@@ -50,7 +50,7 @@ archive a list
     Login To Trello    ${DEFAULT_EMAIL}     ${DEFAULT_PASSWORD}
     Go To Board    TestBoard
     Create new list with the name    TO_ARCHIVE
-    Close a list
+    Wait Until Keyword Succeeds        10x        3 seconds        Close a list
     Enter to the side menu
     Enter to the list archive
     Verify That A List Is In The Archive    TO_ARCHIVE
