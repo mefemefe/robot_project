@@ -91,9 +91,9 @@ Drag Card From One List To Another
 Create new list with the name
     [Documentation]    Create  a new list with the given name
     [Arguments]    ${list_name}
-    Wait Until Page Contains Element      ${ADD_LIST_BUTTON}        timeout=10s
+    Wait Until Page Contains Element      ${ADD_LIST_BUTTON}        timeout=${DEFAULT_TIMEOUT}s
     Click Link     ${ADD_LIST_BUTTON}
-    Wait Until Element Is Enabled       ${LIST_NAME_INPUT}    timeout=10s
+    Wait Until Element Is Enabled       ${LIST_NAME_INPUT}    timeout=${DEFAULT_TIMEOUT}s
     Input text    ${LIST_NAME_INPUT}    ${list_name}
     Press Keys     ${LIST_NAME_INPUT}    RETURN
 
@@ -108,9 +108,9 @@ Modify the name of a list with
     [Documentation]    Modify the name of an existent list
     [Arguments]    ${old_name}    ${new_name}
     ${name_header_instance}=    Format String   ${LIST_NAME_HEADER}    old_name=${old_name}
-    Wait Until Element Is Enabled       ${name_header_instance}    timeout=10s
+    Wait Until Element Is Enabled       ${name_header_instance}    timeout=${DEFAULT_TIMEOUT}s
     Click Element    ${name_header_instance}
-    Wait Until Element Is Enabled       ${LIST_NAME_INPUT}    timeout=10s
+    Wait Until Element Is Enabled       ${LIST_NAME_INPUT}    timeout=${DEFAULT_TIMEOUT}s
     Press Keys     ${LIST_NAME_INPUT}    BACKSPACE
     Input Text    ${LIST_TEXT_AREA_NAME}    ${new_name}
     Press Keys    None    RETURN
@@ -118,10 +118,10 @@ Modify the name of a list with
 Close a list
     [Documentation]    archives a list
 
-    Wait Until Element Is Enabled       ${LIST_ACTIONS_BUTTON}    timeout=10s
-    Wait Until Keyword Succeeds        10x        3 seconds            Click Link    ${LIST_ACTIONS_BUTTON}
-    Wait Until Element Is Enabled       ${CLOSE_LIST_BUTTON}    timeout=10s
-    Wait Until Keyword Succeeds        10        2.5            Click Link    ${CLOSE_LIST_BUTTON}
+    Wait Until Element Is Enabled       ${LIST_ACTIONS_BUTTON}    timeout=${DEFAULT_TIMEOUT}s
+    Wait Until Keyword Succeeds        ${DEFAULT_REPEAT}        ${DEFAULT_INTERVAL} seconds            Click Link    ${LIST_ACTIONS_BUTTON}
+    Wait Until Element Is Enabled       ${CLOSE_LIST_BUTTON}    timeout=${DEFAULT_TIMEOUT}s
+    Wait Until Keyword Succeeds        ${DEFAULT_TIMEOUT}        ${DEFAULT_INTERVAL}    Click Link    ${CLOSE_LIST_BUTTON}
 
 Click pencil menu
     [Documentation]        Adds a label to an specific card

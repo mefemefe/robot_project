@@ -37,7 +37,7 @@ Enter Password
     [Documentation]    Take a password as argument and
     ...                enters it in the password_input
     [Arguments]    ${password}
-    Wait Until Element Is Visible    ${PASS_INPUT}    timeout=10
+    Wait Until Element Is Visible    ${PASS_INPUT}    timeout=${DEFAULT_TIMEOUT}
     Input Password    ${PASS_INPUT}    ${password}
 
 Click Login Button

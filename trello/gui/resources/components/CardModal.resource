@@ -31,7 +31,7 @@ Delete Current Card
     ...                 if it's not, it will archive it to be able to delete it.
     ${not_archived}=    Run Keyword And Return Status    Element Should Not Be Visible    ${IS_ARCHIVED_MSG}
     Run Keyword If      ${not_archived}    Archive Current Card
-    Wait Until Keyword Succeeds    3    0.9    Click Element    ${DELETE_BUTTON}
+    Wait Until Keyword Succeeds    ${DEFAULT_TIMEOUT}    ${DEFAULT_INTERVAL}    Click Element    ${DELETE_BUTTON}
     Click Element       ${DELETE_CONFIRM}
 
 Close Card Modal
@@ -58,12 +58,12 @@ Get Number Of Comments
 Add Color Label In Card
     [Documentation]              add label of a given color to a list
     [Arguments]                  ${color}
-    Wait Until Element Is Enabled       ${EDIT_LABEL}    timeout=10s
+    Wait Until Element Is Enabled       ${EDIT_LABEL}    timeout=${DEFAULT_TIMEOUT}s
     Click Element    ${EDIT_LABEL}
-    Wait Until Element Is Enabled      ${LABEL_INPUT}    timeout=10s
+    Wait Until Element Is Enabled      ${LABEL_INPUT}    timeout=${DEFAULT_TIMEOUT}s
     Click Element    ${LABEL_INPUT}
     Input Text                     ${LABEL_INPUT}     ${color}
-    Wait Until Element Is Enabled      ${LABEL_INPUT}    timeout=10s
+    Wait Until Element Is Enabled      ${LABEL_INPUT}    timeout=${DEFAULT_TIMEOUT}s
     Press Keys                       ${LABEL_INPUT}    RETURN
     Press Keys    None    ESCAPE
     Press Keys    None    ESCAPE

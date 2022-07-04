@@ -13,7 +13,7 @@ ${SHOW_MENU_BUTTON}             xpath://div[contains(@class, 'board-header')]//a
 Verify Name of Board
     [Documentation]    Verifies the name of a board
     [Arguments]        ${name}
-    Wait Until Element Is Visible           ${NAME_OF_BOARD}    10
+    Wait Until Element Is Visible           ${NAME_OF_BOARD}    ${DEFAULT_TIMEOUT}
     Element Text Should Be           ${NAME_OF_BOARD}    ${name}
 
 Open Show Menu

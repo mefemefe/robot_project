@@ -49,22 +49,22 @@ Update Description of Board
     Click Element           ${CLOSE_SHOW_MENU}
 Enter to the list archive
     [Documentation]    accesing to the archive menu in the sidebar
-    Wait Until Element Is Enabled    ${MORE_OPTIONS_SIDEBAR}    timeout=10s
-    Wait Until Keyword Succeeds        10        2.5            Click Link    ${MORE_OPTIONS_SIDEBAR}
-    Wait Until Element Is Enabled    ${ARCHIVED_ITEMS_BUTTON}            timeout=10s
-    Wait Until Keyword Succeeds        10        2.5            Click Link    ${ARCHIVED_ITEMS_BUTTON}
-    Wait Until Element Is Enabled    ${SWITCH_TO_LIST_BUTTON}        timeout=10s
-    Wait Until Keyword Succeeds        10        2.5            Click Link    ${SWITCH_TO_LIST_BUTTON}
+    Wait Until Element Is Enabled    ${MORE_OPTIONS_SIDEBAR}    timeout=${DEFAULT_TIMEOUT}s
+    Wait Until Keyword Succeeds        ${DEFAULT_TIMEOUT}        ${DEFAULT_INTERVAL}    Click Link    ${MORE_OPTIONS_SIDEBAR}
+    Wait Until Element Is Enabled    ${ARCHIVED_ITEMS_BUTTON}            timeout=${DEFAULT_TIMEOUT}s
+    Wait Until Keyword Succeeds        ${DEFAULT_TIMEOUT}        ${DEFAULT_INTERVAL}    Click Link    ${ARCHIVED_ITEMS_BUTTON}
+    Wait Until Element Is Enabled    ${SWITCH_TO_LIST_BUTTON}        timeout=${DEFAULT_TIMEOUT}s
+    Wait Until Keyword Succeeds        ${DEFAULT_TIMEOUT}        ${DEFAULT_INTERVAL}    Click Link    ${SWITCH_TO_LIST_BUTTON}
 
 Close archive tab
     [Documentation]   close sidebar tab
-    Wait Until Element Is Enabled   ${CLOSE_SHOW_MENU}            timeout=10s
+    Wait Until Element Is Enabled   ${CLOSE_SHOW_MENU}            timeout=${DEFAULT_TIMEOUT}s
     Click Link    ${CLOSE_SHOW_MENU}
 
 Verify That A List Is In The Archive
     [Documentation]          Verify that a given header of a list matches
     [Arguments]              ${archived_list_title}
     ${list_name_locator_archive}=    Format String   ${ARCHIVED_LIST_NAME_FIELD}    archived_list_title=${archived_list_title}
-    Wait Until Element Is Enabled    ${list_name_locator_archive}        timeout=10s
+    Wait Until Element Is Enabled    ${list_name_locator_archive}        timeout=${DEFAULT_TIMEOUT}s
     Page Should Contain Element    ${list_name_locator_archive}
     

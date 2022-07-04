@@ -13,7 +13,7 @@ Verify Name of Board
     [Documentation]    Verifies the name of a board
     ...                name the board should have
     [Arguments]        ${name}
-    Wait Until Element Is Visible           ${NAME_OF_BOARD}    10
+    Wait Until Element Is Visible           ${NAME_OF_BOARD}    ${DEFAULT_TIMEOUT}
     Element Text Should Be           ${NAME_OF_BOARD}    ${name}
 
 Open Show Menu
@@ -37,7 +37,7 @@ Update Name of Board
 
 Enter to the side menu
     [Documentation]    accesing to the archive menu in the sidebar
-    Wait Until Element Is Enabled    ${SHOW_MENU_BUTTON}    timeout=10s
+    Wait Until Element Is Enabled    ${SHOW_MENU_BUTTON}    timeout=${DEFAULT_TIMEOUT}s
     Click Link    ${SHOW_MENU_BUTTON}
 
 Enter To Filter Menu
