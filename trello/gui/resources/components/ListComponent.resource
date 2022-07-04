@@ -117,8 +117,9 @@ Modify the name of a list with
 
 Close a list
     [Documentation]    archives a list
+
     Wait Until Element Is Enabled       ${LIST_ACTIONS_BUTTON}    timeout=10s
-    Wait Until Keyword Succeeds        10        2.5            Click Link    ${LIST_ACTIONS_BUTTON}
+    Wait Until Keyword Succeeds        10x        3 seconds            Click Link    ${LIST_ACTIONS_BUTTON}
     Wait Until Element Is Enabled       ${CLOSE_LIST_BUTTON}    timeout=10s
     Wait Until Keyword Succeeds        10        2.5            Click Link    ${CLOSE_LIST_BUTTON}
 
