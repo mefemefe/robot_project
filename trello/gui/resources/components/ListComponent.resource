@@ -18,6 +18,7 @@ ${LIST_NAME_INPUT}          xpath://input[@class="list-name-input"]
 ${LIST_TEXT_AREA_NAME}      xpath://div[@class='js-list list-wrapper'][last()]//textarea
 ${LIST_ACTIONS_BUTTON}       xpath://div[@class='js-list list-wrapper'][last()]//a[@aria-label="List actions"]
 ${LIST_NAME_HEADER}         xpath://div[@class='list-header js-list-header u-clearfix is-menu-shown' and contains(.,'{old_name}')]
+${CLOSE_LIST_BUTTON}        xpath://li//a[@class='js-close-list']
 
 *** Keywords ***
 Create Card In List
@@ -117,7 +118,7 @@ Modify the name of a list with
 Close a list
     [Documentation]    archives a list
     Wait Until Element Is Enabled       ${LIST_ACTIONS_BUTTON}    timeout=10s
-    Click Link    ${LIST_ACTIONS_BUTTON}
+    Wait Until Keyword Succeeds        10        2.5            Click Link    ${LIST_ACTIONS_BUTTON}
     Wait Until Element Is Enabled       ${CLOSE_LIST_BUTTON}    timeout=10s
     Wait Until Keyword Succeeds        10        2.5            Click Link    ${CLOSE_LIST_BUTTON}
 
