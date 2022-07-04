@@ -16,7 +16,6 @@ ${DESC_TEXT_AREA}             xpath://div[contains(@class, 'board-menu-content')
 ${SAVE_DESC_BUTTON}             xpath://div[contains(@class, 'board-menu-content')]//input[@value="Save"]
 ${GO_BACK_BUTTON}             xpath://a[@title="Go back."]
 ${CLOSE_SHOW_MENU}             xpath://a[@title="Close the board menu."]
-${CLOSE_LIST_BUTTON}        xpath://li//a[@class='js-close-list']
 ${ARCHIVED_ITEMS_BUTTON}    xpath://a[contains(@class, 'js-open-archive')]
 ${SWITCH_TO_LIST_BUTTON}    xpath://div[@class='archive-controls']/a[contains(.,'Switch to lists')]
 ${MORE_OPTIONS_SIDEBAR}     xpath://a[contains(@class,'board-menu-navigation-item-link') and contains(.,'More')]
@@ -51,11 +50,11 @@ Update Description of Board
 Enter to the list archive
     [Documentation]    accesing to the archive menu in the sidebar
     Wait Until Element Is Enabled    ${MORE_OPTIONS_SIDEBAR}    timeout=10s
-    Click Link    ${MORE_OPTIONS_SIDEBAR}
+    Wait Until Keyword Succeeds        10        2.5            Click Link    ${MORE_OPTIONS_SIDEBAR}
     Wait Until Element Is Enabled    ${ARCHIVED_ITEMS_BUTTON}            timeout=10s
-    Click Link    ${ARCHIVED_ITEMS_BUTTON}
+    Wait Until Keyword Succeeds        10        2.5            Click Link    ${ARCHIVED_ITEMS_BUTTON}
     Wait Until Element Is Enabled    ${SWITCH_TO_LIST_BUTTON}        timeout=10s
-    Click Link   ${SWITCH_TO_LIST_BUTTON}
+    Wait Until Keyword Succeeds        10        2.5            Click Link    ${SWITCH_TO_LIST_BUTTON}
 
 Close archive tab
     [Documentation]   close sidebar tab
